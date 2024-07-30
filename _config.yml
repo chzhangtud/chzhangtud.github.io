@@ -226,6 +226,9 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  math_engine: mathjax
+  mathjax:
+    cdn: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 
 # Sass/SCSS
@@ -332,3 +335,11 @@ defaults:
       comments: # true
       share: true
       related: true
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+  categories:
+    output: true
+    permalink: /categories/:name/
