@@ -276,6 +276,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-toc
+  - jekyll-multiple-languages-plugin
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -341,11 +342,13 @@ collections:
   pages:
     output: true
     permalink: /:path/
-  categories:
+  tag:
     output: true
-    permalink: /categories/:name/
   
 toc:
   min_level: 1
   max_level: 6
   list_type: ul
+
+languages: ["en", "zh"]
+default_lang: "zh"

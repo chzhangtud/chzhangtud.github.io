@@ -7,3 +7,4 @@ gem "webrick", "~> 1.7"
 gem "csv", "~> 3.1"
 
 gem 'jekyll-toc'
+gem 'jekyll-multiple-languages-plugin'

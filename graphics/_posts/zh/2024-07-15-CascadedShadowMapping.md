@@ -2,8 +2,8 @@
 title: "Cascaded Shadow Mapping"
 date: 2024-07-15
 categories:
-  - Shadowing
 tags:
+  - Shadowing
   - CSM
 ---
 
