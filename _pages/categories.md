@@ -1,10 +1,10 @@
 ---
-title: Archive
+title: Categories
 permalink: /categories/
 layout: single
 ---
 
-<div id="archives">
+<div id="categories">
   <ul>
     {% for category in site.categories %}
       <li>
@@ -24,20 +24,3 @@ layout: single
     {% endfor %}
   </ul>
 </div>
-
-
-
-
-
-<!-- ---
-title: Archive
-permalink: /archive/
-layout: single
----
-<div id="archives">
-  <ul>
-    {% for post in site.posts %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%B %d, %Y" }}</li>
-    {% endfor %}
-  </ul>
-</div> -->
