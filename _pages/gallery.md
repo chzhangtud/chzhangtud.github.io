@@ -14,7 +14,7 @@ body {
 }
 </style>
 
-This page shows some of the graphical features I've implemented.
+This page shows some of the Computer Graphics features I've implemented.
 
 * TOC
 {:toc}
