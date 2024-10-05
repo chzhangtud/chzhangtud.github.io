@@ -58,6 +58,28 @@ layout: default
         {% endif %}
         {% include page__taxonomy.html %}
         {% include page__date.html %}
+
+        <!-- put Gitalk in footer -->
+        <div id="gitalk-container"></div>
+        {% if page.comments != false %}
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+          <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var gitalk = new Gitalk({
+                clientID: 'Ov23liYrZfZcKXL8SkMB',
+                clientSecret: '99e877174754723f8f4cbacfa20a2991635d2730',
+                repo: 'chzhangtud.github.io-comments',
+                owner: 'chzhangtud',
+                admin: ['chzhangtud', 'ChloisHuang'],
+                id: location.pathname,
+                distractionFreeMode: false
+              });
+              gitalk.render('gitalk-container');
+            });
+          </script>
+        {% endif %}
       </footer>
 
       {% if page.share %}{% include social-share.html %}{% endif %}

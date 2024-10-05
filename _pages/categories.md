@@ -2,6 +2,7 @@
 title: Categories
 permalink: /categories/
 layout: single
+comments: false
 ---
 
 <div id="categories">

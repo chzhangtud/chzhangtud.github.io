@@ -2,6 +2,7 @@
 title: "Gallery"
 permalink: /gallery/
 layout: single
+comments: false
 ---
 
 <style>
@@ -14,7 +15,7 @@ body {
 }
 </style>
 
-This page shows some of the Computer Graphics features I've implemented.
+This page shows a few cases of the Computer Graphics features I've implemented.
 
 * TOC
 {:toc}
