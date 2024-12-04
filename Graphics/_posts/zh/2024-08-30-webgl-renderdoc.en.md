@@ -1,6 +1,6 @@
 ---
 title: "Capture WebGL Applications using RenderDoc and SpectorJS"
-lang: "zh"
+lang: "en"
 date: 2024-08-30
 permalink: /en/webgl-renderdoc/
 zh_link: /zh/webgl-renderdoc/
