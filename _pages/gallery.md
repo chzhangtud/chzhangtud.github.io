@@ -27,6 +27,10 @@ This scene is created using Vulkan Ray Tracing to help get a better grasp of Vul
     <source src="/assets/videos/caustics/rtscene.mp4" type="video/mp4">
 </video>
 
+## Hitchcock Zooming (Dolly Zooming)
+<video width="100%" height="auto" controls>
+    <source src="/assets/videos/dollyzoom/dollyZoom.mp4" type="video/mp4">
+</video>
 
 ## Linearly Transformed Cosines (LTC) based Area Light
 <div style="text-align:center">
@@ -54,12 +58,12 @@ This scene is created using Vulkan Ray Tracing to help get a better grasp of Vul
 <!-- ## Water Caustics
 <video width="100%" height="auto" controls>
     <source src="/assets/videos/caustics/caustics.mp4" type="video/mp4">
-</video>
+</video> -->
 
-## AutoStereoScopy
+## Glasses-Free 3D on a Foldable Phone
 <video width="100%" height="auto" controls>
     <source src="/assets/videos/autostereoscopy/autostereoscopy.mp4" type="video/mp4">
-</video> -->
+</video>
 
 
 <!-- ## Motion Blur
