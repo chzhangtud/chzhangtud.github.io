@@ -27,6 +27,60 @@ This scene is created using Vulkan Ray Tracing to help get a better grasp of Vul
     <source src="/assets/videos/caustics/rtscene.mp4" type="video/mp4">
 </video>
 
+## Mesh shading
+<select id="img-set">
+  <option value="set1" selected>Scene 1</option>
+  <option value="set2">Scene 2</option>
+</select>
+
+<div id="juxta-container">
+  <div id="juxta" class="juxtapose" data-startingposition="50%">
+    <img src="/assets/imgs/meshshading/scene1.png" data-label="Shading" />
+    <img src="/assets/imgs/meshshading/meshlets1.png" data-label="Meshlets" />
+  </div>
+</div>
+
+<script>
+const imgSet = {
+  set1: [
+    "/assets/imgs/meshshading/scene1.png",
+    "/assets/imgs/meshshading/meshlets1.png"
+  ],
+  set2: [
+    "/assets/imgs/meshshading/scene2.png",
+    "/assets/imgs/meshshading/meshlets2.png"
+  ]
+};
+
+const select = document.getElementById("img-set");
+const container = document.getElementById("juxta-container");
+
+select.addEventListener("change", (e) => {
+  const key = e.target.value;
+  const [imgA, imgB] = imgSet[key];
+
+  // remove old juxtapose instance
+  const oldJuxta = document.getElementById("juxta");
+  if (oldJuxta) oldJuxta.remove();
+
+  // recreate juxtapose DOM
+  const newJuxta = document.createElement("div");
+  newJuxta.id = "juxta";
+  newJuxta.className = "juxtapose";
+  newJuxta.dataset.startingposition = "50%";
+  newJuxta.innerHTML = `
+    <img src="${imgA}" data-label="Shading" />
+    <img src="${imgB}" data-label="Meshlets" />
+  `;
+  container.appendChild(newJuxta);
+
+  // re initialize juxtapose
+  if (window.juxtapose && window.juxtapose.scanPage) {
+    setTimeout(() => window.juxtapose.scanPage(), 1);
+  }
+});
+</script>
+
 ## Hitchcock Zooming (Dolly Zooming)
 <video width="100%" height="auto" controls>
     <source src="/assets/videos/dollyzoom/dollyZoom.mp4" type="video/mp4">
