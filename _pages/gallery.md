@@ -81,6 +81,14 @@ select.addEventListener("change", (e) => {
 });
 </script>
 
+## Vulkan on Android
+I have implemented a toy Vulkan Engine supporting Windows (Vulkan 1.4) and Android (Vulkan 1.3), for studying the latest hardware/software technology of Computer Graphics on different platforms. 
+For Windows, technologies like hardware ray tracing, mesh shading are supported.
+Following is a simple scene demoing Vulkan Android, with gltf, ray query shadows and deferred rendering.
+<div style="text-align:center">
+  <img src="/assets/imgs/kaleido/VulkanSceneAndroid.jpg" width="800" height="800" alt="" />
+</div>
+
 ## Hitchcock Zooming (Dolly Zooming)
 <video width="100%" height="auto" controls>
     <source src="/assets/videos/dollyzoom/dollyZoom.mp4" type="video/mp4">
