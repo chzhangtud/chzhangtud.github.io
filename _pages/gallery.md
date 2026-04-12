@@ -21,13 +21,14 @@ This page shows a few cases of the Computer Graphics features I've implemented.
 {:toc}
 
 # Real-Time Rendering
+
 ## Ray Tracing Scene with Vulkan <a href="/en/rtrt-vulkan-scene/" class="btn">Page</a>
 This scene is created using Vulkan Ray Tracing to help get a better grasp of Vulkan APIs. It demonstrates ray-traced reflections and refractions in a water pool. The water simulation and caustics generation are done using heightmap-based methods (check out the [link](https://madebyevan.com/webgl-water/)). The water heightmap simulation runs on a Compute pipeline, while caustics generation uses a Graphics pipeline. Finally, the overall rendering is handled through the Ray Tracing pipeline. In the scene, the flight helmet is a detailed triangle-based model, while the spheres and planes are represented using implicit expressions. It’s pretty interesting because to trace rays effectively, different types of BLAS are used for these geometries, all contributing to the final TLAS.
 <video width="100%" height="auto" controls>
     <source src="/assets/videos/caustics/rtscene.mp4" type="video/mp4">
 </video>
 
-## Mesh shading
+## Mesh shading <a href="https://github.com/chzhangtud/kaleido" class="btn">Repo</a>
 <select id="img-set">
   <option value="set1" selected>Scene 1</option>
   <option value="set2">Scene 2</option>
@@ -81,7 +82,7 @@ select.addEventListener("change", (e) => {
 });
 </script>
 
-## Vulkan on Android
+## Vulkan on Android <a href="https://github.com/chzhangtud/kaleido" class="btn">Repo</a>
 I have implemented a toy Vulkan Engine supporting Windows (Vulkan 1.4) and Android (Vulkan 1.3), for studying the latest hardware/software technology of Computer Graphics on different platforms. 
 For Windows, technologies like hardware ray tracing, mesh shading are supported.
 Following is a simple scene demoing Vulkan Android, with gltf, ray query shadows and deferred rendering.
