@@ -21,6 +21,13 @@ This page shows a few cases of the Computer Graphics features I've implemented.
 {:toc}
 
 # Real-Time Rendering
+## 3D Gaussian Splatting (Rendered with SuperSplat Viewer)
+<iframe
+  src="/assets/llama.html"
+  width="100%"
+  height="500"
+  style="border:none; border-radius: 8px;">
+</iframe>
 
 ## Ray Tracing Scene with Vulkan <a href="/en/rtrt-vulkan-scene/" class="btn">Page</a>
 This scene is created using Vulkan Ray Tracing to help get a better grasp of Vulkan APIs. It demonstrates ray-traced reflections and refractions in a water pool. The water simulation and caustics generation are done using heightmap-based methods (check out the [link](https://madebyevan.com/webgl-water/)). The water heightmap simulation runs on a Compute pipeline, while caustics generation uses a Graphics pipeline. Finally, the overall rendering is handled through the Ray Tracing pipeline. In the scene, the flight helmet is a detailed triangle-based model, while the spheres and planes are represented using implicit expressions. It’s pretty interesting because to trace rays effectively, different types of BLAS are used for these geometries, all contributing to the final TLAS.
@@ -95,6 +102,12 @@ Following is a simple scene demoing Vulkan Android, with gltf, ray query shadows
     <source src="/assets/videos/dollyzoom/dollyZoom.mp4" type="video/mp4">
 </video>
 
+## Shader Graph
+A node-based shader graph for visual material authoring: connect nodes to build shading networks, then preview the result in the scene in real time.
+<video width="100%" height="auto" controls>
+    <source src="/assets/imgs/shadergraph/shadergraph_demo1.mp4" type="video/mp4">
+</video>
+
 ## Linearly Transformed Cosines (LTC) based Area Light
 <div style="text-align:center">
   <img src="/assets/imgs/arealight/lightedCar.png" width="800" height="800" alt="" />
@@ -130,7 +143,6 @@ Following is a simple scene demoing Vulkan Android, with gltf, ray query shadows
 
 
 <!-- ## Motion Blur
-## Shader Graph
 ## Graphed Post Process
 ## Cloth Sheen and Subsurface Color
 ## Pixar USD -->
