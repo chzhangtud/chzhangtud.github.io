@@ -40,6 +40,7 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
+        {% unless page.url == "/stats/" %}
         <div class="page__views" aria-label="visit statistics">
           <span class="page__views-item" title="Views of this page">
             <i class="fas fa-eye" aria-hidden="true"></i>
@@ -57,6 +58,7 @@ layout: default
             <span class="page__views-label">total</span>
           </span>
         </div>
+        {% endunless %}
         {% if page.toc %}
           <aside class="sidebar__right {% if page.toc_sticky %}sticky{% endif %}">
             <nav class="toc">
