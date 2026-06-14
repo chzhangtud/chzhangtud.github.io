@@ -8,6 +8,8 @@ main:
     url: /gallery/
   - title: "About"
     url: /about/
+  - title: "Statistics"
+    url: /stats/
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
