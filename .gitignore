@@ -33,3 +33,6 @@ _site
 
 # test posts
 assets/tempResources/
+
+# local docs
+docs/

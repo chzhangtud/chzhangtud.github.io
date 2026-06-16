@@ -67,6 +67,16 @@ comments: false
   max-width: 100%;
   height: auto;
 }
+.stats-panel .embed-status {
+  margin: 0.9em 0 0;
+  font-size: 0.92em;
+  line-height: 1.55;
+  color: #555;
+  text-align: center;
+}
+.stats-panel .embed-status.is-warning {
+  color: #8a5a00;
+}
 @media (max-width: 600px) {
   .stats-grid {
     grid-template-columns: 1fr;
@@ -96,19 +106,29 @@ This page shows live visit statistics for the site.
   </div>
 </div>
 
-<!-- MapMyVisitors (formerly ClustrMaps) live visitor globe. -->
+<!-- MapMyVisitors live visitor map. -->
 <div class="stats-panel" id="visitor-map">
   <h2><i class="fas fa-globe-asia"></i>Visitor Map</h2>
   <div class="embed">
-    <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=GBmlKrL6uBeezGD45DoXSOT51WrrBHZWUyAgvE5MvhQ"></script>
+    <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=Gi8B3_EApaCi2filpg_cUbG20TcOcyLhM14xp7mb7ew&cl=ffffff&w=a"></script>
   </div>
+  <p class="embed-status" id="visitor-map-status" hidden></p>
 </div>
 
-<!-- Stop the globe from navigating away on click/tap; rotation still pauses on hover/touch (built into globe.js). -->
+<!-- Stop the map widget from navigating away on click/tap. -->
 <script>
 (function () {
-  function disableGlobeLink() {
-    var a = document.getElementById('mmvst_a');
+  var status = document.getElementById('visitor-map-status');
+
+  function setStatus(message, warning) {
+    if (!status) return;
+    status.textContent = message;
+    status.hidden = false;
+    status.className = warning ? 'embed-status is-warning' : 'embed-status';
+  }
+
+  function disableWidgetLink() {
+    var a = document.getElementById('mapmyvisitors-widget');
     if (!a) return false;
     a.removeAttribute('href');
     a.style.cursor = 'default';
@@ -117,8 +137,18 @@ This page shows live visit statistics for the site.
   }
   var tries = 0;
   var timer = setInterval(function () {
-    if (disableGlobeLink() || ++tries > 60) clearInterval(timer);
+    if (disableWidgetLink() || ++tries > 60) clearInterval(timer);
   }, 250);
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var widget = document.getElementById('mapmyvisitors-widget');
+      var map = document.querySelector('.mapmyvisitors-map');
+      if (!widget || !map) {
+        setStatus('MapMyVisitors widget content is currently unavailable. This usually means the widget key is invalid, inactive, or the service is not returning public widget data yet.', true);
+      }
+    }, 8000);
+  });
 })();
 </script>
 
