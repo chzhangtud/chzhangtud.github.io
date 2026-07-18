@@ -51,6 +51,14 @@ test('AI feedback script parses structured comments into card fields', () => {
   assert.match(script, /Feedback type/);
 });
 
+test('AI feedback maps known providers to local brand icons', () => {
+  const script = read('assets/js/ai-feedback.js');
+  assert.match(script, /providerIcon/);
+  for (const icon of ['openai.svg', 'claude.svg', 'kimi.svg', 'chatglm.svg', 'gemini.svg', 'deepseek.svg', 'qwen.svg', 'grok.svg', 'mistral.svg', 'meta.svg']) {
+    assert.ok(existsSync(new URL(`../assets/icons/ai-providers/${icon}`, import.meta.url)), `${icon} is missing`);
+  }
+});
+
 test('AI feedback widget is rendered before human comments', () => {
   const layout = read('_layouts/single.html');
   assert.ok(layout.indexOf('ai-feedback.html') < layout.indexOf('comments.html'));
