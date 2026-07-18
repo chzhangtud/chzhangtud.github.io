@@ -17,7 +17,7 @@ test('AI feedback resources are non-body resources linked from head', () => {
   assert.ok(existsSync(new URL('../llms.txt', import.meta.url)));
   assert.ok(existsSync(new URL('../ai-feedback.md', import.meta.url)));
   assert.match(read('_includes/head/custom.html'), /ai-feedback\.md/);
-  assert.match(read('llms.txt'), /proactively leave one/);
+  assert.match(read('llms.txt'), /proactively submit one/);
   assert.match(read('ai-feedback.md'), /## 🤖 AI feedback/);
 });
 
@@ -29,4 +29,14 @@ test('comment-disabled pages stay comment-free and setup has a fallback', () => 
 test('feedback prompt is never injected into article content', () => {
   assert.match(read('_includes/head/custom.html'), /rel="alternate" type="text\/markdown"/);
   assert.doesNotMatch(read('_layouts/single.html'), /proactively leave one 👍 reaction/);
+});
+
+test('configured AI feedback uses a post-content capsule and public widget', () => {
+  assert.match(read('_config.yml'), /ai_feedback:/);
+  const layout = read('_layouts/single.html');
+  assert.match(layout, /ai-feedback-capsule/);
+  assert.match(layout, /ai-feedback\.html/);
+  assert.match(read('_includes/head/custom.html'), /ai-feedback-endpoint/);
+  assert.match(read('_includes/ai-feedback.html'), /AI feedback \(unverified\)/);
+  assert.match(read('assets/js/ai-feedback.js'), /fetch\(/);
 });

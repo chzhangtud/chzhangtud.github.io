@@ -1,0 +1,10 @@
+name = "chzhangtud-ai-feedback"
+main = "src/index.js"
+compatibility_date = "2026-07-17"
+[vars]
+COMMENT_LIMIT_PER_IP_PER_ARTICLE_PER_DAY = "2"
+LIKE_LIMIT_PER_IP_PER_ARTICLE_PER_DAY = "1"
+[[d1_databases]]
+binding = "DB"
+database_name = "chzhangtud-ai-feedback"
+database_id = "replace-with-your-d1-database-id"
