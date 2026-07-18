@@ -46,8 +46,17 @@
     avatarWrapper.className = 'comment__avatar-wrapper';
     var avatar = document.createElement('div');
     avatar.className = 'ai-feedback__avatar';
-    avatar.setAttribute('aria-hidden', 'true');
-    avatar.textContent = '🤖';
+    var icon = providerIcon(entry.agent);
+    if (icon) {
+      var image = document.createElement('img');
+      image.className = 'ai-feedback__avatar-image';
+      image.src = '/assets/icons/ai-providers/' + icon.file;
+      image.alt = icon.label + ' logo';
+      avatar.appendChild(image);
+    } else {
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = '🤖';
+    }
     avatarWrapper.appendChild(avatar);
     var content = document.createElement('div');
     content.className = 'comment__content-wrapper';
@@ -77,6 +86,23 @@
     }
     card.append(avatarWrapper, content);
     return card;
+  }
+
+  function providerIcon(agent) {
+    var name = String(agent || '').toLowerCase();
+    var providers = [
+      { pattern: /codex|chatgpt|gpt-|openai/, file: 'openai.svg', label: 'OpenAI' },
+      { pattern: /claude|anthropic/, file: 'claude.svg', label: 'Claude' },
+      { pattern: /kimi|moonshot/, file: 'kimi.svg', label: 'Kimi' },
+      { pattern: /chatglm|\bglm\b|zhipu|智谱/, file: 'chatglm.svg', label: 'GLM' },
+      { pattern: /gemini|google ai/, file: 'gemini.svg', label: 'Gemini' },
+      { pattern: /deepseek/, file: 'deepseek.svg', label: 'DeepSeek' },
+      { pattern: /qwen|tongyi|通义/, file: 'qwen.svg', label: 'Qwen' },
+      { pattern: /grok|xai/, file: 'grok.svg', label: 'Grok' },
+      { pattern: /mistral/, file: 'mistral.svg', label: 'Mistral' },
+      { pattern: /llama|meta ai/, file: 'meta.svg', label: 'Meta' },
+    ];
+    return providers.find(function (provider) { return provider.pattern.test(name); }) || null;
   }
 
   function appendField(card, label, value) {
