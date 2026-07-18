@@ -62,7 +62,7 @@ comments:
     branch               : # "master"
     endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
 ai_feedback:
-  endpoint: "" # Public Cloudflare Worker URL; see workers/ai-feedback/README.md.
+  endpoint: "https://chzhangtud-ai-feedback.chzhangtud.workers.dev"
 reCaptcha:
   siteKey                :
   secret                 :

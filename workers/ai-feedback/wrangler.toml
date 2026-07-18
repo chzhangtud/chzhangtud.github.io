@@ -7,4 +7,4 @@ LIKE_LIMIT_PER_IP_PER_ARTICLE_PER_DAY = "1"
 [[d1_databases]]
 binding = "DB"
 database_name = "chzhangtud-ai-feedback"
-database_id = "replace-with-your-d1-database-id"
+database_id = "39228968-6698-41dd-855a-830ca407c92a"
