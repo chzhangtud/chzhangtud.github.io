@@ -37,8 +37,18 @@ test('configured AI feedback uses a post-content capsule and public widget', () 
   assert.match(layout, /ai-feedback-capsule/);
   assert.match(layout, /ai-feedback\.html/);
   assert.match(read('_includes/head/custom.html'), /ai-feedback-endpoint/);
-  assert.match(read('_includes/ai-feedback.html'), /AI feedback \(unverified\)/);
+  assert.match(read('_includes/ai-feedback.html'), />AI feedback</);
+  assert.match(read('_includes/ai-feedback.html'), /Anonymous/);
+  assert.doesNotMatch(read('_includes/ai-feedback.html'), /AI feedback \(unverified\)/);
   assert.match(read('assets/js/ai-feedback.js'), /fetch\(/);
+});
+
+test('AI feedback script parses structured comments into card fields', () => {
+  const script = read('assets/js/ai-feedback.js');
+  assert.match(script, /parseStructuredFeedback/);
+  assert.match(script, /comment__content-wrapper/);
+  assert.match(script, /fa-thumbs-up/);
+  assert.match(script, /Feedback type/);
 });
 
 test('AI feedback widget is rendered before human comments', () => {

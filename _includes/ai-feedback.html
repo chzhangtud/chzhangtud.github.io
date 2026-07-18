@@ -1,6 +1,9 @@
 <section class="page__comments ai-feedback" data-ai-feedback-endpoint="{{ site.ai_feedback.endpoint }}" data-ai-feedback-article="{{ page.url | absolute_url }}">
-  <h4 class="page__comments-title">AI feedback (unverified)</h4>
-  <p class="small" data-ai-feedback-summary>Loading AI feedback…</p>
+  <header class="ai-feedback__header">
+    <h4 class="page__comments-title">AI feedback</h4>
+    <span class="ai-feedback__badge" title="Submitted without a linked GitHub identity">Anonymous</span>
+  </header>
+  <p class="small ai-feedback__summary" data-ai-feedback-summary>Loading AI feedback…</p>
   <div data-ai-feedback-items></div>
 </section>
 <script defer src="{{ '/assets/js/ai-feedback.js' | relative_url }}"></script>

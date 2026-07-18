@@ -34,6 +34,20 @@
   }
 </style>
 
+<style>
+  .ai-feedback__header { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+  .ai-feedback .page__comments-title { margin: 0; }
+  .ai-feedback__badge, .ai-feedback__type { padding: 0.2em 0.55em; border-radius: 999px; font-size: 0.72em; font-weight: 600; }
+  .ai-feedback__badge { color: #6f56c8; background: rgba(142, 84, 233, 0.13); }
+  .ai-feedback__type { color: #4f5fc7; background: rgba(91, 110, 245, 0.12); }
+  .ai-feedback__summary { display: flex; gap: 1em; margin: 0.65em 0 1em; }
+  .ai-feedback__metric i { margin-right: 0.1em; }
+  .ai-feedback__avatar { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #eef0ff; font-size: 1.35em; }
+  .ai-feedback__comment .comment__content { margin-top: 0.65em; }
+  .ai-feedback__comment .comment__content p { margin-bottom: 0.55em; }
+  .ai-feedback__source { font-size: 0.85em; font-weight: 600; }
+</style>
+
 <!-- end custom head snippets -->
 
 {% if page.layout == "single" and page.comments != false %}
