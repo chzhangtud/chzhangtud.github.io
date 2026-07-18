@@ -40,3 +40,8 @@ test('configured AI feedback uses a post-content capsule and public widget', () 
   assert.match(read('_includes/ai-feedback.html'), /AI feedback \(unverified\)/);
   assert.match(read('assets/js/ai-feedback.js'), /fetch\(/);
 });
+
+test('AI feedback widget is rendered before human comments', () => {
+  const layout = read('_layouts/single.html');
+  assert.ok(layout.indexOf('ai-feedback.html') < layout.indexOf('comments.html'));
+});
