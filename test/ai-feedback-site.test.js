@@ -59,6 +59,10 @@ test('AI feedback maps known providers to local brand icons', () => {
   }
 });
 
+test('AI feedback loader uses a build-specific cache key', () => {
+  assert.match(read('_includes/ai-feedback.html'), /ai-feedback\.js[^\n]*\?v=/);
+});
+
 test('AI feedback widget is rendered before human comments', () => {
   const layout = read('_layouts/single.html');
   assert.ok(layout.indexOf('ai-feedback.html') < layout.indexOf('comments.html'));
