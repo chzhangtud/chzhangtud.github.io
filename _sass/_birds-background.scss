@@ -1,0 +1,393 @@
+$birds-bg: #0e1824;
+$birds-surface: rgba(10, 19, 29, 0.82);
+$birds-surface-strong: rgba(8, 16, 25, 0.92);
+$birds-surface-soft: rgba(18, 30, 42, 0.72);
+$birds-text: #d8e2e9;
+$birds-heading: #f4f8fb;
+$birds-muted: #9fb0bc;
+$birds-link: #74c7dc;
+$birds-link-hover: #b6edf7;
+$birds-accent: #7fd1b9;
+$birds-border: rgba(182, 212, 229, 0.18);
+
+html {
+  background: $birds-bg;
+}
+
+body {
+  color: $birds-text;
+  background: $birds-bg;
+}
+
+.birds-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0e1824;
+
+  canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.masthead,
+.initial-content,
+.search-content,
+.page__footer {
+  position: relative;
+  z-index: 1;
+}
+
+.masthead {
+  z-index: 30;
+  border-bottom-color: $birds-border;
+  background: $birds-surface-strong;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.greedy-nav {
+  color: $birds-text;
+  background: transparent;
+
+  a,
+  .site-title {
+    color: $birds-heading;
+  }
+
+  a:hover,
+  .site-title:hover {
+    color: $birds-link-hover;
+  }
+
+  button {
+    color: $birds-heading;
+    background: transparent;
+  }
+
+  .visible-links a::before {
+    background: $birds-accent;
+  }
+
+  .hidden-links {
+    border: 1px solid $birds-border;
+    background: $birds-surface-strong;
+
+    a {
+      color: $birds-text;
+    }
+  }
+}
+
+.navicon,
+.navicon::before,
+.navicon::after {
+  background: $birds-heading;
+}
+
+#main {
+  color: $birds-text;
+}
+
+.archive,
+.page__inner-wrap,
+.page__related {
+  padding: 1.35rem;
+  border: 1px solid $birds-border;
+  background: $birds-surface;
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  box-sizing: border-box;
+}
+
+.archive,
+.page__inner-wrap {
+  margin-top: 1rem;
+}
+
+.sidebar {
+  padding: 1rem;
+  color: $birds-text;
+  border: 1px solid $birds-border;
+  background: $birds-surface-soft;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-sizing: border-box;
+
+  a,
+  .author__name {
+    color: $birds-heading;
+  }
+
+  .author__bio,
+  li,
+  p {
+    color: $birds-muted;
+  }
+}
+
+.author__avatar img {
+  border-color: $birds-border;
+}
+
+.author__urls {
+  color: $birds-text;
+  border-color: $birds-border;
+  background: $birds-surface-strong;
+
+  &::before,
+  &::after {
+    border-bottom-color: $birds-surface-strong;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.page__title,
+.archive__item-title {
+  color: $birds-heading;
+  letter-spacing: 0;
+}
+
+.page__title a,
+.archive__item-title a {
+  color: $birds-heading;
+}
+
+a,
+.page__content a:not(.btn) {
+  color: $birds-link;
+}
+
+a:hover,
+a:focus,
+.page__content a:not(.btn):hover {
+  color: $birds-link-hover;
+}
+
+.page__content,
+.archive__item-excerpt,
+.taxonomy__section {
+  color: $birds-text;
+}
+
+.page__content h2,
+.archive__subtitle,
+.taxonomy__section:not(:last-child),
+.page__share,
+.page__related {
+  border-color: $birds-border;
+}
+
+.page__meta,
+.archive__subtitle,
+.taxonomy__title,
+.taxonomy__count,
+.breadcrumbs,
+.page__footer,
+.page__footer .fas,
+.page__footer .fab,
+.page__footer .far,
+.page__footer .fal {
+  color: $birds-muted;
+}
+
+.page__taxonomy-item,
+.pagination li a,
+.pagination li div,
+.btn--inverse {
+  color: $birds-text;
+  border-color: $birds-border;
+  background: $birds-surface-soft;
+}
+
+.page__taxonomy-item:hover,
+.pagination li a:hover,
+.btn--inverse:hover {
+  color: $birds-heading;
+  background: rgba(56, 102, 125, 0.78);
+}
+
+.page__content :not(pre) > code,
+code {
+  color: #b8eadc;
+  background: rgba(5, 12, 19, 0.86);
+}
+
+pre,
+.highlight {
+  color: #dce8ee;
+  border-color: $birds-border;
+  background: rgba(5, 12, 19, 0.92);
+}
+
+blockquote {
+  color: $birds-muted;
+  border-left-color: $birds-accent;
+}
+
+table {
+  color: $birds-text;
+  border-color: $birds-border;
+  background: rgba(7, 15, 23, 0.76);
+
+  th,
+  td {
+    border-color: $birds-border;
+  }
+
+  thead {
+    color: $birds-heading;
+    background: rgba(33, 59, 75, 0.82);
+  }
+}
+
+.notice,
+.notice--primary,
+.notice--info,
+.notice--warning,
+.notice--success,
+.notice--danger {
+  color: $birds-text;
+  background: rgba(28, 49, 62, 0.88);
+}
+
+.toc {
+  color: $birds-text;
+  border-color: $birds-border;
+  background: $birds-surface-strong;
+
+  .nav__title {
+    color: $birds-heading;
+    background: rgba(47, 104, 126, 0.82);
+  }
+
+  .active a {
+    color: $birds-link-hover;
+  }
+}
+
+.search-content {
+  color: $birds-text;
+  background: $birds-surface-strong;
+}
+
+.search-input,
+input,
+textarea,
+select {
+  color: $birds-heading;
+  border-color: $birds-border;
+  background: rgba(5, 12, 19, 0.9);
+}
+
+.search__toggle,
+.greedy-nav__toggle {
+  color: $birds-heading;
+}
+
+.page__footer {
+  border-top: 1px solid $birds-border;
+  background: $birds-surface-strong;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  a {
+    color: $birds-link;
+  }
+}
+
+@media (max-width: 767px) {
+  .archive,
+  .page__inner-wrap,
+  .page__related,
+  .sidebar {
+    padding: 1rem;
+  }
+
+  .sidebar {
+    margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birds-background canvas {
+    display: none !important;
+  }
+}
+
+@media print {
+  html,
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  .birds-background {
+    display: none;
+  }
+
+  .archive,
+  .page__inner-wrap,
+  .page__related,
+  .sidebar,
+  .masthead,
+  .page__footer {
+    color: #000;
+    border: 0;
+    background: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .page__title,
+  .archive__item-title {
+    color: #000;
+  }
+
+  a,
+  a:hover,
+  a:focus,
+  .page__content a:not(.btn),
+  .page__content a:not(.btn):hover {
+    color: #000;
+  }
+
+  .page__content :not(pre) > code,
+  code,
+  pre,
+  .highlight {
+    color: #000;
+    background: #fff;
+  }
+
+  table {
+    color: #000;
+    border-color: #000;
+    background: #fff;
+
+    thead {
+      color: #000;
+      background: #fff;
+    }
+  }
+
+  table th,
+  table td {
+    color: #000;
+    border-color: #000;
+    background: #fff;
+  }
+}

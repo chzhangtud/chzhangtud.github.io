@@ -26,3 +26,9 @@
     <script src="{{ script | relative_url }}"></script>
   {% endfor %}
 {% endif %}
+
+<script
+  src="{{ '/assets/js/vanta-birds-background.js' | relative_url }}"
+  data-three-src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"
+  data-birds-src="{{ '/assets/js/vanta.birds.enhanced.min.js' | relative_url }}"
+  defer></script>
