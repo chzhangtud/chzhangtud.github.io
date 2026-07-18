@@ -1,0 +1,7 @@
+name = "chzhangtud-country-stats"
+main = "src/index.js"
+compatibility_date = "2026-07-17"
+
+[vars]
+FLAG_COUNTER_DETAILS_URL = "https://s01.flagcounter.com/countries/TSy/"
+

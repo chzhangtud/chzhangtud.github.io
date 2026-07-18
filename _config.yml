@@ -111,6 +111,9 @@ analytics:
     tracking_id          : "G-8K2237ECJD"
     anonymize_ip         : true # true, false (default)
 
+country_stats:
+  endpoint               : "https://chzhangtud-country-stats.chzhangtud.workers.dev/v1/country-stats"
+
 
 # Site Author
 author:

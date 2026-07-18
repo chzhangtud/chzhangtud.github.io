@@ -77,6 +77,40 @@ comments: false
 .stats-panel .embed-status.is-warning {
   color: #8a5a00;
 }
+.country-stats-status {
+  margin: 0.9em 0 0;
+  font-size: 0.92em;
+  line-height: 1.55;
+  color: #555;
+  text-align: center;
+}
+.country-stats-status.is-warning {
+  color: #8a5a00;
+}
+.country-stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.country-stats-table th,
+.country-stats-table td {
+  padding: 0.65em 0.5em;
+  border-top: 1px solid #e6e6e6;
+  text-align: left;
+}
+.country-stats-table th:last-child,
+.country-stats-table td:last-child {
+  text-align: right;
+}
+.country-stats-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+}
+.country-stats-flag {
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+}
 @media (max-width: 600px) {
   .stats-grid {
     grid-template-columns: 1fr;
@@ -152,12 +186,11 @@ This page shows live visit statistics for the site.
 })();
 </script>
 
-<!-- Flag Counter (counter id: TSy). Tweak the URL params to adjust the layout. -->
-<div class="stats-panel" id="flag-counter">
+<div class="stats-panel" id="country-stats" data-endpoint="{{ site.country_stats.endpoint }}">
   <h2><i class="fas fa-flag"></i>Country Distribution</h2>
-  <div class="embed">
-    <img src="https://s01.flagcounter.com/count2/TSy/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_15/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0">
-  </div>
+  <p class="country-stats-status" data-country-stats-status>Loading country statistics...</p>
+  <div data-country-stats-table hidden></div>
 </div>
+<script type="module" src="{{ '/assets/js/country-stats.js' | relative_url }}"></script>
 
 </div>

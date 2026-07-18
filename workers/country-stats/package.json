@@ -1,0 +1,9 @@
+{
+  "name": "chzhangtud-country-stats",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/index.test.js"
+  }
+}
+
