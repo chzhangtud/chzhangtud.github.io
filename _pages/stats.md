@@ -90,21 +90,36 @@ comments: false
 .country-stats-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
+}
+.country-stats-table-wrap {
+  width: 100%;
+  overflow-x: hidden;
 }
 .country-stats-table th,
 .country-stats-table td {
-  padding: 0.65em 0.5em;
+  padding: 0.6em 0.35em;
   border-top: 1px solid #e6e6e6;
   text-align: left;
+  overflow-wrap: anywhere;
 }
-.country-stats-table th:last-child,
-.country-stats-table td:last-child {
+.country-stats-table th {
+  font-size: 0.86em;
+}
+.country-stats-table th:nth-child(odd),
+.country-stats-table td:nth-child(odd) {
+  width: 24%;
+}
+.country-stats-table th:nth-child(even),
+.country-stats-table td:nth-child(even) {
+  width: 9.333%;
   text-align: right;
 }
 .country-stats-identity {
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
+  max-width: 100%;
+  gap: 0.4em;
 }
 .country-stats-flag {
   width: 24px;
@@ -114,6 +129,16 @@ comments: false
 @media (max-width: 600px) {
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+  .country-stats-table th,
+  .country-stats-table td {
+    padding-right: 0.2em;
+    padding-left: 0.2em;
+    font-size: 0.78em;
+  }
+  .country-stats-flag {
+    width: 20px;
+    height: 15px;
   }
 }
 </style>
@@ -189,7 +214,7 @@ This page shows live visit statistics for the site.
 <div class="stats-panel" id="country-stats" data-endpoint="{{ site.country_stats.endpoint }}">
   <h2><i class="fas fa-flag"></i>Country Distribution</h2>
   <p class="country-stats-status" data-country-stats-status>Loading country statistics...</p>
-  <div data-country-stats-table hidden></div>
+  <div class="country-stats-table-wrap" data-country-stats-table hidden></div>
 </div>
 <script type="module" src="{{ '/assets/js/country-stats.js' | relative_url }}"></script>
 

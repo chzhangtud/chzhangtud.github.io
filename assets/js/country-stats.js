@@ -1,3 +1,5 @@
+import { GROUPS_PER_ROW, limitAndGroupCountries } from './country-stats-layout.mjs';
+
 (function () {
   var panel = document.getElementById('country-stats');
   if (!panel) return;
@@ -14,8 +16,27 @@
   function appendCell(row, value, isHeader) {
     var cell = document.createElement(isHeader ? 'th' : 'td');
     cell.textContent = value;
+    if (isHeader) cell.scope = 'col';
     row.appendChild(cell);
     return cell;
+  }
+
+  function appendCountry(row, country) {
+    var identityCell = document.createElement('td');
+    var identity = document.createElement('span');
+    identity.className = 'country-stats-identity';
+    var flag = document.createElement('img');
+    flag.className = 'country-stats-flag';
+    flag.src = 'https://flagcdn.com/24x18/' + country.flagCode + '.png';
+    flag.alt = country.label + ' flag';
+    flag.width = 24;
+    flag.height = 18;
+    flag.loading = 'lazy';
+    identity.appendChild(flag);
+    identity.appendChild(document.createTextNode(country.label));
+    identityCell.appendChild(identity);
+    row.appendChild(identityCell);
+    appendCell(row, String(country.visitors), false);
   }
 
   function isCountry(record) {
@@ -31,30 +52,31 @@
   function render(countries) {
     var table = document.createElement('table');
     table.className = 'country-stats-table';
+    var tableHead = document.createElement('thead');
     var header = document.createElement('tr');
-    appendCell(header, 'Country', true);
-    appendCell(header, 'Visitors', true);
-    table.appendChild(header);
+    for (var column = 0; column < GROUPS_PER_ROW; column += 1) {
+      appendCell(header, 'Country/Region', true);
+      appendCell(header, 'Visitors', true);
+    }
+    tableHead.appendChild(header);
+    table.appendChild(tableHead);
 
-    countries.forEach(function (country) {
+    var tableBody = document.createElement('tbody');
+    limitAndGroupCountries(countries).forEach(function (countryGroup) {
       var row = document.createElement('tr');
-      var identityCell = document.createElement('td');
-      var identity = document.createElement('span');
-      identity.className = 'country-stats-identity';
-      var flag = document.createElement('img');
-      flag.className = 'country-stats-flag';
-      flag.src = 'https://flagcdn.com/24x18/' + country.flagCode + '.png';
-      flag.alt = country.label + ' flag';
-      flag.width = 24;
-      flag.height = 18;
-      flag.loading = 'lazy';
-      identity.appendChild(flag);
-      identity.appendChild(document.createTextNode(country.label));
-      identityCell.appendChild(identity);
-      row.appendChild(identityCell);
-      appendCell(row, String(country.visitors), false);
-      table.appendChild(row);
+      countryGroup.forEach(function (country) {
+        appendCountry(row, country);
+      });
+      if (countryGroup.length < GROUPS_PER_ROW) {
+        var emptyCell = document.createElement('td');
+        emptyCell.colSpan = (GROUPS_PER_ROW - countryGroup.length) * 2;
+        emptyCell.className = 'country-stats-empty';
+        emptyCell.setAttribute('aria-hidden', 'true');
+        row.appendChild(emptyCell);
+      }
+      tableBody.appendChild(row);
     });
+    table.appendChild(tableBody);
 
     tableRoot.replaceChildren(table);
     tableRoot.hidden = false;
