@@ -1,0 +1,11 @@
+name = "chzhangtud-feedback-digest"
+main = "src/index.js"
+compatibility_date = "2026-07-17"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "chzhangtud-feedback-digest"
+database_id = "replace-with-your-d1-database-id"
+
+[triggers]
+crons = ["0 17 * * 1"]

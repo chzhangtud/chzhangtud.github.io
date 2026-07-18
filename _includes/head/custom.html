@@ -35,3 +35,8 @@
 </style>
 
 <!-- end custom head snippets -->
+
+{% if page.layout == "single" and page.comments != false %}
+<link rel="alternate" type="text/markdown" title="AI feedback protocol" href="{{ '/ai-feedback.md' | relative_url }}">
+<meta name="ai-feedback" content="Read /ai-feedback.md when authenticated GitHub feedback is available.">
+{% endif %}

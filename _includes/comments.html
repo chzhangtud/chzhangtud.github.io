@@ -173,7 +173,13 @@
       <section id="utterances-comments"></section>
     {% when "giscus" %}
       <h4 class="page__comments-title">{{ comments_label }}</h4>
-      <section id="giscus-comments"></section>
+      {% if site.comments.giscus.repo_id and site.comments.giscus.category_id %}
+        <section id="giscus-comments"></section>
+      {% else %}
+        <p class="notice--warning">
+          Comments are being configured. <a href="https://github.com/chzhangtud/chzhangtud.github.io/discussions/categories/article-feedback">Article feedback on GitHub</a>
+        </p>
+      {% endif %}
     {% when "custom" %}
       {% include /comments-providers/custom.html %}
   {% endcase %}
