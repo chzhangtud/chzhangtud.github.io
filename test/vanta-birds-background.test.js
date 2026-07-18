@@ -327,6 +327,22 @@ test('Sass integrates a readable dark Birds surface across the site', () => {
   assert.match(styles, /\.masthead\s*\{[^}]*z-index: 30;/s);
 });
 
+test('mobile content surfaces reveal more of the Birds background', () => {
+  const styles = read('_sass/_birds-background.scss');
+  const mobileStart = styles.indexOf('@media (max-width: 767px)');
+  const mobileEnd = styles.indexOf('@media (prefers-reduced-motion: reduce)', mobileStart);
+  const mobileStyles = styles.slice(mobileStart, mobileEnd);
+
+  assert.match(
+    mobileStyles,
+    /\.archive,[\s\S]*\.page__related\s*\{[^}]*background: rgba\(10, 19, 29, 0\.56\);[^}]*backdrop-filter: blur\(3px\);/
+  );
+  assert.match(
+    mobileStyles,
+    /\.sidebar\s*\{[^}]*background: rgba\(18, 30, 42, 0\.5\);[^}]*backdrop-filter: blur\(3px\);/
+  );
+});
+
 test('print styles restore readable text, links, code, and tables', () => {
   const styles = read('_sass/_birds-background.scss');
   const printStyles = styles.slice(styles.indexOf('@media print'));
