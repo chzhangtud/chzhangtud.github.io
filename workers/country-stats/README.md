@@ -1,6 +1,6 @@
 # Country statistics Worker
 
-This Worker fetches the public Flag Counter country-details page, preserves each source visitor count, and returns normalized labels and flag codes for the site statistics page.
+This Worker fetches the public Flag Counter country-details page, merges the `CN`, `HK`, `MO`, and `TW` visitor counts into one `CN` entry, and returns normalized labels and flag codes for the site statistics page.
 
 Deploy from this directory with:
 

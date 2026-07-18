@@ -1,11 +1,6 @@
 const DEFAULT_SOURCE_URL = 'https://s01.flagcounter.com/countries/TSy/';
 
-const REGION_LABELS = {
-  cn: { label: 'CN-ML', flagCode: 'cn' },
-  hk: { label: 'CN-HK', flagCode: 'cn' },
-  mo: { label: 'CN-MO', flagCode: 'cn' },
-  tw: { label: 'CN-TW', flagCode: 'cn' },
-};
+const CHINA_SOURCE_CODES = new Set(['cn', 'hk', 'mo', 'tw']);
 
 export function parseFlagCounterCountries(html) {
   const rows = [];
@@ -21,10 +16,31 @@ export function parseFlagCounterCountries(html) {
   return rows;
 }
 
-export function normalizeCountry(row) {
-  const sourceCode = String(row.sourceCode).toLowerCase();
-  const mapping = REGION_LABELS[sourceCode] || { label: sourceCode.toUpperCase(), flagCode: sourceCode };
-  return { ...row, sourceCode, ...mapping };
+export function normalizeCountries(rows) {
+  const countries = [];
+  let chinaInsertIndex = -1;
+  let chinaVisitors = 0;
+
+  rows.forEach((row) => {
+    const sourceCode = String(row.sourceCode).toLowerCase();
+    if (CHINA_SOURCE_CODES.has(sourceCode)) {
+      if (chinaInsertIndex === -1) chinaInsertIndex = countries.length;
+      chinaVisitors += row.visitors;
+      return;
+    }
+    countries.push({ ...row, sourceCode, label: sourceCode.toUpperCase(), flagCode: sourceCode });
+  });
+
+  if (chinaInsertIndex !== -1) {
+    countries.splice(chinaInsertIndex, 0, {
+      sourceCode: 'cn',
+      name: 'China',
+      visitors: chinaVisitors,
+      label: 'CN',
+      flagCode: 'cn',
+    });
+  }
+  return countries;
 }
 
 export function createHandler({ fetchImpl = fetch, sourceUrl = DEFAULT_SOURCE_URL } = {}) {
@@ -45,7 +61,7 @@ export function createHandler({ fetchImpl = fetch, sourceUrl = DEFAULT_SOURCE_UR
       if (!upstream.ok) return json({ error: 'Country statistics source unavailable' }, 502, headers);
 
       try {
-        const countries = parseFlagCounterCountries(await upstream.text()).map(normalizeCountry);
+        const countries = normalizeCountries(parseFlagCounterCountries(await upstream.text()));
         headers.set('Cache-Control', 'public, max-age=300');
         return json({ countries, updatedAt: new Date().toISOString() }, 200, headers);
       } catch {
