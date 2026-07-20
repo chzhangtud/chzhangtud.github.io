@@ -4,11 +4,15 @@ import test from 'node:test';
 
 const article = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.zh.md', 'utf8');
 const normalizedArticle = article.replace(/\r\n/g, '\n');
+const englishArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.en.md', 'utf8');
+const normalizedEnglishArticle = englishArticle.replace(/\r\n/g, '\n');
 const script = readFileSync('assets/js/interpolation-lab.mjs', 'utf8');
 const styles = readFileSync('assets/css/interpolation-lab.css', 'utf8');
 
 test('interpolation article keeps only the interpolation chapter content', () => {
   assert.match(article, /title: "数值分析讲义（一）：插值方法"/);
+  assert.match(article, /en_link: \/en\/interpolation-lab\//);
+  assert.match(article, /Read in English/);
   assert.match(article, /基本是对课程讲义第一章插值部分的中文整理与翻译/);
   assert.match(normalizedArticle, /欢迎勘误。\n\n---\n\n\*\*插值\*\*/);
   assert.match(article, /\*\*插值\*\*/);
@@ -19,6 +23,23 @@ test('interpolation article keeps only the interpolation chapter content', () =>
   assert.doesNotMatch(article, /10\. 多元分布和随机变量之和/);
   assert.match(article, /## 1\.2 样条插值/);
   assert.match(article, /三次样条的最小性质/);
+});
+
+test('English interpolation article mirrors the chapter and links back to Chinese', () => {
+  assert.match(englishArticle, /title: "Numerical Analysis Lecture \(I\): Interpolation Methods"/);
+  assert.match(englishArticle, /lang: "en"/);
+  assert.match(englishArticle, /permalink: \/en\/interpolation-lab\//);
+  assert.match(englishArticle, /zh_link: \/zh\/interpolation-lab\//);
+  assert.match(englishArticle, /中文版/);
+  assert.match(normalizedEnglishArticle, /corrections are welcome\.\n\n---\n\n\*\*Interpolation\*\*/);
+  assert.match(englishArticle, /## 1\.1 Polynomial Interpolation/);
+  assert.match(englishArticle, /## 1\.2 Spline Interpolation/);
+  assert.match(englishArticle, /\*\*References\*\*/);
+  assert.doesNotMatch(englishArticle, /# 电气工程数学 IV/);
+
+  const figures = [...englishArticle.matchAll(/data-interpolation-figure="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(figures, ['basis', 'sine-error', 'runge-equal', 'runge-chebyshev', 'spline']);
+  assert.equal((englishArticle.match(/data-interpolation-lang="en"/g) || []).length, 5);
 });
 
 test('interpolation article only uses markdown headings for numbered sections', () => {
@@ -98,4 +119,16 @@ test('interactive figures create SVG primitives in the SVG namespace', () => {
   const createSvgHelper = script.slice(script.indexOf('const createSvg'), script.indexOf('const setAttributes'));
   assert.match(createSvgHelper, /document\.createElementNS\(SVG_NS,\s*tag\)/);
   assert.doesNotMatch(createSvgHelper, /document\.createElement\(tag\)/);
+});
+
+test('interactive figures localize labels for English pages', () => {
+  assert.match(script, /interpolationLang/);
+  assert.match(script, /document\.documentElement\.lang/);
+  assert.match(script, /Figure 1\.1 Lagrange Basis Functions/);
+  assert.match(script, /Degree n/);
+  assert.match(script, /Equidistant nodes/);
+  assert.match(script, /Interpolation nodes/);
+  assert.match(script, /Linear spline/);
+  assert.match(script, /Natural cubic spline/);
+  assert.match(script, /Error, max sampled value/);
 });

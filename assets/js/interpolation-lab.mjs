@@ -12,6 +12,51 @@ const colors = {
   grid: '#d7dee2',
 };
 
+const labelSets = {
+  zh: {
+    degree: '次数 n ',
+    basisA: '基函数 A ',
+    basisB: '基函数 B ',
+    nodeCount: '节点数 ',
+    figureBasis: '图 1.1 Lagrange 基函数',
+    figureSineError: '图 1.2 sin(pi x) 与插值误差',
+    figureRungeChebyshev: '图 1.4 Runge 函数，Chebyshev 节点',
+    figureRungeEqual: '图 1.3 Runge 函数，等距节点',
+    figureSpline: '图 1.5 线性样条与自然三次样条',
+    equidistantNodes: '等距节点',
+    chebyshevNodes: 'Chebyshev 节点',
+    interpolationNodes: '插值节点',
+    nodeAria: '节点',
+    errorMax: '误差，最大采样值',
+    linearSpline: '线性样条',
+    naturalCubicSpline: '自然三次样条',
+  },
+  en: {
+    degree: 'Degree n ',
+    basisA: 'Basis A ',
+    basisB: 'Basis B ',
+    nodeCount: 'Node count ',
+    figureBasis: 'Figure 1.1 Lagrange Basis Functions',
+    figureSineError: 'Figure 1.2 sin(pi x) and Interpolation Error',
+    figureRungeChebyshev: 'Figure 1.4 Runge Function, Chebyshev Nodes',
+    figureRungeEqual: 'Figure 1.3 Runge Function, Equidistant Nodes',
+    figureSpline: 'Figure 1.5 Linear and Natural Cubic Splines',
+    equidistantNodes: 'Equidistant nodes',
+    chebyshevNodes: 'Chebyshev nodes',
+    interpolationNodes: 'Interpolation nodes',
+    nodeAria: 'Node',
+    errorMax: 'Error, max sampled value',
+    linearSpline: 'Linear spline',
+    naturalCubicSpline: 'Natural cubic spline',
+  },
+};
+
+const getLabels = (root = null) => {
+  const lang = root?.dataset?.interpolationLang
+    || (typeof document === 'undefined' ? 'zh' : document.documentElement.lang);
+  return String(lang).toLowerCase().startsWith('en') ? labelSets.en : labelSets.zh;
+};
+
 const validateSamples = (xs, ys) => {
   if (!Array.isArray(xs) || !Array.isArray(ys) || xs.length !== ys.length || xs.length < 2) {
     throw new Error('Interpolation needs at least two x/y samples with matching lengths.');
@@ -227,7 +272,7 @@ const createPanel = (root, title, controls = []) => {
   return { svg, metrics };
 };
 
-const drawChart = (svg, series, nodes, domain, yDomain = null) => {
+const drawChart = (svg, series, nodes, domain, yDomain = null, labels = getLabels()) => {
   const [xMin, xMax] = domain;
   const sampled = series.flatMap((entry) => entry.points.map((point) => point.y)).filter(Number.isFinite);
   const nodeYs = nodes.map((point) => point.y).filter(Number.isFinite);
@@ -274,7 +319,7 @@ const drawChart = (svg, series, nodes, domain, yDomain = null) => {
       cy,
       r: 6,
       tabindex: 0,
-      'aria-label': `节点: x=${point.x.toFixed(3)}, y=${point.y.toFixed(3)}`,
+      'aria-label': `${labels.nodeAria}: x=${point.x.toFixed(3)}, y=${point.y.toFixed(3)}`,
     }));
   }
 };
@@ -298,26 +343,27 @@ const polynomialSeries = (fn, xs, steps, xMin, xMax) => {
 };
 
 const renderBasisFigure = (root) => {
+  const labels = getLabels(root);
   let n = 5;
   let first = 0;
   let second = 3;
   const controls = [
-    createLabeledSelect('次数 n ', [5, 7, 9].map((value) => ({ value: String(value), label: String(value) })), '5', (value) => {
+    createLabeledSelect(labels.degree, [5, 7, 9].map((value) => ({ value: String(value), label: String(value) })), '5', (value) => {
       n = Number(value);
       first = Math.min(first, n);
       second = Math.min(second, n);
       update();
     }),
-    createLabeledSelect('基函数 A ', Array.from({ length: 10 }, (_, i) => ({ value: String(i), label: `L${i},n` })), '0', (value) => {
+    createLabeledSelect(labels.basisA, Array.from({ length: 10 }, (_, i) => ({ value: String(i), label: `L${i},n` })), '0', (value) => {
       first = Number(value);
       update();
     }),
-    createLabeledSelect('基函数 B ', Array.from({ length: 10 }, (_, i) => ({ value: String(i), label: `L${i},n` })), '3', (value) => {
+    createLabeledSelect(labels.basisB, Array.from({ length: 10 }, (_, i) => ({ value: String(i), label: `L${i},n` })), '3', (value) => {
       second = Number(value);
       update();
     }),
   ];
-  const { svg, metrics } = createPanel(root, '图 1.1 Lagrange 基函数', controls);
+  const { svg, metrics } = createPanel(root, labels.figureBasis, controls);
   const update = () => {
     const xs = equidistantNodes(0, 1, n + 1);
     const basisY = (k) => xs.map((_, index) => (index === k ? 1 : 0));
@@ -326,25 +372,26 @@ const renderBasisFigure = (root) => {
     drawChart(svg, [
       { points: aPoints, color: colors.basisA },
       { points: bPoints, color: colors.basisB },
-    ], xs.map((x) => ({ x, y: 0 })), [0, 1]);
+    ], xs.map((x) => ({ x, y: 0 })), [0, 1], null, labels);
     addLegend(metrics, [
       { label: `L_${first},${n}`, color: colors.basisA },
       { label: `L_${second},${n}`, color: colors.basisB },
-      { label: '等距节点', color: colors.nodes },
+      { label: labels.equidistantNodes, color: colors.nodes },
     ]);
   };
   update();
 };
 
 const renderSineErrorFigure = (root) => {
+  const labels = getLabels(root);
   let nodeCount = 6;
   const controls = [
-    createLabeledSelect('节点数 ', [4, 6, 8, 10, 12].map((value) => ({ value: String(value), label: String(value) })), '6', (value) => {
+    createLabeledSelect(labels.nodeCount, [4, 6, 8, 10, 12].map((value) => ({ value: String(value), label: String(value) })), '6', (value) => {
       nodeCount = Number(value);
       update();
     }),
   ];
-  const { svg, metrics } = createPanel(root, '图 1.2 sin(pi x) 与插值误差', controls);
+  const { svg, metrics } = createPanel(root, labels.figureSineError, controls);
   const update = () => {
     const fn = (x) => Math.sin(Math.PI * x);
     const xs = equidistantNodes(0, 2, nodeCount);
@@ -355,23 +402,24 @@ const renderSineErrorFigure = (root) => {
       { points: target, color: colors.target, dash: '7 7' },
       { points, color: colors.polynomial },
       { points: error, color: colors.cubic },
-    ], xs.map((x, i) => ({ x, y: ys[i] })), [0, 2]);
+    ], xs.map((x, i) => ({ x, y: ys[i] })), [0, 2], null, labels);
     const maxError = error.reduce((best, point) => Math.max(best, Math.abs(point.y)), 0);
     addLegend(metrics, [
       { label: 'sin(pi x)', color: colors.target },
       { label: `p_${nodeCount - 1}(x)`, color: colors.polynomial },
-      { label: `误差，最大采样值 ${maxError.toExponential(2)}`, color: colors.cubic },
-      { label: '插值节点', color: colors.nodes },
+      { label: `${labels.errorMax} ${maxError.toExponential(2)}`, color: colors.cubic },
+      { label: labels.interpolationNodes, color: colors.nodes },
     ]);
   };
   update();
 };
 
 const renderRungeFigure = (root, useChebyshev) => {
+  const labels = getLabels(root);
   let nodeCount = 11;
-  const label = useChebyshev ? '图 1.4 Runge 函数，Chebyshev 节点' : '图 1.3 Runge 函数，等距节点';
+  const label = useChebyshev ? labels.figureRungeChebyshev : labels.figureRungeEqual;
   const controls = [
-    createLabeledSelect('节点数 ', [11, 21].map((value) => ({ value: String(value), label: `n=${value - 1}` })), '11', (value) => {
+    createLabeledSelect(labels.nodeCount, [11, 21].map((value) => ({ value: String(value), label: `n=${value - 1}` })), '11', (value) => {
       nodeCount = Number(value);
       update();
     }),
@@ -385,25 +433,26 @@ const renderRungeFigure = (root, useChebyshev) => {
     drawChart(svg, [
       { points: target, color: colors.target, dash: '7 7' },
       { points, color: colors.polynomial },
-    ], xs.map((x, i) => ({ x, y: ys[i] })), [-5, 5]);
+    ], xs.map((x, i) => ({ x, y: ys[i] })), [-5, 5], null, labels);
     addLegend(metrics, [
       { label: '1/(1+x^2)', color: colors.target },
       { label: `p_${nodeCount - 1}(x)`, color: colors.polynomial },
-      { label: useChebyshev ? 'Chebyshev 节点' : '等距节点', color: colors.nodes },
+      { label: useChebyshev ? labels.chebyshevNodes : labels.equidistantNodes, color: colors.nodes },
     ]);
   };
   update();
 };
 
 const renderSplineFigure = (root) => {
+  const labels = getLabels(root);
   let nodeCount = 11;
   const controls = [
-    createLabeledSelect('节点数 ', [11, 21].map((value) => ({ value: String(value), label: `n=${value - 1}` })), '11', (value) => {
+    createLabeledSelect(labels.nodeCount, [11, 21].map((value) => ({ value: String(value), label: `n=${value - 1}` })), '11', (value) => {
       nodeCount = Number(value);
       update();
     }),
   ];
-  const { svg, metrics } = createPanel(root, '图 1.5 线性样条与自然三次样条', controls);
+  const { svg, metrics } = createPanel(root, labels.figureSpline, controls);
   const update = () => {
     const fn = (x) => Math.sin(4 * Math.PI * x);
     const xs = equidistantNodes(0, 2, nodeCount);
@@ -413,12 +462,12 @@ const renderSplineFigure = (root) => {
       { points: samplePath(fn, 0, 2, 700), color: colors.target, dash: '7 7' },
       { points: samplePath((x) => evaluateLinearSpline(xs, ys, x), 0, 2, 700), color: colors.linear },
       { points: samplePath((x) => cubic.evaluate(x), 0, 2, 700), color: colors.cubic },
-    ], xs.map((x, i) => ({ x, y: ys[i] })), [0, 2], [-1.15, 1.15]);
+    ], xs.map((x, i) => ({ x, y: ys[i] })), [0, 2], [-1.15, 1.15], labels);
     addLegend(metrics, [
       { label: 'sin(4 pi x)', color: colors.target },
-      { label: '线性样条', color: colors.linear },
-      { label: '自然三次样条', color: colors.cubic },
-      { label: '插值节点', color: colors.nodes },
+      { label: labels.linearSpline, color: colors.linear },
+      { label: labels.naturalCubicSpline, color: colors.cubic },
+      { label: labels.interpolationNodes, color: colors.nodes },
     ]);
   };
   update();

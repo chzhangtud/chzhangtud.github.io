@@ -3,6 +3,7 @@ title: "数值分析讲义（一）：插值方法"
 lang: "zh"
 date: 2026-07-20
 permalink: /zh/interpolation-lab/
+en_link: /en/interpolation-lab/
 categories:
   - Math
 tags:
@@ -32,6 +33,9 @@ body {
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<a href="{{ page.en_link }}" class="btn">Read in English</a>
+
 **写在前面。** 最近在阅读一些 AI、图形学和机器人相关研究时，越来越觉得有必要系统回顾基础数学知识。因此，我重新复习了一部分数值分析内容，并借助 AI 将其中若干图表改造成可交互的网页示意图。本文基本是对课程讲义第一章插值部分的中文整理与翻译，尽量保留原意；秉持开源分享的精神，我把整理后的内容发布在这里。
 
 本文内容主要参考 TU Darmstadt 课程开源仓库中的 [mathe3-script-2011-SoSe.pdf](https://github.com/tu-darmstadt-informatik/Mathematik-3/blob/master/script/mathe3-script-2011-SoSe.pdf)。若涉及侵权，请联系我删除；若文中存在疏漏或不准确之处，也欢迎勘误。
@@ -157,7 +161,7 @@ $$
 **该方法的缺点**
 
 - 求解线性方程组 (1.2) 需要 $O(n^3)$ 次基本运算。与后面将要介绍的 $O(n^2)$ 方法相比，代价很高。
-- (1.2) 中的系数矩阵（Vandermonde 矩阵）虽然可逆，但当 $n$ 较大时条件数极差。因此，在计算机上很难精确求解 (1.2)，因为较差的条件数会显著放大舍入误差（见第 4 章）。
+- (1.2) 中的系数矩阵（Vandermonde 矩阵）虽然可逆，但当 $n$ 较大时条件数极差。因此，在计算机上很难精确求解 (1.2)，因为较差的条件数会显著放大舍入误差。
 
 下面用 $O(g(n))$ 表示所有渐近增长不快于 $g$ 的函数组成的集合。也就是说，对于函数 $g:\mathbb{N}\to\mathbb{R}$，
 
