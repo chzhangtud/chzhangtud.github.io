@@ -39,3 +39,5 @@ assets/tempResources/
 docs/
 
 workers/**/.wrangler/
+
+*.log

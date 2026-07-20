@@ -1,0 +1,134 @@
+.interpolation-lab {
+  border: 1px solid #d7dee2;
+  border-radius: 8px;
+  background: #fbfcfd;
+  color: #1f2933;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.interpolation-lab__toolbar {
+  align-items: center;
+  background: #eef3f5;
+  border-bottom: 1px solid #d7dee2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  padding: 0.8rem;
+}
+
+.interpolation-lab__toolbar label,
+.interpolation-lab__checks {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.interpolation-lab__toolbar select,
+.interpolation-lab__toolbar input[type='range'] {
+  max-width: 12rem;
+}
+
+.interpolation-lab__checks {
+  gap: 0.65rem;
+}
+
+.interpolation-lab__chart {
+  aspect-ratio: 900 / 440;
+  background: #ffffff;
+  width: 100%;
+}
+
+.interpolation-lab__chart svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.interpolation-lab__grid line {
+  stroke: #d7dee2;
+  stroke-width: 1;
+}
+
+.interpolation-lab__curve {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.interpolation-lab__curve--target {
+  stroke-dasharray: 7 7;
+  stroke-width: 2.5;
+}
+
+.interpolation-lab__node {
+  fill: #f77f00;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.interpolation-lab__metrics {
+  border-top: 1px solid #d7dee2;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.8rem;
+}
+
+.interpolation-lab__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+
+.interpolation-lab__legend span::before {
+  background: var(--swatch);
+  border-radius: 999px;
+  content: '';
+  display: inline-block;
+  height: 0.65rem;
+  margin-right: 0.35rem;
+  width: 0.65rem;
+}
+
+.interpolation-lab__error-list {
+  display: grid;
+  gap: 0.25rem 0.75rem;
+  grid-template-columns: max-content 1fr;
+  margin: 0;
+}
+
+.interpolation-lab__error-list dt,
+.interpolation-lab__error-list dd {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  mjx-container[display='true'] {
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.2rem;
+  }
+
+  mjx-container[display='true'] > svg,
+  mjx-container[display='true'] > mjx-math {
+    max-width: none;
+  }
+
+  .interpolation-lab__toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .interpolation-lab__toolbar label,
+  .interpolation-lab__checks {
+    justify-content: space-between;
+  }
+
+  .interpolation-lab__error-list {
+    grid-template-columns: 1fr;
+  }
+}
