@@ -36,7 +36,7 @@ body {
 
 <a href="{{ page.zh_link }}" class="btn">中文版</a>
 
-**Preface.** Recently, while reading research related to AI, graphics, and robotics, I have increasingly felt the need to review some foundational mathematics in a more systematic way. I therefore revisited part of numerical analysis, and used AI assistance to turn several figures into interactive web diagrams. This article is essentially an English organization and translation of the interpolation part of Chapter 1 of the course lecture notes, keeping the original meaning as much as possible. In the spirit of open sharing, I am publishing the organized material here.
+**Preface.** Recently, I have revisited part of numerical analysis. With the help of AI, I translated some of the foreign-language lecture notes that the school has published openly on GitHub, and remade several figures into interactive web diagrams. I am sharing the result here.
 
 The main source for this article is [mathe3-script-2011-SoSe.pdf](https://github.com/tu-darmstadt-informatik/Mathematik-3/blob/master/script/mathe3-script-2011-SoSe.pdf) from the open TU Darmstadt course repository. If there is any copyright concern, please contact me and I will remove the material. If there are omissions or inaccuracies, corrections are welcome.
 
@@ -947,6 +947,14 @@ $$
 - [6] W. Törnig and P. Spellucci. *Numerische Mathematik für Ingenieure und Physiker 2*. Springer Verlag, Berlin, 1990. 1.2.3.
 - [7] W. Walter. *Gewöhnliche Differentialgleichungen*. Springer, Berlin, 1986. 3.1.
 - [8] J. Werner. *Numerische Mathematik 2*. Vieweg Verlag, Braunschweig, 1992. 6.1.4.
+
+**Source, Copyright, and Usage Notes**
+
+This article mainly refers to the numerical analysis lecture notes in TU Darmstadt's open repository:
+mathe3-script-2011-SoSe.pdf
+The upstream repository includes an Unlicense notice. This article is published for personal study, translation, and knowledge organization. The English wording, explanatory additions, and remade figures in this article do not represent the original authors or any official position.
+The personal organization, English text, explanatory notes, and remade figures in this article may be used for non-commercial study, discussion, and citation with attribution and the original link. Since part of this article is based on translation and organization of TU Darmstadt's public lecture notes, the original material and any materials it may contain should remain subject to the original authors, repository, and license notices. For commercial use, systematic redistribution, publication, or large-scale adaptation, please verify the licensing status of the original material as well.
+If there are any translation, formula, terminology, or interpretation errors, or if the rights holder believes the material has been used improperly, please contact me and I will correct or remove it promptly.
 
 
 <script type="module" src="{{ '/assets/js/interpolation-lab.mjs' | relative_url }}"></script>

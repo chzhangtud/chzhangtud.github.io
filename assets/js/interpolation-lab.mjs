@@ -30,6 +30,8 @@ const labelSets = {
     errorMax: '误差，最大采样值',
     linearSpline: '线性样条',
     naturalCubicSpline: '自然三次样条',
+    xAxisLabel: 'x',
+    yAxisLabel: 'y',
   },
   en: {
     degree: 'Degree n ',
@@ -48,6 +50,8 @@ const labelSets = {
     errorMax: 'Error, max sampled value',
     linearSpline: 'Linear spline',
     naturalCubicSpline: 'Natural cubic spline',
+    xAxisLabel: 'x',
+    yAxisLabel: 'y',
   },
 };
 
@@ -225,6 +229,16 @@ const pathFromPoints = (points, project) => points.map((point, index) => {
   return `${index === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`;
 }).join(' ');
 
+const formatTick = (value) => {
+  if (Math.abs(value) < EPSILON) return '0';
+  if (Math.abs(value) >= 100 || Math.abs(value) < 0.01) return value.toExponential(1);
+  return Number(value.toFixed(2)).toString();
+};
+
+const linearTicks = (min, max, count = 5) => (
+  Array.from({ length: count }, (_, i) => min + ((max - min) * i) / (count - 1))
+);
+
 const createHtml = (tag, attributes = {}, text = '') => {
   const element = document.createElement(tag);
   setAttributes(element, attributes);
@@ -281,7 +295,7 @@ const drawChart = (svg, series, nodes, domain, yDomain = null, labels = getLabel
   const yPadding = yDomain ? 0 : Math.max(0.06, (rawMax - rawMin) * 0.12);
   const yMin = rawMin - yPadding;
   const yMax = rawMax + yPadding;
-  const padding = { left: 54, right: 22, top: 24, bottom: 38 };
+  const padding = { left: 76, right: 26, top: 24, bottom: 58 };
   const width = 900;
   const height = 440;
   const plotWidth = width - padding.left - padding.right;
@@ -300,6 +314,73 @@ const drawChart = (svg, series, nodes, domain, yDomain = null, labels = getLabel
     grid.append(createSvg('line', { x1: x, y1: padding.top, x2: x, y2: height - padding.bottom }));
   }
   svg.append(grid);
+
+  const axes = createSvg('g', { class: 'interpolation-lab__axes' });
+  axes.append(createSvg('line', {
+    class: 'interpolation-lab__axis interpolation-lab__axis--x',
+    x1: padding.left,
+    y1: height - padding.bottom,
+    x2: width - padding.right,
+    y2: height - padding.bottom,
+  }));
+  axes.append(createSvg('line', {
+    class: 'interpolation-lab__axis interpolation-lab__axis--y',
+    x1: padding.left,
+    y1: padding.top,
+    x2: padding.left,
+    y2: height - padding.bottom,
+  }));
+
+  const xTicks = linearTicks(xMin, xMax);
+  for (const value of xTicks) {
+    const [x] = project(value, yMin);
+    const tick = createSvg('g', { class: 'interpolation-lab__tick interpolation-lab__tick--x' });
+    tick.append(createSvg('line', {
+      x1: x,
+      y1: height - padding.bottom,
+      x2: x,
+      y2: height - padding.bottom + 6,
+    }));
+    tick.append(createSvg('text', {
+      x,
+      y: height - padding.bottom + 22,
+      'text-anchor': 'middle',
+    }, formatTick(value)));
+    axes.append(tick);
+  }
+
+  const yTicks = linearTicks(yMin, yMax);
+  for (const value of yTicks) {
+    const [, y] = project(xMin, value);
+    const tick = createSvg('g', { class: 'interpolation-lab__tick interpolation-lab__tick--y' });
+    tick.append(createSvg('line', {
+      x1: padding.left - 6,
+      y1: y,
+      x2: padding.left,
+      y2: y,
+    }));
+    tick.append(createSvg('text', {
+      x: padding.left - 10,
+      y: y + 4,
+      'text-anchor': 'end',
+    }, formatTick(value)));
+    axes.append(tick);
+  }
+
+  axes.append(createSvg('text', {
+    class: 'interpolation-lab__axis-label interpolation-lab__axis-label--x',
+    x: padding.left + plotWidth / 2,
+    y: height - 10,
+    'text-anchor': 'middle',
+  }, labels.xAxisLabel));
+  axes.append(createSvg('text', {
+    class: 'interpolation-lab__axis-label interpolation-lab__axis-label--y',
+    x: 18,
+    y: padding.top + plotHeight / 2,
+    'text-anchor': 'middle',
+    transform: `rotate(-90 18 ${padding.top + plotHeight / 2})`,
+  }, labels.yAxisLabel));
+  svg.append(axes);
 
   for (const entry of series) {
     svg.append(createSvg('path', {

@@ -36,9 +36,7 @@ body {
 
 <a href="{{ page.en_link }}" class="btn">Read in English</a>
 
-**写在前面。** 最近在阅读一些 AI、图形学和机器人相关研究时，越来越觉得有必要系统回顾基础数学知识。因此，我重新复习了一部分数值分析内容，并借助 AI 将其中若干图表改造成可交互的网页示意图。本文基本是对课程讲义第一章插值部分的中文整理与翻译，尽量保留原意；秉持开源分享的精神，我把整理后的内容发布在这里。
-
-本文内容主要参考 TU Darmstadt 课程开源仓库中的 [mathe3-script-2011-SoSe.pdf](https://github.com/tu-darmstadt-informatik/Mathematik-3/blob/master/script/mathe3-script-2011-SoSe.pdf)。若涉及侵权，请联系我删除；若文中存在疏漏或不准确之处，也欢迎勘误。
+**写在前面。** 最近重新复习了一部分数值分析内容，借助 AI 将学校开源在Github上的外文讲义做了一些翻译，并对其中的图表做了一些重新制作，分享于此
 
 ---
 
@@ -949,5 +947,11 @@ $$
 - [7] W. Walter. *Gewöhnliche Differentialgleichungen*. Springer, Berlin, 1986. 3.1.
 - [8] J. Werner. *Numerische Mathematik 2*. Vieweg Verlag, Braunschweig, 1992. 6.1.4.
 
+**来源、版权与使用说明**
 
+本文主要参考 TU Darmstadt 信息学专业公开仓库中的数值分析基础课讲义：
+mathe3-script-2011-SoSe.pdf
+原仓库包含 The Unlicense 授权说明。本文作为个人学习、翻译与知识整理用途发布，文中的中文表述、补充解释和图表重制不代表原作者或官方立场。
+本文中的个人整理、中文表述、补充解释以及我重新制作的图表，可在注明作者与原文链接的前提下，用于非商业学习、交流和引用。由于本文部分内容基于 TU Darmstadt 公开讲义的翻译与整理，原始讲义及其中可能包含的材料仍应以其原作者、原仓库及相关授权说明为准。若需进行商业使用、系统转载、出版，或大规模改编，建议同时确认原始材料的授权状态。
+如文中存在翻译、公式、术语或理解上的疏漏，或相关权利方认为内容使用不当，欢迎联系我指出，我会及时处理或删除。
 <script type="module" src="{{ '/assets/js/interpolation-lab.mjs' | relative_url }}"></script>

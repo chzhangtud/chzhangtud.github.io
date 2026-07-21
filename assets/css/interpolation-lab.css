@@ -51,6 +51,26 @@
   stroke-width: 1;
 }
 
+.interpolation-lab__axis {
+  stroke: #64748b;
+  stroke-width: 1.5;
+}
+
+.interpolation-lab__tick line {
+  stroke: #64748b;
+  stroke-width: 1.2;
+}
+
+.interpolation-lab__tick text,
+.interpolation-lab__axis-label {
+  fill: #334155;
+  font-size: 24px;
+}
+
+.interpolation-lab__axis-label {
+  font-weight: 600;
+}
+
 .interpolation-lab__curve {
   stroke-linecap: round;
   stroke-linejoin: round;

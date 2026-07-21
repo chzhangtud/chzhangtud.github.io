@@ -132,3 +132,16 @@ test('interactive figures localize labels for English pages', () => {
   assert.match(script, /Natural cubic spline/);
   assert.match(script, /Error, max sampled value/);
 });
+
+test('interactive figures draw labeled axes with tick marks', () => {
+  assert.match(script, /xAxisLabel/);
+  assert.match(script, /yAxisLabel/);
+  assert.match(script, /interpolation-lab__axis/);
+  assert.match(script, /interpolation-lab__tick/);
+  assert.match(script, /interpolation-lab__axis-label/);
+  assert.match(script, /xTicks/);
+  assert.match(script, /yTicks/);
+  assert.match(styles, /\.interpolation-lab__axis/);
+  assert.match(styles, /\.interpolation-lab__tick text/);
+  assert.match(styles, /\.interpolation-lab__axis-label/);
+});
