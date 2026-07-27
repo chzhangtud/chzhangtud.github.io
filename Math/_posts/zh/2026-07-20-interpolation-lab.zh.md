@@ -76,7 +76,7 @@ $$
 3. 一个数字音频信号（CD、MP3 播放器、DVD 等）在时刻 $t_i$，$i=0,\ldots,n$，给出振幅 $y_i$。  
    问题：相应的模拟音频信号 $y(t)$ 应该是什么样的？
 
-4. 一个采样率为 44.1 kHz（CD）的数字音频信号 $(t_i,y_i)$，$i=0,\ldots,n$，需要重采样为 48 kHz（DAT、DVD-Video）。  
+4. 一个采样率为 44.1 kHz（CD）的数字音频信号 $(t_i,y_i)$，$i=0,\ldots,n$，需要重采样为 48 kHz（DAT，Digital Audio Tape；DVD-Video）。  
    目标：求出 48 kHz 采样时刻 $\tilde t_j$ 上的 $(\tilde t_j, y(\tilde t_j))$。
 
 5. 二维例子：给定数据点 $(x_i,y_i,z_i)$，希望构造一张经过这些点的光滑曲面 $(x,y,z(x,y))$（CAD、计算机图形学、激光扫描等）。

@@ -117,6 +117,8 @@ test('numerical integration article configures formulas and mobile formula overf
 });
 
 test('English numerical integration article keeps source and reuse boundaries explicit', () => {
+  assert.match(englishArticle, /\*\*Abbreviations and Notation\*\*/);
+  assert.match(englishArticle, /Big-O notation \/ \$O\(\\cdot\)\$/);
   assert.match(englishArticle, /mathe3-script-2011-SoSe\.pdf/);
   assert.match(englishArticle, /Unlicense notice/);
   assert.match(englishArticle, /personal study, translation, and knowledge organization/);
@@ -126,10 +128,19 @@ test('English numerical integration article keeps source and reuse boundaries ex
 });
 
 test('numerical integration article keeps source and reuse boundaries explicit', () => {
+  assert.match(article, /\*\*英文缩写与记号说明\*\*/);
+  assert.match(article, /Big-O notation \/ \$O\(\\cdot\)\$/);
   assert.match(article, /mathe3-script-2011-SoSe\.pdf/);
   assert.match(article, /The Unlicense/);
   assert.match(article, /个人学习、翻译与知识整理/);
   assert.match(article, /不代表原作者或官方立场/);
   assert.match(article, /非商业学习、交流和引用/);
   assert.match(article, /原始讲义及其中可能包含的材料仍应以其原作者、原仓库及相关授权说明为准/);
+});
+
+test('numerical integration articles explain Big-O notation on first use', () => {
+  assert.match(article, /\$O\(\\cdot\)\$ 是 Big-O notation（大 O 记号）/);
+  assert.match(article, /表示主导误差阶/);
+  assert.match(englishArticle, /\$O\(\\cdot\)\$ denotes Big-O notation/);
+  assert.match(englishArticle, /asymptotic order of the leading error term/);
 });

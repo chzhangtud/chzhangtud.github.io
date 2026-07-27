@@ -13,8 +13,8 @@ test('interpolation article keeps only the interpolation chapter content', () =>
   assert.match(article, /title: "数值分析讲义（一）：插值方法"/);
   assert.match(article, /en_link: \/en\/interpolation-lab\//);
   assert.match(article, /Read in English/);
-  assert.match(article, /基本是对课程讲义第一章插值部分的中文整理与翻译/);
-  assert.match(normalizedArticle, /欢迎勘误。\n\n---\n\n\*\*插值\*\*/);
+  assert.match(article, /学校开源在Github上的外文讲义/);
+  assert.match(normalizedArticle, /分享于此\n\n---\n\n\*\*插值\*\*/);
   assert.match(article, /\*\*插值\*\*/);
   assert.doesNotMatch(article, /# 电气工程数学 IV \/ 计算机科学数学 III/);
   assert.doesNotMatch(article, /## 数值数学/);
@@ -35,6 +35,9 @@ test('English interpolation article mirrors the chapter and links back to Chines
   assert.match(englishArticle, /## 1\.1 Polynomial Interpolation/);
   assert.match(englishArticle, /## 1\.2 Spline Interpolation/);
   assert.match(englishArticle, /\*\*References\*\*/);
+  assert.match(englishArticle, /\*\*Abbreviations\*\*/);
+  assert.match(englishArticle, /CD: compact disc/);
+  assert.match(englishArticle, /CAD: computer-aided design/);
   assert.doesNotMatch(englishArticle, /# 电气工程数学 IV/);
 
   const figures = [...englishArticle.matchAll(/data-interpolation-figure="([^"]+)"/g)].map((match) => match[1]);
@@ -119,6 +122,23 @@ test('interactive figures create SVG primitives in the SVG namespace', () => {
   const createSvgHelper = script.slice(script.indexOf('const createSvg'), script.indexOf('const setAttributes'));
   assert.match(createSvgHelper, /document\.createElementNS\(SVG_NS,\s*tag\)/);
   assert.doesNotMatch(createSvgHelper, /document\.createElement\(tag\)/);
+});
+
+test('interpolation articles explain abbreviations on first use and at the end', () => {
+  assert.match(article, /CD，Compact Disc/);
+  assert.match(article, /MP3，MPEG-1 Audio Layer III/);
+  assert.match(article, /DVD，Digital Versatile Disc/);
+  assert.match(article, /kHz（kilohertz，千赫兹/);
+  assert.match(article, /DAT，Digital Audio Tape/);
+  assert.match(article, /CAD，Computer-Aided Design/);
+  assert.match(article, /\*\*英文缩写说明\*\*/);
+
+  assert.match(englishArticle, /CD \(compact disc\)/);
+  assert.match(englishArticle, /MP3 \(MPEG-1 Audio Layer III\)/);
+  assert.match(englishArticle, /DVD \(digital versatile disc\)/);
+  assert.match(englishArticle, /kHz \(kilohertz\)/);
+  assert.match(englishArticle, /DAT \(digital audio tape\)/);
+  assert.match(englishArticle, /CAD \(computer-aided design\)/);
 });
 
 test('interactive figures localize labels for English pages', () => {

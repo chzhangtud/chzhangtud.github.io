@@ -78,7 +78,7 @@ The goal is to make the error $\lvert f(x)-\Phi(x)\rvert$ as small as possible o
 3. A digital audio signal, such as one from a CD, MP3 player, or DVD, gives amplitudes $y_i$ at times $t_i$, $i=0,\ldots,n$.  
    Question: what should the corresponding analog audio signal $y(t)$ look like?
 
-4. A digital audio signal $(t_i,y_i)$ sampled at 44.1 kHz, as on a CD, must be resampled to 48 kHz, as in DAT or DVD-Video.  
+4. A digital audio signal $(t_i,y_i)$ sampled at 44.1 kHz, as on a CD, must be resampled to 48 kHz, as in DAT (digital audio tape) or DVD-Video.  
    Goal: find $(\tilde t_j, y(\tilde t_j))$ at the 48 kHz sampling times $\tilde t_j$.
 
 5. A two-dimensional example: given data points $(x_i,y_i,z_i)$, construct a smooth surface $(x,y,z(x,y))$ passing through them, as in CAD, computer graphics, or laser scanning.

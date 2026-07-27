@@ -521,7 +521,7 @@ $$
 =\frac{f''(\xi)}{6}(b-a)h^2.
 $$
 
-**Diagram 2.3:** Composite formulas reduce the error by reducing the step size $h$. The leading error term of the trapezoidal rule usually scales like $h^2$, while Simpson's rule scales like $h^4$.
+**Diagram 2.3:** Composite formulas reduce the error by reducing the step size $h$. Here $O(\cdot)$ denotes Big-O notation, which describes the asymptotic order of the leading error term. The leading error term of the trapezoidal rule usually scales like $h^2$, while Simpson's rule scales like $h^4$.
 
 <figure class="quadrature-figure">
   <figcaption class="quadrature-figure__caption">Composite Formulas: Split the Interval and Sum Subintegrals</figcaption>
@@ -625,6 +625,10 @@ $$
   $$
 
   and the true error is $-0.01467$.
+
+**Abbreviations and Notation**
+
+- Big-O notation / $O(\cdot)$: notation for the asymptotic order of the leading error term as the step size $h$ tends to zero.
 
 **Source, Copyright, and Usage Notes**
 

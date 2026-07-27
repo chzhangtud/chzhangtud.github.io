@@ -520,7 +520,7 @@ $$
 =\frac{f''(\xi)}{6}(b-a)h^2.
 $$
 
-**示意图 2.3：** 复化公式通过缩小步长 $h$ 来降低误差。梯形规则的误差主阶通常随 $h^2$ 下降，Simpson 规则则随 $h^4$ 下降。
+**示意图 2.3：** 复化公式通过缩小步长 $h$ 来降低误差。这里的 $O(\cdot)$ 是 Big-O notation（大 O 记号），表示主导误差阶。梯形规则的误差主阶通常随 $h^2$ 下降，Simpson 规则则随 $h^4$ 下降。
 
 <figure class="quadrature-figure">
   <figcaption class="quadrature-figure__caption">复化公式：把区间切细后累加子积分</figcaption>
@@ -624,6 +624,10 @@ $$
   $$
 
   真实误差为 $-0.01467$。
+
+**英文缩写与记号说明**
+
+- Big-O notation / $O(\cdot)$：大 O 记号，用来描述步长 $h$ 变小时误差主阶的渐近量级。
 
 **来源、版权与使用说明**
 
