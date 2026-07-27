@@ -6,6 +6,26 @@ const article = readFileSync('Math/_posts/zh/2026-07-22-numerical-integration-la
 const normalizedArticle = article.replace(/\r\n/g, '\n');
 const englishArticle = readFileSync('Math/_posts/zh/2026-07-22-numerical-integration-lab.en.md', 'utf8');
 const normalizedEnglishArticle = englishArticle.replace(/\r\n/g, '\n');
+const interpolationArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.zh.md', 'utf8');
+const interpolationEnglishArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.en.md', 'utf8');
+
+function extractCopyrightSection(text, heading) {
+  const normalized = text.replace(/\r\n/g, '\n');
+  const start = normalized.indexOf(heading);
+  assert.notEqual(start, -1);
+  const scriptStart = normalized.indexOf('\n<script type="module"', start);
+  const end = scriptStart === -1 ? normalized.length : scriptStart;
+  return normalized.slice(start, end).trimEnd();
+}
+
+const canonicalChineseCopyright = extractCopyrightSection(
+  interpolationArticle,
+  '**来源、版权与使用说明**',
+);
+const canonicalEnglishCopyright = extractCopyrightSection(
+  interpolationEnglishArticle,
+  '**Source, Copyright, and Usage Notes**',
+);
 
 test('numerical integration article publishes the second Chinese lecture page', () => {
   assert.match(article, /title: "数值分析讲义（二）：数值积分"/);
@@ -119,23 +139,19 @@ test('numerical integration article configures formulas and mobile formula overf
 test('English numerical integration article keeps source and reuse boundaries explicit', () => {
   assert.match(englishArticle, /\*\*Abbreviations and Notation\*\*/);
   assert.match(englishArticle, /Big-O notation \/ \$O\(\\cdot\)\$/);
-  assert.match(englishArticle, /mathe3-script-2011-SoSe\.pdf/);
-  assert.match(englishArticle, /Unlicense notice/);
-  assert.match(englishArticle, /personal study, translation, and knowledge organization/);
-  assert.match(englishArticle, /do not represent the original authors or any official position/);
-  assert.match(englishArticle, /non-commercial study, discussion, and citation/);
-  assert.match(englishArticle, /original authors, repository, and license notices/);
+  assert.equal(
+    extractCopyrightSection(englishArticle, '**Source, Copyright, and Usage Notes**'),
+    canonicalEnglishCopyright,
+  );
 });
 
 test('numerical integration article keeps source and reuse boundaries explicit', () => {
   assert.match(article, /\*\*英文缩写与记号说明\*\*/);
   assert.match(article, /Big-O notation \/ \$O\(\\cdot\)\$/);
-  assert.match(article, /mathe3-script-2011-SoSe\.pdf/);
-  assert.match(article, /The Unlicense/);
-  assert.match(article, /个人学习、翻译与知识整理/);
-  assert.match(article, /不代表原作者或官方立场/);
-  assert.match(article, /非商业学习、交流和引用/);
-  assert.match(article, /原始讲义及其中可能包含的材料仍应以其原作者、原仓库及相关授权说明为准/);
+  assert.equal(
+    extractCopyrightSection(article, '**来源、版权与使用说明**'),
+    canonicalChineseCopyright,
+  );
 });
 
 test('numerical integration articles explain Big-O notation on first use', () => {

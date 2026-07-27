@@ -8,6 +8,7 @@ const englishArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab
 const normalizedEnglishArticle = englishArticle.replace(/\r\n/g, '\n');
 const script = readFileSync('assets/js/interpolation-lab.mjs', 'utf8');
 const styles = readFileSync('assets/css/interpolation-lab.css', 'utf8');
+const mathematik3RepositoryUrl = 'https://github.com/tu-darmstadt-informatik/Mathematik-3';
 
 test('interpolation article keeps only the interpolation chapter content', () => {
   assert.match(article, /title: "数值分析讲义（一）：插值方法"/);
@@ -94,6 +95,14 @@ test('interpolation article references available bibliography entries', () => {
   for (const number of citedNumbers) {
     assert.ok(bibliographyNumbers.has(number), `missing bibliography entry ${number}`);
   }
+});
+
+test('interpolation copyright section links the source PDF text to the repository', () => {
+  const linkedPdf = `[mathe3-script-2011-SoSe.pdf](${mathematik3RepositoryUrl})`;
+  assert.match(article, /\*\*来源、版权与使用说明\*\*/);
+  assert.match(englishArticle, /\*\*Source, Copyright, and Usage Notes\*\*/);
+  assert.ok(article.includes(linkedPdf));
+  assert.ok(englishArticle.includes(linkedPdf));
 });
 
 test('interpolation article loads resources and only adds labs for original figures', () => {

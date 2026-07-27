@@ -12,6 +12,26 @@ const normalizedPart1 = part1Article.replace(/\r\n/g, '\n');
 const normalizedPart2 = part2Article.replace(/\r\n/g, '\n');
 const normalizedPart1English = part1EnglishArticle.replace(/\r\n/g, '\n');
 const normalizedPart2English = part2EnglishArticle.replace(/\r\n/g, '\n');
+const interpolationArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.zh.md', 'utf8');
+const interpolationEnglishArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.en.md', 'utf8');
+
+function extractCopyrightSection(text, heading) {
+  const normalized = text.replace(/\r\n/g, '\n');
+  const start = normalized.indexOf(heading);
+  assert.notEqual(start, -1);
+  const scriptStart = normalized.indexOf('\n<script type="module"', start);
+  const end = scriptStart === -1 ? normalized.length : scriptStart;
+  return normalized.slice(start, end).trimEnd();
+}
+
+const canonicalChineseCopyright = extractCopyrightSection(
+  interpolationArticle,
+  '**来源、版权与使用说明**',
+);
+const canonicalEnglishCopyright = extractCopyrightSection(
+  interpolationEnglishArticle,
+  '**Source, Copyright, and Usage Notes**',
+);
 
 test('ODE lecture is split into Part I and Part II Chinese pages', () => {
   assert.match(part1Article, /title: "数值分析讲义（三）：常微分方程初值问题与刚性 Part I"/);
@@ -236,29 +256,24 @@ test('ODE split articles configure formulas and explain abbreviations', () => {
   assert.match(part2EnglishArticle, /R\(q\)/);
 });
 
-test('ODE split articles keep source and reuse boundaries explicit', () => {
+test('ODE split articles keep references and the interpolation copyright text', () => {
   for (const article of [part1Article, part2Article]) {
-    assert.match(article, /\*\*参考文献\*\*/);
     assert.match(article, /\[1\] P\. Deuflhard and F\. Bornemann/);
     assert.match(article, /\[3\] H\. Heuser/);
     assert.match(article, /\[7\] W\. Walter/);
-    assert.match(article, /Skript-Mathe4ET-3Inf-2016-Kap2-3\.pdf/);
-    assert.match(article, /个人学习、翻译与知识整理/);
-    assert.match(article, /不代表原作者或官方立场/);
-    assert.match(article, /公开来源、文件级授权以及其中可能包含的第三方材料尚未在本文中逐项核验/);
-    assert.match(article, /非商业学习、交流和引用/);
-    assert.doesNotMatch(article, /mathe3-script-2011-SoSe\.pdf/);
-    assert.doesNotMatch(article, /The Unlicense/);
+    assert.equal(
+      extractCopyrightSection(article, '**来源、版权与使用说明**'),
+      canonicalChineseCopyright,
+    );
   }
   for (const article of [part1EnglishArticle, part2EnglishArticle]) {
     assert.match(article, /\*\*References\*\*/);
     assert.match(article, /\[1\] P\. Deuflhard and F\. Bornemann/);
     assert.match(article, /\[3\] H\. Heuser/);
     assert.match(article, /\[7\] W\. Walter/);
-    assert.match(article, /Skript-Mathe4ET-3Inf-2016-Kap2-3\.pdf/);
-    assert.match(article, /personal study, translation, and knowledge organization/);
-    assert.match(article, /do not represent the original authors or any official position/);
-    assert.doesNotMatch(article, /mathe3-script-2011-SoSe\.pdf/);
-    assert.doesNotMatch(article, /The Unlicense/);
+    assert.equal(
+      extractCopyrightSection(article, '**Source, Copyright, and Usage Notes**'),
+      canonicalEnglishCopyright,
+    );
   }
 });

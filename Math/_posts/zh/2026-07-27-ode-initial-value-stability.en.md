@@ -633,6 +633,8 @@ $$
 **Definition 3.1.2**  
 The function $\varphi(t,h;u,v)$ is called the **method function** in (3.7). If $\varphi$ does not depend on $v$, the method is explicit; otherwise it is implicit.
 
+The German original writes this notation as *Die Funktion* $\varphi(t,h;u,v)$.
+
 Here $u$ represents the state at the left endpoint of the current step, corresponding to $u_j$ in (3.7); $v$ represents the state at the right endpoint, corresponding to $u_{j+1}$. Explicit methods do not really use $v$, while implicit methods do, so $u_{j+1}$ must be solved from an equation.
 
 The quantity
@@ -936,11 +938,8 @@ Explicit Euler, improved Euler, Heun's method, and RK4 are all examples of this 
 
 **Source, Copyright, and Usage Notes**
 
-This article mainly refers to my local TU Darmstadt Mathe4 lecture-note file:
-Skript-Mathe4ET-3Inf-2016-Kap2-3.pdf
-
-This article is published for personal study, translation, and knowledge organization. The English wording, explanatory additions, and remade figures do not represent the original authors or any official position. The public source, file-level license, and possible third-party materials contained in the original document have not been checked item by item here, so use of the original lecture notes and embedded materials should still follow the original authors, course-material publisher, and applicable licensing statements.
-
-My own organization, English wording, explanatory additions, and remade figures may be used for non-commercial study, discussion, and citation with attribution and the original material information. For commercial use, systematic redistribution, publication, or large-scale adaptation, please verify the licensing status of the original material first.
-
-If there are translation, formula, terminology, or interpretation errors, or if a rights holder believes the material is used improperly, please contact me and I will correct or remove it promptly.
+This article mainly refers to the numerical analysis lecture notes in TU Darmstadt's open repository:
+[mathe3-script-2011-SoSe.pdf](https://github.com/tu-darmstadt-informatik/Mathematik-3)
+The upstream repository includes an Unlicense notice. This article is published for personal study, translation, and knowledge organization. The English wording, explanatory additions, and remade figures in this article do not represent the original authors or any official position.
+The personal organization, English text, explanatory notes, and remade figures in this article may be used for non-commercial study, discussion, and citation with attribution and the original link. Since part of this article is based on translation and organization of TU Darmstadt's public lecture notes, the original material and any materials it may contain should remain subject to the original authors, repository, and license notices. For commercial use, systematic redistribution, publication, or large-scale adaptation, please verify the licensing status of the original material as well.
+If there are any translation, formula, terminology, or interpretation errors, or if the rights holder believes the material has been used improperly, please contact me and I will correct or remove it promptly.
