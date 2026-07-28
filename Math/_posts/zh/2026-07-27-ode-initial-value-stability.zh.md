@@ -77,7 +77,7 @@ body {
 <a href="{{ page.en_link }}" class="btn">Read in English</a>
 
 建议先阅读 [数值分析讲义（二）：数值积分]({{ '/zh/numerical-integration-lab/' | relative_url }})。本篇是 Part I，只整理常微分方程（ordinary differential equation, ODE）初值问题中的基本数值方法、相容性、稳定性和收敛性；
-<!-- 刚性微分方程与稳定区域放在 [Part II]({{ '/zh/ode-stiffness-stability/' | relative_url }})。 -->
+刚性微分方程与稳定区域放在 [Part II]({{ '/zh/ode-stiffness-stability/' | relative_url }})。
 
 ---
 
@@ -1215,7 +1215,7 @@ $$
 
 ---
 
-<!-- 继续阅读 [数值分析讲义（三）：常微分方程初值问题与刚性 Part II]({{ '/zh/ode-stiffness-stability/' | relative_url }})。 -->
+继续阅读 [数值分析讲义（三）：常微分方程初值问题与刚性 Part II]({{ '/zh/ode-stiffness-stability/' | relative_url }})。
 
 **参考文献**
 

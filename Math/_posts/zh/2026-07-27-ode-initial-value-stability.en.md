@@ -78,7 +78,7 @@ body {
 
 It is best to read [Numerical Analysis Lecture (II): Numerical Integration]({{ '/en/numerical-integration-lab/' | relative_url }}) first. This Part I covers ordinary differential equation (ODE) initial value problems, basic one-step methods, consistency, stability, and convergence. 
 
-<!-- Stiff differential equations and stability regions are continued in [Part II]({{ '/en/ode-stiffness-stability/' | relative_url }}). -->
+Stiff differential equations and stability regions are continued in [Part II]({{ '/en/ode-stiffness-stability/' | relative_url }}).
 
 ---
 
@@ -917,7 +917,7 @@ Explicit Euler, improved Euler, Heun's method, and RK4 are all examples of this 
 
 ---
 
-<!-- Continue with [Numerical Analysis Lecture (III): Initial Value Problems and Stiffness Part II]({{ '/en/ode-stiffness-stability/' | relative_url }}). -->
+Continue with [Numerical Analysis Lecture (III): Initial Value Problems and Stiffness Part II]({{ '/en/ode-stiffness-stability/' | relative_url }}).
 
 **References**
 
