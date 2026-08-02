@@ -6,11 +6,13 @@ import { GROUPS_PER_ROW, limitAndGroupCountries } from './country-stats-layout.m
 
   var status = panel.querySelector('[data-country-stats-status]');
   var tableRoot = panel.querySelector('[data-country-stats-table]');
+  var updated = panel.querySelector('[data-country-stats-updated]');
 
   function setStatus(message, warning) {
     status.textContent = message;
     status.hidden = false;
     status.className = warning ? 'country-stats-status is-warning' : 'country-stats-status';
+    if (updated) updated.hidden = true;
   }
 
   function appendCell(row, value, isHeader) {
@@ -49,7 +51,7 @@ import { GROUPS_PER_ROW, limitAndGroupCountries } from './country-stats-layout.m
       && record.visitors >= 0;
   }
 
-  function render(countries) {
+  function render(countries, updatedAt) {
     var table = document.createElement('table');
     table.className = 'country-stats-table';
     var tableHead = document.createElement('thead');
@@ -81,6 +83,13 @@ import { GROUPS_PER_ROW, limitAndGroupCountries } from './country-stats-layout.m
     tableRoot.replaceChildren(table);
     tableRoot.hidden = false;
     status.hidden = true;
+    if (updated && updatedAt) {
+      var date = new Date(updatedAt);
+      if (!Number.isNaN(date.getTime())) {
+        updated.textContent = 'Source refreshed: ' + date.toLocaleString();
+        updated.hidden = false;
+      }
+    }
   }
 
   async function load() {
@@ -91,7 +100,7 @@ import { GROUPS_PER_ROW, limitAndGroupCountries } from './country-stats-layout.m
       if (!response.ok) throw new Error('request failed');
       var payload = await response.json();
       if (!payload || !Array.isArray(payload.countries) || !payload.countries.every(isCountry)) throw new Error('invalid response');
-      render(payload.countries);
+      render(payload.countries, payload.updatedAt);
     } catch (error) {
       tableRoot.replaceChildren();
       tableRoot.hidden = true;

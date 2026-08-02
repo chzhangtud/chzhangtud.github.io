@@ -36,8 +36,7 @@ body {
 
 <a href="{{ page.zh_link }}" class="btn">中文版</a>
 
-**Preface.** Recently, I have revisited part of numerical analysis. With the help of AI, I translated some of the foreign-language lecture notes that the school has published openly on GitHub, and remade several figures into interactive web diagrams. I am sharing the result here.
-
+**Preface.** Recently, I have revisited part of numerical analysis. With the help of AI, I translated some of the foreign-language lecture notes that the school has published openly on GitHub, and remade several figures into interactive web diagrams. I am sharing the result here. If you find mistakes or awkward phrasing, corrections are welcome.
 
 ---
 
@@ -74,13 +73,13 @@ The goal is to make the error $\lvert f(x)-\Phi(x)\rvert$ as small as possible o
 2. An experiment, or a numerical computation, reflects an unknown function relation $y=f(x)$ and gives observed or computed values $y_i$ for input parameters $x_i$.  
    Goal: build a good model $\Phi(x)$ for the unknown function $f(x)$.
 
-3. A digital audio signal, such as one from a CD, MP3 player, or DVD, gives amplitudes $y_i$ at times $t_i$, $i=0,\ldots,n$.  
+3. A digital audio signal, such as one from a CD (compact disc), MP3 (MPEG-1 Audio Layer III) player, or DVD (digital versatile disc), gives amplitudes $y_i$ at times $t_i$, $i=0,\ldots,n$.
    Question: what should the corresponding analog audio signal $y(t)$ look like?
 
-4. A digital audio signal $(t_i,y_i)$ sampled at 44.1 kHz, as on a CD, must be resampled to 48 kHz, as in DAT (digital audio tape) or DVD-Video.  
+4. A digital audio signal $(t_i,y_i)$ sampled at 44.1 kHz (kilohertz), as on a CD, must be resampled to 48 kHz, as in DAT (digital audio tape) or DVD-Video.
    Goal: find $(\tilde t_j, y(\tilde t_j))$ at the 48 kHz sampling times $\tilde t_j$.
 
-5. A two-dimensional example: given data points $(x_i,y_i,z_i)$, construct a smooth surface $(x,y,z(x,y))$ passing through them, as in CAD, computer graphics, or laser scanning.
+5. A two-dimensional example: given data points $(x_i,y_i,z_i)$, construct a smooth surface $(x,y,z(x,y))$ passing through them, as in CAD (computer-aided design), computer graphics, or laser scanning.
 
 **Formal task**
 
@@ -946,6 +945,15 @@ $$
 - [6] W. Törnig and P. Spellucci. *Numerische Mathematik für Ingenieure und Physiker 2*. Springer Verlag, Berlin, 1990. 1.2.3.
 - [7] W. Walter. *Gewöhnliche Differentialgleichungen*. Springer, Berlin, 1986. 3.1.
 - [8] J. Werner. *Numerische Mathematik 2*. Vieweg Verlag, Braunschweig, 1992. 6.1.4.
+
+**Abbreviations**
+
+- CD: compact disc.
+- MP3: MPEG-1 Audio Layer III.
+- DVD: digital versatile disc.
+- kHz: kilohertz.
+- DAT: digital audio tape.
+- CAD: computer-aided design.
 
 **Source, Copyright, and Usage Notes**
 

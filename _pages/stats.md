@@ -13,41 +13,50 @@ comments: false
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
-  margin: 1.5em 0 2.5em;
+  margin: 1.2em 0 2em;
+  overflow: hidden;
+  border: 1px solid #d8dde2;
+  border-radius: 8px;
+  background: #fbfbfc;
 }
 .stats-card {
-  text-align: center;
-  padding: 1.4em 1em;
-  border-radius: 16px;
-  color: #fff;
-  background: linear-gradient(135deg, #6a82fb 0%, #5b6ef5 50%, #8e54e9 100%);
-  box-shadow: 0 6px 16px rgba(91, 110, 245, 0.28);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.7em;
+  row-gap: 0.25em;
+  align-items: center;
+  padding: 0.85em 1em;
+  color: #333f48;
+  background: #fbfbfc;
+}
+.stats-card + .stats-card {
+  border-left: 1px solid #e1e5e8;
 }
 .stats-card .num {
   display: block;
-  font-size: 1.9em;
+  font-size: 1.25em;
   font-weight: 700;
   line-height: 1.2;
-  margin-top: 0.25em;
+  margin: 0;
 }
 .stats-card .label {
   display: block;
-  margin-top: 0.35em;
+  grid-column: 2;
+  margin: 0;
   font-size: 0.82em;
-  opacity: 0.92;
+  color: #5f6972;
 }
 .stats-card i {
-  font-size: 1.25em;
-  opacity: 0.95;
+  grid-row: 1 / span 2;
+  font-size: 1em;
+  color: #69737d;
 }
 .stats-panel {
   margin: 1.5em 0;
   padding: 1.5em;
-  border: 1px solid #e6e6e6;
-  border-radius: 16px;
-  background: #fafafa;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid #d8dde2;
+  border-radius: 8px;
+  background: #fbfbfc;
 }
 .stats-panel h2 {
   margin-top: 0;
@@ -57,7 +66,7 @@ comments: false
 }
 .stats-panel h2 i {
   margin-right: 0.4em;
-  color: #5b6ef5;
+  color: #69737d;
 }
 .stats-panel .embed {
   display: flex;
@@ -87,6 +96,12 @@ comments: false
 .country-stats-status.is-warning {
   color: #8a5a00;
 }
+.country-stats-updated {
+  margin: 0.85em 0 0;
+  color: #6c757d;
+  font-size: 0.82em;
+  text-align: right;
+}
 .country-stats-table {
   width: 100%;
   border-collapse: collapse;
@@ -99,11 +114,12 @@ comments: false
 .country-stats-table th,
 .country-stats-table td {
   padding: 0.6em 0.35em;
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #e1e5e8;
   text-align: left;
   overflow-wrap: anywhere;
 }
 .country-stats-table th {
+  color: #4f565c;
   font-size: 0.86em;
 }
 .country-stats-table th:nth-child(odd),
@@ -130,6 +146,10 @@ comments: false
   .stats-grid {
     grid-template-columns: 1fr;
   }
+  .stats-card + .stats-card {
+    border-top: 1px solid #e1e5e8;
+    border-left: 0;
+  }
   .country-stats-table th,
   .country-stats-table td {
     padding-right: 0.2em;
@@ -150,17 +170,17 @@ This page shows live visit statistics for the site.
 <div class="stats-grid">
   <div class="stats-card">
     <i class="fas fa-eye"></i>
-    <span class="num" id="busuanzi_value_page_pv">…</span>
+    <span class="num" id="busuanzi_value_page_pv">...</span>
     <span class="label">Views of this page</span>
   </div>
   <div class="stats-card">
     <i class="fas fa-user-friends"></i>
-    <span class="num" id="busuanzi_value_site_uv">…</span>
+    <span class="num" id="busuanzi_value_site_uv">...</span>
     <span class="label">Unique visitors</span>
   </div>
   <div class="stats-card">
     <i class="fas fa-chart-line"></i>
-    <span class="num" id="busuanzi_value_site_pv">…</span>
+    <span class="num" id="busuanzi_value_site_pv">...</span>
     <span class="label">Total visits</span>
   </div>
 </div>
@@ -215,6 +235,7 @@ This page shows live visit statistics for the site.
   <h2><i class="fas fa-flag"></i>Country Distribution</h2>
   <p class="country-stats-status" data-country-stats-status>Loading country statistics...</p>
   <div class="country-stats-table-wrap" data-country-stats-table hidden></div>
+  <p class="country-stats-updated" data-country-stats-updated hidden></p>
 </div>
 <script type="module" src="{{ '/assets/js/country-stats.js' | relative_url }}"></script>
 

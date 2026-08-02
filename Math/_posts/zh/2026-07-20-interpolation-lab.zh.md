@@ -73,13 +73,13 @@ $$
 2. 某个实验（或一次数值计算）反映了未知的函数关系 $y=f(x)$，并对输入参数 $x_i$ 给出观测值或计算值 $y_i$。  
    目标：为未知函数 $f(x)$ 建立一个较好的模型 $\Phi(x)$。
 
-3. 一个数字音频信号（CD、MP3 播放器、DVD 等）在时刻 $t_i$，$i=0,\ldots,n$，给出振幅 $y_i$。  
+3. 一个数字音频信号（CD，Compact Disc；MP3，MPEG-1 Audio Layer III 播放器；DVD，Digital Versatile Disc 等）在时刻 $t_i$，$i=0,\ldots,n$，给出振幅 $y_i$。
    问题：相应的模拟音频信号 $y(t)$ 应该是什么样的？
 
-4. 一个采样率为 44.1 kHz（CD）的数字音频信号 $(t_i,y_i)$，$i=0,\ldots,n$，需要重采样为 48 kHz（DAT，Digital Audio Tape；DVD-Video）。  
+4. 一个采样率为 44.1 kHz（kilohertz，千赫兹；CD，Compact Disc）的数字音频信号 $(t_i,y_i)$，$i=0,\ldots,n$，需要重采样为 48 kHz（DAT，Digital Audio Tape；DVD-Video）。
    目标：求出 48 kHz 采样时刻 $\tilde t_j$ 上的 $(\tilde t_j, y(\tilde t_j))$。
 
-5. 二维例子：给定数据点 $(x_i,y_i,z_i)$，希望构造一张经过这些点的光滑曲面 $(x,y,z(x,y))$（CAD、计算机图形学、激光扫描等）。
+5. 二维例子：给定数据点 $(x_i,y_i,z_i)$，希望构造一张经过这些点的光滑曲面 $(x,y,z(x,y))$（CAD，Computer-Aided Design；计算机图形学、激光扫描等）。
 
 **形式化任务表述**
 
@@ -946,6 +946,15 @@ $$
 - [6] W. Törnig and P. Spellucci. *Numerische Mathematik für Ingenieure und Physiker 2*. Springer Verlag, Berlin, 1990. 1.2.3.
 - [7] W. Walter. *Gewöhnliche Differentialgleichungen*. Springer, Berlin, 1986. 3.1.
 - [8] J. Werner. *Numerische Mathematik 2*. Vieweg Verlag, Braunschweig, 1992. 6.1.4.
+
+**英文缩写说明**
+
+- CD：Compact Disc，光盘。
+- MP3：MPEG-1 Audio Layer III，常见数字音频压缩格式。
+- DVD：Digital Versatile Disc，数字多功能光盘。
+- kHz：kilohertz，千赫兹。
+- DAT：Digital Audio Tape，数字音频磁带。
+- CAD：Computer-Aided Design，计算机辅助设计。
 
 **来源、版权与使用说明**
 

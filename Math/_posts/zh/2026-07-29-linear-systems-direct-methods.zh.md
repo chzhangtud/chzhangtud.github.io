@@ -1,5 +1,5 @@
 ---
-title: "数值分析讲义（四）：线性方程组数值求解 Part I"
+title: "数值分析讲义（四）：线性方程组/矩阵运算数值求解 Part I"
 lang: "zh"
 date: 2026-07-29
 permalink: /zh/linear-systems-direct-methods/

@@ -1,5 +1,5 @@
 ---
-title: "Numerical Analysis Lecture (IV): Solving Linear Systems Part I"
+title: "Numerical Analysis Lecture (IV): Solving Linear Systems and Matrix Computations Part I"
 lang: "en"
 date: 2026-07-29
 permalink: /en/linear-systems-direct-methods/
