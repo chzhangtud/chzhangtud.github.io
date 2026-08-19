@@ -3,13 +3,15 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 const part1Article = readFileSync('Math/_posts/zh/2026-07-29-linear-systems-direct-methods.zh.md', 'utf8');
-const part2Article = readFileSync('Math/_posts/zh/2026-07-29-linear-systems-cholesky-conditioning.zh.md', 'utf8');
+const part2Article = readFileSync('Math/_posts/zh/2026-08-17-linear-systems-cholesky-conditioning.zh.md', 'utf8');
 const part1EnglishArticle = readFileSync('Math/_posts/zh/2026-07-29-linear-systems-direct-methods.en.md', 'utf8');
+const part2EnglishArticle = readFileSync('Math/_posts/zh/2026-08-17-linear-systems-cholesky-conditioning.en.md', 'utf8');
 const normalizedPart1 = part1Article.replace(/\r\n/g, '\n');
 const normalizedPart2 = part2Article.replace(/\r\n/g, '\n');
 const normalizedPart1English = part1EnglishArticle.replace(/\r\n/g, '\n');
+const normalizedPart2English = part2EnglishArticle.replace(/\r\n/g, '\n');
 
-test('linear systems lecture is split into Part I and Part II Chinese pages', () => {
+test('linear systems lecture is split into bilingual Part I and Part II pages', () => {
   assert.match(part1Article, /title: "数值分析讲义（四）：线性方程组\/矩阵运算数值求解 Part I"/);
   assert.match(part1Article, /lang: "zh"/);
   assert.match(part1Article, /date: 2026-07-29/);
@@ -22,16 +24,30 @@ test('linear systems lecture is split into Part I and Part II Chinese pages', ()
 
   assert.match(part2Article, /title: "数值分析讲义（四）：线性方程组\/矩阵运算数值求解 Part II"/);
   assert.match(part2Article, /lang: "zh"/);
-  assert.match(part2Article, /date: 2026-07-29/);
+  assert.match(part2Article, /date: 2026-08-17/);
   assert.match(part2Article, /permalink: \/zh\/linear-systems-cholesky-conditioning\//);
+  assert.match(part2Article, /en_link: \/en\/linear-systems-cholesky-conditioning\//);
+  assert.match(part2Article, /<a href="\{\{ page\.en_link \}\}" class="btn">Read in English<\/a>/);
   assert.match(normalizedPart2, /categories:\r?\n  - Math/);
   assert.match(part2Article, /Linear Systems/);
   assert.match(part2Article, /Error Analysis/);
+  assert.ok(part2Article.includes('a) $\\|A\\|=0$ 当且仅当 $A=0$；'));
+  assert.ok(part2Article.includes('b) 对所有 $\\alpha\\in\\mathbb{R}$ 和所有 $A\\in\\mathbb{R}^{n\\times n}$，有 $\\|\\alpha A\\|=\\lvert\\alpha\\rvert\\,\\|A\\|$；'));
+  assert.ok(part2Article.includes('c) 对所有 $A,B\\in\\mathbb{R}^{n\\times n}$，有三角不等式'));
+  assert.doesNotMatch(part2Article, /^[abc]\).*\$\$/m);
 
   assert.match(part1EnglishArticle, /title: "Numerical Analysis Lecture \(IV\): Solving Linear Systems and Matrix Computations Part I"/);
   assert.match(part1EnglishArticle, /lang: "en"/);
   assert.match(part1EnglishArticle, /permalink: \/en\/linear-systems-direct-methods\//);
   assert.match(part1EnglishArticle, /zh_link: \/zh\/linear-systems-direct-methods\//);
+  assert.match(part2EnglishArticle, /title: "Numerical Analysis Lecture \(IV\): Solving Linear Systems and Matrix Computations Part II"/);
+  assert.match(part2EnglishArticle, /lang: "en"/);
+  assert.match(part2EnglishArticle, /date: 2026-08-17/);
+  assert.match(part2EnglishArticle, /permalink: \/en\/linear-systems-cholesky-conditioning\//);
+  assert.match(part2EnglishArticle, /zh_link: \/zh\/linear-systems-cholesky-conditioning\//);
+  assert.match(part2EnglishArticle, /<a href="\{\{ page\.zh_link \}\}" class="btn">中文版<\/a>/);
+  assert.match(part2EnglishArticle, /Error Estimates and the Effect of Rounding Errors/);
+  assert.match(part2EnglishArticle, /Cholesky factorization/);
   assert.match(part1EnglishArticle, /\u4e2d\u6587\u7248/);
 });
 
@@ -43,6 +59,9 @@ test('linear systems split preserves the requested section boundaries', () => {
     .split('\n')
     .filter((line) => /^#{1,6} /.test(line));
   const part1EnglishHeadings = normalizedPart1English
+    .split('\n')
+    .filter((line) => /^#{1,6} /.test(line));
+  const part2EnglishHeadings = normalizedPart2English
     .split('\n')
     .filter((line) => /^#{1,6} /.test(line));
 
@@ -77,6 +96,12 @@ test('linear systems split preserves the requested section boundaries', () => {
     '### 4.2.7 Matrix Representation of Elimination Steps',
     '### 4.2.8 Matrix Classes That Do Not Require Pivoting',
   ]);
+  assert.deepEqual(part2EnglishHeadings, [
+    '## 4.3 The Cholesky Method',
+    '## 4.4 Error Estimates and the Effect of Rounding Errors',
+    '### 4.4.1 Error Estimates for Perturbed Systems',
+    '### 4.4.2 Rounding Error Analysis for Gaussian Elimination',
+  ]);
 
   assert.doesNotMatch(part1Article, /^## 4\.3/m);
   assert.doesNotMatch(part1Article, /^## 4\.4/m);
@@ -84,31 +109,33 @@ test('linear systems split preserves the requested section boundaries', () => {
   assert.doesNotMatch(part1EnglishArticle, /^## 4\.3/m);
   assert.doesNotMatch(part1EnglishArticle, /^## 4\.4/m);
   assert.doesNotMatch(part2Article, /^## 4\.2/m);
+  assert.doesNotMatch(part2EnglishArticle, /^## 4\.1/m);
+  assert.doesNotMatch(part2EnglishArticle, /^## 4\.2/m);
   assert.match(part1Article, /\*\*算法 4\.2\.4：带列主元搜索的 Gauss 消去法\*\*/);
   assert.match(part1Article, /\*\*算法 4\.2\.6：带完全主元搜索的 Gauss 消去法\*\*/);
   assert.match(part2Article, /\*\*算法 4\.3\.3：用于计算分解 \$LL\^T=A\$ 的 Cholesky 方法\*\*/);
   assert.match(part2Article, /\*\*定理 4\.4\.4（矩阵和右端项扰动的影响）\*\*/);
+  assert.match(part2EnglishArticle, /\*\*Algorithm 4\.3\.3: Cholesky method for computing the factorization/);
+  assert.match(part2EnglishArticle, /\*\*Theorem 4\.4\.4 \(Effect of perturbations in the matrix and right-hand side\)/);
   assert.match(part1Article, /\\mathbb\{R\}\^\{n\\times m\}/);
   assert.match(part1Article, /在 \$O\(n\^2\)\$ 次操作内求解/);
 });
 
-test('linear systems split pages link to prerequisites and Part I comments out Part II links', () => {
-  const visiblePart1 = normalizedPart1
-    .split('\n')
-    .filter((line) => !line.trim().startsWith('<!--'))
-    .join('\n');
-  const visiblePart1English = normalizedPart1English
-    .split('\n')
-    .filter((line) => !line.trim().startsWith('<!--'))
-    .join('\n');
-
+test('linear systems split pages link to prerequisites and navigate between Parts I and II', () => {
   assert.match(part1Article, /\/zh\/ode-stiffness-stability\//);
   assert.match(part1EnglishArticle, /\/en\/ode-stiffness-stability\//);
-  assert.doesNotMatch(visiblePart1, /linear-systems-cholesky-conditioning/);
-  assert.doesNotMatch(visiblePart1English, /linear-systems-cholesky-conditioning/);
-  assert.match(part1Article, /^<!-- .*linear-systems-cholesky-conditioning.* -->$/m);
-  assert.match(part1EnglishArticle, /^<!-- .*linear-systems-cholesky-conditioning.* -->$/m);
+  assert.match(part1Article, /继续阅读 \[数值分析讲义（四）：线性方程组\/矩阵运算数值求解 Part II\]\(\{\{ '\/zh\/linear-systems-cholesky-conditioning\/' \| relative_url \}\}\)。/);
+  assert.match(part1EnglishArticle, /Continue with \[Numerical Analysis Lecture \(IV\): Solving Linear Systems and Matrix Computations Part II\]\(\{\{ '\/en\/linear-systems-cholesky-conditioning\/' \| relative_url \}\}\)\./);
   assert.match(part2Article, /\/zh\/linear-systems-direct-methods\//);
+  assert.match(part2EnglishArticle, /\/en\/linear-systems-direct-methods\//);
+  assert.match(part2Article, /<a href="\{\{ page\.en_link \}\}" class="btn">Read in English<\/a>/);
+  assert.match(part2EnglishArticle, /<a href="\{\{ page\.zh_link \}\}" class="btn">中文版<\/a>/);
+  assert.match(part2Article, /返回阅读 \[数值分析讲义（四）：线性方程组\/矩阵运算数值求解 Part I\]\(\{\{ '\/zh\/linear-systems-direct-methods\/' \| relative_url \}\}\)。/);
+  assert.match(part2EnglishArticle, /Return to \[Numerical Analysis Lecture \(IV\): Solving Linear Systems and Matrix Computations Part I\]\(\{\{ '\/en\/linear-systems-direct-methods\/' \| relative_url \}\}\)\./);
+  assert.doesNotMatch(part1Article, /linear-series-nav/);
+  assert.doesNotMatch(part1EnglishArticle, /linear-series-nav/);
+  assert.doesNotMatch(part2Article, /linear-series-nav/);
+  assert.doesNotMatch(part2EnglishArticle, /linear-series-nav/);
 });
 
 test('English Part I localizes visible explanatory text and keeps only the language button in Chinese', () => {
@@ -124,16 +151,30 @@ test('English Part I localizes visible explanatory text and keeps only the langu
   assert.match(part1EnglishArticle, /\*\*Source, Copyright, and Usage Notes\*\*/);
 });
 
+test('English Part II localizes prose and both explanatory diagrams', () => {
+  const cjkMatches = [...part2EnglishArticle.matchAll(/[\p{Script=Han}]+/gu)].map((match) => match[0]);
+  assert.deepEqual(cjkMatches, ['中文版']);
+  assert.match(part2EnglishArticle, /Figure 4-3: Cholesky factorization exploits the symmetric positive definite structure/);
+  assert.match(part2EnglishArticle, /Figure 4-4: The condition number is not the algorithmic error itself/);
+  assert.match(part2EnglishArticle, /Positive definiteness keeps the quantity under the square root positive/);
+  assert.match(part2EnglishArticle, /The Hilbert matrix example shows that even a residual caused by tiny rounding errors/);
+  assert.match(part2EnglishArticle, /\*\*Source, Copyright, and Usage Notes\*\*/);
+});
+
 test('linear systems split includes focused explanatory SVG diagrams', () => {
   const part1FigureTags = [...part1Article.matchAll(/<figure class="linear-system-figure">/g)];
   const part2FigureTags = [...part2Article.matchAll(/<figure class="linear-system-figure">/g)];
+  const part2EnglishFigureTags = [...part2EnglishArticle.matchAll(/<figure class="linear-system-figure">/g)];
   const part1Svgs = [...part1Article.matchAll(/<svg role="img" aria-labelledby=/g)];
   const part2Svgs = [...part2Article.matchAll(/<svg role="img" aria-labelledby=/g)];
+  const part2EnglishSvgs = [...part2EnglishArticle.matchAll(/<svg role="img" aria-labelledby=/g)];
 
   assert.equal(part1FigureTags.length, 2);
   assert.equal(part2FigureTags.length, 2);
+  assert.equal(part2EnglishFigureTags.length, 2);
   assert.equal(part1Svgs.length, 1);
   assert.equal(part2Svgs.length, 2);
+  assert.equal(part2EnglishSvgs.length, 2);
   assert.match(part1Article, /data-gauss-stepper/);
   assert.match(part1Article, /图 4-1：用例 4\.2\.3 逐步跟踪列主元 Gauss 消去和回代/);
   assert.match(part1Article, /l21 = 1\/2/);
@@ -144,15 +185,18 @@ test('linear systems split includes focused explanatory SVG diagrams', () => {
   assert.match(part1Article, /l21=1\/2, l31=1, l32=1/);
   assert.match(part2Article, /图 4-3：Cholesky 分解利用对称正定结构，只构造一个下三角因子/);
   assert.match(part2Article, /图 4-4：条件数不是算法误差本身，而是问题本身对扰动的敏感度/);
+  assert.match(part2EnglishArticle, /id="kap4-cholesky-title-en"/);
+  assert.match(part2EnglishArticle, /id="kap4-condition-title-en"/);
+  assert.match(part2EnglishArticle, /Column j: obtain l/);
 });
 
 test('linear systems split configures formulas and explains notation', () => {
-  for (const article of [part1Article, part2Article]) {
+  for (const article of [part1Article, part2Article, part1EnglishArticle, part2EnglishArticle]) {
     assert.match(article, /inlineMath: \[\['\$', '\$'\], \['\\\\\(', '\\\\\)'\]\]/);
     assert.match(article, /tex-mml-chtml\.js/);
     assert.match(article, /mjx-container\[display='true'\]/);
     assert.match(article, /overflow-x:\s*auto/);
-    assert.match(article, /\*\*英文缩写与记号说明\*\*/);
+    assert.match(article, /\*\*(?:英文缩写与记号说明|Abbreviations and Notation)\*\*/);
   }
 
   assert.match(part1Article, /LR 分解：这里沿用讲义记号/);
@@ -160,6 +204,9 @@ test('linear systems split configures formulas and explains notation', () => {
   assert.match(part2Article, /SPD：symmetric positive definite/);
   assert.match(part2Article, /Cholesky 分解：对称正定矩阵的分解/);
   assert.match(part2Article, /\$\\operatorname\{cond\}\(A\)\$：condition number/);
+  assert.match(part2EnglishArticle, /SPD: symmetric positive definite/);
+  assert.match(part2EnglishArticle, /Cholesky factorization: the factorization \$A=LL\^T\$/);
+  assert.match(part2EnglishArticle, /\$\\operatorname\{cond\}\(A\)\$: the condition number/);
 });
 
 test('Part I protects inline formulas that would otherwise become Markdown emphasis', () => {
@@ -216,6 +263,14 @@ test('linear systems split keeps source and reuse boundaries explicit', () => {
     assert.match(article, /Skript-Mathe4ET-3Inf-2016-Kap4-5\.pdf/);
     assert.match(article, /Skript-Mathe4ET-3Inf-2016-Kap4\.zh\.md/);
     assert.match(article, /原始讲义及其中可能包含的材料仍应以其原作者、课程页面及相关授权说明为准/);
+    assert.doesNotMatch(article, /The Unlicense/);
+    assert.doesNotMatch(article, /mathe3-script-2011-SoSe\.pdf/);
+  }
+  for (const article of [part1EnglishArticle, part2EnglishArticle]) {
+    assert.match(article, /\*\*Source, Copyright, and Usage Notes\*\*/);
+    assert.match(article, /Skript-Mathe4ET-3Inf-2016-Kap4-5\.pdf/);
+    assert.match(article, /Skript-Mathe4ET-3Inf-2016-Kap4\.zh\.md/);
+    assert.match(article, /original lecture notes and any materials they may contain/);
     assert.doesNotMatch(article, /The Unlicense/);
     assert.doesNotMatch(article, /mathe3-script-2011-SoSe\.pdf/);
   }

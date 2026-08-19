@@ -1248,7 +1248,7 @@ $$
 
 ---
 
-<!-- 继续阅读 [数值分析讲义（四）：线性方程组/矩阵运算数值求解 Part II]({{ '/zh/linear-systems-cholesky-conditioning/' | relative_url }})。 -->
+继续阅读 [数值分析讲义（四）：线性方程组/矩阵运算数值求解 Part II]({{ '/zh/linear-systems-cholesky-conditioning/' | relative_url }})。
 
 **英文缩写与记号说明**
 

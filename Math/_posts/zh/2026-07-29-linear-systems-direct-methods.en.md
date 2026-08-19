@@ -1248,7 +1248,7 @@ has all eigenvalues with modulus less than $1$.
 
 ---
 
-<!-- Continue with [Numerical Analysis Lecture (IV): Solving Linear Systems and Matrix Computations Part II]({{ '/en/linear-systems-cholesky-conditioning/' | relative_url }}) once Part II is ready to publish. -->
+Continue with [Numerical Analysis Lecture (IV): Solving Linear Systems and Matrix Computations Part II]({{ '/en/linear-systems-cholesky-conditioning/' | relative_url }}).
 
 **Abbreviations and Notation**
 
