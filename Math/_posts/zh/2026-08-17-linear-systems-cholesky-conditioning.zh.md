@@ -678,6 +678,8 @@ $$
 
 返回阅读 [数值分析讲义（四）：线性方程组/矩阵运算数值求解 Part I]({{ '/zh/linear-systems-direct-methods/' | relative_url }})。
 
+继续阅读 [数值分析讲义（五）：非线性方程组]({{ '/zh/nonlinear-equations/' | relative_url }})。
+
 **英文缩写与记号说明**
 
 - SPD：symmetric positive definite，对称正定矩阵，即 $A=A^T$ 且 $x^TAx>0$。

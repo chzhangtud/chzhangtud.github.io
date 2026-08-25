@@ -683,6 +683,8 @@ holds.
 
 Return to [Numerical Analysis Lecture (IV): Solving Linear Systems and Matrix Computations Part I]({{ '/en/linear-systems-direct-methods/' | relative_url }}).
 
+Continue with [Numerical Analysis Lecture (V): Nonlinear Systems of Equations]({{ '/en/nonlinear-equations/' | relative_url }}).
+
 **Abbreviations and Notation**
 
 - SPD: symmetric positive definite, meaning $A=A^T$ and $x^TAx>0$.
