@@ -3,19 +3,19 @@ const { readFileSync } = require('node:fs');
 const test = require('node:test');
 
 const article = readFileSync(
-  'Math/_posts/zh/2026-08-20-nonlinear-equations.zh.md',
+  'Math/_posts/2026-08-20-nonlinear-equations.zh.md',
   'utf8',
 );
 const englishArticle = readFileSync(
-  'Math/_posts/zh/2026-08-20-nonlinear-equations.en.md',
+  'Math/_posts/2026-08-20-nonlinear-equations.en.md',
   'utf8',
 );
 const previousChineseArticle = readFileSync(
-  'Math/_posts/zh/2026-08-17-linear-systems-cholesky-conditioning.zh.md',
+  'Math/_posts/2026-08-17-linear-systems-cholesky-conditioning.zh.md',
   'utf8',
 );
 const previousEnglishArticle = readFileSync(
-  'Math/_posts/zh/2026-08-17-linear-systems-cholesky-conditioning.en.md',
+  'Math/_posts/2026-08-17-linear-systems-cholesky-conditioning.en.md',
   'utf8',
 );
 

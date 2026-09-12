@@ -2,10 +2,10 @@
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
-const part1Article = readFileSync('Math/_posts/zh/2026-07-29-linear-systems-direct-methods.zh.md', 'utf8');
-const part2Article = readFileSync('Math/_posts/zh/2026-08-17-linear-systems-cholesky-conditioning.zh.md', 'utf8');
-const part1EnglishArticle = readFileSync('Math/_posts/zh/2026-07-29-linear-systems-direct-methods.en.md', 'utf8');
-const part2EnglishArticle = readFileSync('Math/_posts/zh/2026-08-17-linear-systems-cholesky-conditioning.en.md', 'utf8');
+const part1Article = readFileSync('Math/_posts/2026-07-29-linear-systems-direct-methods.zh.md', 'utf8');
+const part2Article = readFileSync('Math/_posts/2026-08-17-linear-systems-cholesky-conditioning.zh.md', 'utf8');
+const part1EnglishArticle = readFileSync('Math/_posts/2026-07-29-linear-systems-direct-methods.en.md', 'utf8');
+const part2EnglishArticle = readFileSync('Math/_posts/2026-08-17-linear-systems-cholesky-conditioning.en.md', 'utf8');
 const normalizedPart1 = part1Article.replace(/\r\n/g, '\n');
 const normalizedPart2 = part2Article.replace(/\r\n/g, '\n');
 const normalizedPart1English = part1EnglishArticle.replace(/\r\n/g, '\n');

@@ -2,12 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
-const article = readFileSync('Math/_posts/zh/2026-07-22-numerical-integration-lab.zh.md', 'utf8');
+const article = readFileSync('Math/_posts/2026-07-22-numerical-integration-lab.zh.md', 'utf8');
 const normalizedArticle = article.replace(/\r\n/g, '\n');
-const englishArticle = readFileSync('Math/_posts/zh/2026-07-22-numerical-integration-lab.en.md', 'utf8');
+const englishArticle = readFileSync('Math/_posts/2026-07-22-numerical-integration-lab.en.md', 'utf8');
 const normalizedEnglishArticle = englishArticle.replace(/\r\n/g, '\n');
-const interpolationArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.zh.md', 'utf8');
-const interpolationEnglishArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.en.md', 'utf8');
+const interpolationArticle = readFileSync('Math/_posts/2026-07-20-interpolation-lab.zh.md', 'utf8');
+const interpolationEnglishArticle = readFileSync('Math/_posts/2026-07-20-interpolation-lab.en.md', 'utf8');
 
 function extractCopyrightSection(text, heading) {
   const normalized = text.replace(/\r\n/g, '\n');

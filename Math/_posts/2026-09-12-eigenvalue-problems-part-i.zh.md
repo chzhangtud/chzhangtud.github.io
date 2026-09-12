@@ -3,6 +3,7 @@ title: "数值分析讲义（六）：特征值和特征向量计算方法 Part 
 lang: "zh"
 date: 2026-09-12
 permalink: /zh/eigenvalue-problems-part-i/
+en_link: /en/eigenvalue-problems-part-i/
 categories:
   - Math
 tags:
@@ -74,6 +75,7 @@ body {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<a href="{{ page.en_link }}" class="btn">Read in English</a>
 
 建议先阅读 [数值分析讲义（五）：非线性方程组]({{ '/zh/nonlinear-equations/' | relative_url }})。本篇是第六章第一篇，整理特征值问题的基本概念、典型应用和扰动理论。
 

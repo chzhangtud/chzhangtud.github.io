@@ -2,18 +2,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
-const part1Article = readFileSync('Math/_posts/zh/2026-07-27-ode-initial-value-stability.zh.md', 'utf8');
-const part2Article = readFileSync('Math/_posts/zh/2026-07-27-ode-stiffness-stability.zh.md', 'utf8');
-const part1EnglishArticle = readFileSync('Math/_posts/zh/2026-07-27-ode-initial-value-stability.en.md', 'utf8');
-const part2EnglishArticle = readFileSync('Math/_posts/zh/2026-07-27-ode-stiffness-stability.en.md', 'utf8');
+const part1Article = readFileSync('Math/_posts/2026-07-27-ode-initial-value-stability.zh.md', 'utf8');
+const part2Article = readFileSync('Math/_posts/2026-07-27-ode-stiffness-stability.zh.md', 'utf8');
+const part1EnglishArticle = readFileSync('Math/_posts/2026-07-27-ode-initial-value-stability.en.md', 'utf8');
+const part2EnglishArticle = readFileSync('Math/_posts/2026-07-27-ode-stiffness-stability.en.md', 'utf8');
 const combinedArticle = `${part1Article}\n${part2Article}`;
 const combinedEnglishArticle = `${part1EnglishArticle}\n${part2EnglishArticle}`;
 const normalizedPart1 = part1Article.replace(/\r\n/g, '\n');
 const normalizedPart2 = part2Article.replace(/\r\n/g, '\n');
 const normalizedPart1English = part1EnglishArticle.replace(/\r\n/g, '\n');
 const normalizedPart2English = part2EnglishArticle.replace(/\r\n/g, '\n');
-const interpolationArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.zh.md', 'utf8');
-const interpolationEnglishArticle = readFileSync('Math/_posts/zh/2026-07-20-interpolation-lab.en.md', 'utf8');
+const interpolationArticle = readFileSync('Math/_posts/2026-07-20-interpolation-lab.zh.md', 'utf8');
+const interpolationEnglishArticle = readFileSync('Math/_posts/2026-07-20-interpolation-lab.en.md', 'utf8');
 
 function extractCopyrightSection(text, heading) {
   const normalized = text.replace(/\r\n/g, '\n');
