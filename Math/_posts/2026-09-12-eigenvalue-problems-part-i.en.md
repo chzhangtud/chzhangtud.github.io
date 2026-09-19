@@ -412,12 +412,11 @@ In the notation above, $\mu$ is a generic point in the complex plane, $\sigma(A)
   <figcaption class="eigenvalue-figure__caption">Gershgorin disks: diagonal entries give the centers, and the remaining entries in each row determine the radius</figcaption>
   <svg viewBox="0 0 760 360" role="img" aria-labelledby="eigen-gershgorin-en-title eigen-gershgorin-en-desc">
     <title id="eigen-gershgorin-en-title">Gershgorin disks and possible eigenvalues</title>
-    <desc id="eigen-gershgorin-en-desc">The complex plane contains three disks centered at diagonal entries of a matrix. Dark points indicate illustrative possible eigenvalues inside the union of the disks; the disks are inclusion regions, not the eigenvalues themselves.</desc>
+    <desc id="eigen-gershgorin-en-desc">The complex plane contains three disks centered at diagonal entries of a matrix. Their union is an inclusion region for possible eigenvalues; the disks themselves are not eigenvalues.</desc>
     <line x1="74" y1="240" x2="706" y2="240" stroke="#607d8b" stroke-width="1.8"></line>
     <line x1="370" y1="320" x2="370" y2="32" stroke="#607d8b" stroke-width="1.8"></line>
     <line x1="206" y1="235" x2="206" y2="245" stroke="#607d8b" stroke-width="1.4"></line>
     <line x1="534" y1="235" x2="534" y2="245" stroke="#607d8b" stroke-width="1.4"></line>
-    <line x1="365" y1="130" x2="375" y2="130" stroke="#607d8b" stroke-width="1.4"></line>
     <line x1="365" y1="130" x2="375" y2="130" stroke="#607d8b" stroke-width="1.4"></line>
     <text x="712" y="246" font-size="15" fill="#334155">Re</text>
     <text x="378" y="42" font-size="15" fill="#334155">Im</text>
@@ -433,16 +432,10 @@ In the notation above, $\mu$ is a generic point in the complex plane, $\sigma(A)
     <text x="245" y="170" font-size="13" fill="#1e3a8a">a₁₁</text>
     <text x="507" y="222" font-size="13" fill="#166534">a₂₂</text>
     <text x="418" y="106" font-size="13" fill="#92400e">a₃₃</text>
-    <circle cx="238" cy="146" r="5" fill="#111827"></circle>
-    <circle cx="319" cy="214" r="5" fill="#111827"></circle>
-    <circle cx="451" cy="133" r="5" fill="#111827"></circle>
-    <circle cx="535" cy="231" r="5" fill="#111827"></circle>
     <text x="172" y="78" font-size="13" fill="#475569">Union of disks: candidate region</text>
     <line x1="174" y1="84" x2="229" y2="135" stroke="#475569" stroke-width="1.2"></line>
-    <text x="560" y="306" font-size="13" fill="#475569">Dark points: illustrative eigenvalues</text>
-    <circle cx="545" cy="301" r="4.5" fill="#111827"></circle>
   </svg>
-  <p class="eigenvalue-figure__note">The center is $a_{ii}$, and the radius is the sum of the absolute values of the off-diagonal entries in row $i$. The dark points only illustrate possible eigenvalues; they do not mean that every disk center is an eigenvalue.</p>
+  <p class="eigenvalue-figure__note">Each center is $a_{ii}$, and the radius is the sum of the absolute values of the off-diagonal entries in row $i$. The union of the three disks is an inclusion region for the eigenvalues; no eigenvalues of a particular matrix are drawn here.</p>
 </figure>
 
 The following result applies to diagonalizable matrices.

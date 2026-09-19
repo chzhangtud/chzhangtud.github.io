@@ -412,12 +412,11 @@ b) 若由 $k$ 个 Gershgorin disks（Gershgorin 圆盘）组成的并集 $G_1$ �
   <figcaption class="eigenvalue-figure__caption">Gershgorin 圆示意：对角元给出圆心，行中其余元素给出半径</figcaption>
   <svg viewBox="0 0 760 360" role="img" aria-labelledby="eigen-gershgorin-title eigen-gershgorin-desc">
     <title id="eigen-gershgorin-title">Gershgorin 圆与可能的特征值</title>
-    <desc id="eigen-gershgorin-desc">复平面上画出三个以矩阵对角元为圆心的圆盘。蓝色点表示落在这些圆盘并集中的可能特征值，圆盘只是包含区域而不是特征值本身。</desc>
+    <desc id="eigen-gershgorin-desc">复平面上画出三个以矩阵对角元为圆心的圆盘。三个圆盘的并集表示可能包含特征值的区域，圆盘本身不是特征值。</desc>
     <line x1="74" y1="240" x2="706" y2="240" stroke="#607d8b" stroke-width="1.8"></line>
     <line x1="370" y1="320" x2="370" y2="32" stroke="#607d8b" stroke-width="1.8"></line>
     <line x1="206" y1="235" x2="206" y2="245" stroke="#607d8b" stroke-width="1.4"></line>
     <line x1="534" y1="235" x2="534" y2="245" stroke="#607d8b" stroke-width="1.4"></line>
-    <line x1="365" y1="130" x2="375" y2="130" stroke="#607d8b" stroke-width="1.4"></line>
     <line x1="365" y1="130" x2="375" y2="130" stroke="#607d8b" stroke-width="1.4"></line>
     <text x="712" y="246" font-size="15" fill="#334155">Re</text>
     <text x="378" y="42" font-size="15" fill="#334155">Im</text>
@@ -433,16 +432,10 @@ b) 若由 $k$ 个 Gershgorin disks（Gershgorin 圆盘）组成的并集 $G_1$ �
     <text x="245" y="170" font-size="13" fill="#1e3a8a">a₁₁</text>
     <text x="507" y="222" font-size="13" fill="#166534">a₂₂</text>
     <text x="418" y="106" font-size="13" fill="#92400e">a₃₃</text>
-    <circle cx="238" cy="146" r="5" fill="#111827"></circle>
-    <circle cx="319" cy="214" r="5" fill="#111827"></circle>
-    <circle cx="451" cy="133" r="5" fill="#111827"></circle>
-    <circle cx="535" cy="231" r="5" fill="#111827"></circle>
     <text x="172" y="78" font-size="13" fill="#475569">圆盘并集是候选区域</text>
     <line x1="174" y1="84" x2="229" y2="135" stroke="#475569" stroke-width="1.2"></line>
-    <text x="560" y="306" font-size="13" fill="#475569">黑点：示意性的特征值</text>
-    <circle cx="545" cy="301" r="4.5" fill="#111827"></circle>
   </svg>
-  <p class="eigenvalue-figure__note">圆心是 $a_{ii}$，半径是第 $i$ 行中非对角元素绝对值之和。黑点只表示“可能的特征值”，并不意味着每个圆心都恰好是一个特征值。</p>
+  <p class="eigenvalue-figure__note">每个圆心是 $a_{ii}$，半径是第 $i$ 行中非对角元素绝对值之和。三个圆盘的并集是特征值的候选包含区域；这里不绘制某个具体矩阵的特征值。</p>
 </figure>
 
 下面的结果适用于可对角化矩阵。
