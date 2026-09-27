@@ -392,7 +392,7 @@ Note that inverse iteration requires $A-\mu I$ to be invertible. If $\mu$ is too
 
 Return to [Numerical Analysis Lecture (VI): Methods for Computing Eigenvalues and Eigenvectors, Part I]({{ '/en/eigenvalue-problems-part-i/' | relative_url }}).
 
-The third article of Chapter 6 is currently available in Chinese: [Numerical Analysis Lecture (VI), Part III]({{ '/zh/eigenvalue-problems-part-iii/' | relative_url }}).
+Continue with [Numerical Analysis Lecture (VI): Methods for Computing Eigenvalues and Eigenvectors, Part III]({{ '/en/eigenvalue-problems-part-iii/' | relative_url }}).
 
 **Terminology and notation**
 

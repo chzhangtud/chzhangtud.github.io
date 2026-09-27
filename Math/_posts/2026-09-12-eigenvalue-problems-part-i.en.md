@@ -475,6 +475,8 @@ In this sense, the eigenvalue problem for a Hermitian matrix is well-conditioned
 
 Return to [Numerical Analysis Lecture (V): Nonlinear Systems of Equations]({{ '/en/nonlinear-equations/' | relative_url }}).
 
+Continue with [Numerical Analysis Lecture (VI): Methods for Computing Eigenvalues and Eigenvectors, Part II]({{ '/en/eigenvalue-problems-part-ii/' | relative_url }}).
+
 **Terminology and notation**
 
 - eigenvalue, eigenvector, spectrum: the basic terms for the eigenvalue problem.
