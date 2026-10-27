@@ -1,0 +1,173 @@
+.series-collections__intro,
+.series-description {
+  color: $birds-muted;
+  font-size: 0.9em;
+  line-height: 1.7;
+}
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.series-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid $birds-border;
+  border-radius: 8px;
+  background: $birds-surface-soft;
+  text-decoration: none;
+
+  &:hover {
+    border-color: $birds-accent;
+    background: $birds-surface-strong;
+  }
+
+  &__title {
+    margin: 0.5rem 0;
+    color: $birds-heading;
+    font-size: 1.05em;
+    line-height: 1.5;
+  }
+
+  &__count,
+  &__description {
+    color: $birds-muted;
+    font-size: 0.75em;
+    line-height: 1.7;
+  }
+
+  &__description {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  &__action {
+    color: $birds-link;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+}
+
+.series-nav {
+  padding-top: 1rem;
+  border-top: 1px solid $birds-border;
+
+  &__heading {
+    margin: 0 0 0.6rem;
+    font-size: 0.85em;
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0.6rem 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a[aria-current="page"],
+    a.is-active {
+      color: $birds-link-hover;
+      background: $birds-surface-strong;
+      box-shadow: inset 3px 0 $birds-accent;
+    }
+  }
+
+  &__count {
+    color: $birds-muted;
+    font-size: 0.85em;
+  }
+
+  &__all {
+    display: inline-block;
+    padding: 0.5rem;
+    font-size: 0.7em;
+  }
+}
+
+.series-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  font-size: 0.8em;
+}
+
+.series-total {
+  display: inline-block;
+  margin-left: 0.6em;
+  color: $birds-muted;
+  font-size: 0.75em;
+  font-weight: normal;
+}
+
+.series-reading-list {
+  padding-left: 1.7em;
+
+  &__item {
+    padding: 0.85rem 0 0.85rem 0.25rem;
+    border-bottom: 1px solid $birds-border;
+    line-height: 1.6;
+
+    &::marker {
+      color: $birds-accent;
+    }
+
+    a {
+      display: block;
+      overflow-wrap: anywhere;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    time {
+      display: block;
+      margin-top: 0.25rem;
+      color: $birds-muted;
+      font-size: 0.7em;
+    }
+  }
+}
+
+.series-home {
+  margin-top: 2rem;
+  font-size: 0.8em;
+}
+
+.series-card,
+.series-nav a,
+.series-toolbar a,
+.series-reading-list a {
+  &:focus-visible {
+    outline: 2px solid $birds-accent;
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .series-grid {
+    grid-template-columns: 1fr;
+  }
+}

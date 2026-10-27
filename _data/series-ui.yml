@@ -1,0 +1,28 @@
+zh:
+  heading: 文章专题
+  introduction: 选择一个主题，浏览完整文章目录。
+  browse: 查看目录
+  count: 篇文章
+  all: 全部专题
+  index_url: /series/
+  home: 返回文章首页
+  home_url: /zh/
+  language: English
+  other_lang: en
+  other_index_url: /en/series/
+  empty: 当前语言版本尚未发布。
+  directory: 系列目录
+en:
+  heading: Article Collections
+  introduction: Choose a topic to browse its full reading list.
+  browse: View articles
+  count: articles
+  all: All collections
+  index_url: /en/series/
+  home: Back to articles
+  home_url: /en/
+  language: 中文
+  other_lang: zh
+  other_index_url: /series/
+  empty: No articles in English yet.
+  directory: Collection contents

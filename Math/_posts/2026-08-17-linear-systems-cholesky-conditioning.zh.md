@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 6
 title: "数值分析讲义（四）：线性方程组/矩阵运算数值求解 Part II"
 lang: "zh"
 date: 2026-08-17

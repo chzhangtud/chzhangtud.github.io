@@ -1,4 +1,6 @@
 ---
+series: cpp
+series_order: 1
 title: "C++ 内存优化(一): `std::piecewise_construct` 配合 `std::forward_as_tuple`"
 lang: "zh"
 date: 2024-07-18

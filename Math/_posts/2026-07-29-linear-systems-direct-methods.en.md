@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 5
 title: "Numerical Analysis Lecture (IV): Solving Linear Systems and Matrix Computations Part I"
 lang: "en"
 date: 2026-07-29

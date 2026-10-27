@@ -1,5 +1,9 @@
 # main links
 main:
+  - title: "文章专题"
+    title_en: "Collections"
+    url: /series/
+    url_en: /en/series/
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "Categories"

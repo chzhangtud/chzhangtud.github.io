@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 1
 title: "Numerical Analysis Lecture (I): Interpolation Methods"
 lang: "en"
 date: 2026-07-20

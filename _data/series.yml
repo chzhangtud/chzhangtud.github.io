@@ -1,0 +1,27 @@
+- id: numerical-analysis
+  zh:
+    title: 数值分析讲义
+    description: 从插值、数值积分到微分方程、线性方程组与特征值计算，按讲义顺序阅读。
+    url: /zh/series/numerical-analysis/
+  en:
+    title: Numerical Analysis Lectures
+    description: Read in lecture order, from interpolation and integration to differential equations, linear systems, and eigenvalues.
+    url: /en/series/numerical-analysis/
+- id: graphics
+  zh:
+    title: 图形
+    description: 实时渲染、抗锯齿、阴影、光线追踪，以及图形开发中的实践与调试。
+    url: /zh/series/graphics/
+  en:
+    title: Graphics
+    description: Articles on real-time rendering, anti-aliasing, shadows, ray tracing, and graphics development.
+    url: /en/series/graphics/
+- id: cpp
+  zh:
+    title: C++
+    description: C++ 编程、内存优化与工程实践。
+    url: /zh/series/cpp/
+  en:
+    title: C++
+    description: C++ programming, memory optimization, and engineering practice.
+    url: /en/series/cpp/

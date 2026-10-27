@@ -1,4 +1,6 @@
 ---
+series: graphics
+series_order: 6
 title: "移动端 TAA：HLSLCC 整型 Uniform 错位问题"
 lang: "zh"
 date: 2026-03-10

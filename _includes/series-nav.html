@@ -1,0 +1,22 @@
+{% assign nav_lang = page.lang | default: site.default_lang %}
+{% assign nav_ui = site.data.series-ui[nav_lang] %}
+<nav class="series-nav" aria-label="{{ nav_ui.heading }}">
+  <h3 class="series-nav__heading">{{ nav_ui.heading }}</h3>
+  <ul class="series-nav__list">
+    {% for collection in site.data.series %}
+      {% assign nav_copy = collection[nav_lang] %}
+      {% assign nav_count = 0 %}
+      {% assign nav_posts = site.posts | where: 'series', collection.id %}
+      {% for entry in nav_posts %}
+        {% assign entry_lang = entry.lang | default: site.default_lang %}
+        {% if entry.hidden != true and entry_lang == nav_lang %}
+          {% assign nav_count = nav_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if nav_count > 0 %}
+        <li><a href="{{ nav_copy.url | relative_url }}"{% if page.url == nav_copy.url %} aria-current="page"{% elsif page.series == collection.id %} class="is-active"{% endif %}><span>{{ nav_copy.title }}</span><span class="series-nav__count">{{ nav_count }}</span></a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <a class="series-nav__all" href="{{ nav_ui.index_url | relative_url }}">{{ nav_ui.all }} <span aria-hidden="true">&rarr;</span></a>
+</nav>

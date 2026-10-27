@@ -1,4 +1,6 @@
 ---
+series: graphics
+series_order: 4
 title: "WebGL图形应用抓帧分析- RenderDoc + SpectorJS"
 lang: "zh"
 date: 2024-08-30

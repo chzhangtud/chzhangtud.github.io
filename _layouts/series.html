@@ -1,0 +1,47 @@
+---
+layout: archive
+---
+{% assign series_lang = page.lang | default: site.default_lang %}
+{% assign series_ui = site.data.series-ui[series_lang] %}
+{% assign collection = site.data.series | where: 'id', page.series | first %}
+<nav class="series-toolbar" aria-label="{{ series_ui.heading }}">
+  {% if collection %}
+    <a href="{{ series_ui.index_url | relative_url }}">&larr; {{ series_ui.all }}</a>
+  {% else %}
+    <a href="{{ series_ui.home_url | relative_url }}">&larr; {{ series_ui.home }}</a>
+  {% endif %}
+  {% if collection %}
+    {% assign other_copy = collection[series_ui.other_lang] %}
+    <a href="{{ other_copy.url | relative_url }}" lang="{{ series_ui.other_lang }}">{{ series_ui.language }}</a>
+  {% else %}
+    <a href="{{ series_ui.other_index_url | relative_url }}" lang="{{ series_ui.other_lang }}">{{ series_ui.language }}</a>
+  {% endif %}
+</nav>
+{% if collection %}
+  {% assign collection_copy = collection[series_lang] %}
+  {% assign ordered_posts = site.posts | where: 'series', collection.id | sort: 'series_order' %}
+  {% assign visible_count = 0 %}
+  {% capture reading_list %}
+    {% for entry in ordered_posts %}
+      {% assign entry_lang = entry.lang | default: site.default_lang %}
+      {% if entry.hidden != true and entry_lang == series_lang %}
+        {% assign visible_count = visible_count | plus: 1 %}
+        <li class="series-reading-list__item">
+          <a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a>
+          <time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: '%Y-%m-%d' }}</time>
+        </li>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+  <p class="series-description">{{ collection_copy.description }}</p>
+  <h2 class="archive__subtitle">{{ series_ui.directory }} <span class="series-total">{{ visible_count }} {{ series_ui.count }}</span></h2>
+  {% if visible_count > 0 %}
+    <ol class="series-reading-list">{{ reading_list }}</ol>
+  {% else %}
+    <p>{{ series_ui.empty }}</p>
+  {% endif %}
+{% else %}
+  {% include series-cards.html %}
+{% endif %}
+{{ content }}
+<p class="series-home"><a href="{{ series_ui.home_url | relative_url }}">{{ series_ui.home }}</a></p>

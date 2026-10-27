@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 2
 title: "Numerical Analysis Lecture (II): Numerical Integration"
 lang: "en"
 date: 2026-07-22

@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 4
 title: "数值分析讲义（三）：常微分方程初值问题与刚性 Part II"
 lang: "zh"
 date: 2026-07-27

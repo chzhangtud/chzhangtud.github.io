@@ -1,4 +1,6 @@
 ---
+series: graphics
+series_order: 5
 title: "实时光线追踪[1]: Vulkan Ray-Tracing Pipeline"
 lang: "zh"
 date: 2024-12-01

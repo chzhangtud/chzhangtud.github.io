@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 7
 title: "数值分析讲义（五）：非线性方程组"
 lang: "zh"
 date: 2026-08-20

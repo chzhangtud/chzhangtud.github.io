@@ -1,4 +1,6 @@
 ---
+series: graphics
+series_order: 5
 title: "Real-Time Ray-Tracing [1]: Vulkan Pipeline"
 lang: "en"
 date: 2024-12-01

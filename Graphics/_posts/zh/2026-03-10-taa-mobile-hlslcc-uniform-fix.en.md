@@ -1,4 +1,6 @@
 ---
+series: graphics
+series_order: 6
 title: "Mobile TAA: HLSLCC Integer Uniform Bug (Unreal Engine 4.24)"
 lang: "en"
 date: 2026-03-10

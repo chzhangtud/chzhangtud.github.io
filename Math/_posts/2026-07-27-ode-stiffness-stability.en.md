@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 4
 title: "Numerical Analysis Lecture (III): Initial Value Problems and Stiffness Part II"
 lang: "en"
 date: 2026-07-27

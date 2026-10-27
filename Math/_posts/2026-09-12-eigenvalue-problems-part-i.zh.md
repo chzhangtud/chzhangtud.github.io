@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 8
 title: "数值分析讲义（六）：特征值和特征向量计算方法 Part I"
 lang: "zh"
 date: 2026-09-12

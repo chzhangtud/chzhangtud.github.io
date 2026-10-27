@@ -1,0 +1,27 @@
+{% assign series_lang = page.lang | default: site.default_lang %}
+{% assign series_ui = site.data.series-ui[series_lang] %}
+<section class="series-collections" aria-labelledby="series-heading">
+  <h2 id="series-heading" class="archive__subtitle">{{ series_ui.heading }}</h2>
+  <p class="series-collections__intro">{{ series_ui.introduction }}</p>
+  <div class="series-grid">
+    {% for collection in site.data.series %}
+      {% assign collection_copy = collection[series_lang] %}
+      {% assign collection_count = 0 %}
+      {% assign collection_posts = site.posts | where: 'series', collection.id %}
+      {% for entry in collection_posts %}
+        {% assign entry_lang = entry.lang | default: site.default_lang %}
+        {% if entry.hidden != true and entry_lang == series_lang %}
+          {% assign collection_count = collection_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if collection_count > 0 %}
+        <a class="series-card" href="{{ collection_copy.url | relative_url }}">
+          <span class="series-card__count">{{ collection_count }} {{ series_ui.count }}</span>
+          <h3 class="series-card__title">{{ collection_copy.title }}</h3>
+          <p class="series-card__description">{{ collection_copy.description }}</p>
+          <span class="series-card__action">{{ series_ui.browse }} <span aria-hidden="true">&rarr;</span></span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

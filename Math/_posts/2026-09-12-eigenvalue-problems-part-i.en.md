@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 8
 title: "Numerical Analysis Lecture (VI): Methods for Computing Eigenvalues and Eigenvectors, Part I"
 lang: "en"
 date: 2026-09-12

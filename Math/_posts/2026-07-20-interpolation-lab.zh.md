@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 1
 title: "数值分析讲义（一）：插值方法"
 lang: "zh"
 date: 2026-07-20

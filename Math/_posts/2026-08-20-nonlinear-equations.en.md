@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 7
 title: "Numerical Analysis Lecture (V): Nonlinear Systems of Equations"
 lang: "en"
 date: 2026-08-20

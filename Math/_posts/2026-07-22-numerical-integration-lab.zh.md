@@ -1,4 +1,6 @@
 ---
+series: numerical-analysis
+series_order: 2
 title: "数值分析讲义（二）：数值积分"
 lang: "zh"
 date: 2026-07-22

@@ -1,4 +1,6 @@
 ---
+series: graphics
+series_order: 4
 title: "Capture WebGL Applications using RenderDoc and SpectorJS"
 lang: "en"
 date: 2024-08-30
