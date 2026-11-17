@@ -43,3 +43,12 @@
     title: C++
     description: C++ programming, memory optimization, and engineering practice.
     url: /en/series/cpp/
+- id: 3d-reconstruction
+  zh:
+    title: 三维重建
+    description: 以城堡照片回顾多视图几何，从相机投影、对极约束与三角化，推到束调整、平面扫描和多视图融合，配合可折叠推导与交互观察。
+    url: /zh/series/3d-reconstruction/
+  en:
+    title: 3D Reconstruction
+    description: Review projection, epipolar geometry, triangulation, bundle adjustment, plane sweeping, and fusion through Castle photographs, with optional derivations and interactive inspection.
+    url: /en/series/3d-reconstruction/

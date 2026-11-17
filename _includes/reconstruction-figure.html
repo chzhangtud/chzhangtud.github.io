@@ -1,0 +1,7 @@
+<figure class="mv-figure" data-reconstruction="{{ include.kind }}" data-lang="{{ page.lang }}" data-base="{{ '/assets/data/reconstruction/' | relative_url }}">
+  <figcaption>{{ include.caption }}</figcaption>
+  <div class="mv-body"></div>
+  <p class="mv-status" role="status" aria-live="polite">{% if page.lang == 'en' %}Scroll here to load the interactive figure.{% else %}滚动到这里时加载交互图。{% endif %}</p>
+  <noscript><p>{% if page.lang == 'en' %}Enable JavaScript for the interactive view. A static reconstruction preview is available below.{% else %}启用 JavaScript 可操作交互图。下方提供静态重建预览。{% endif %}</p></noscript>
+  <details class="mv-fallback"><summary>{% if page.lang == 'en' %}Static preview / loading fallback{% else %}静态预览／加载失败时查看{% endif %}</summary><img src="{{ '/assets/data/reconstruction/scene_dense.jpg' | relative_url }}" alt="{% if page.lang == 'en' %}OpenMVS Sceaux Castle dense reconstruction{% else %}OpenMVS Sceaux 城堡稠密重建结果{% endif %}" loading="lazy"></details>
+</figure>

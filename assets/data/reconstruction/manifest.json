@@ -1,0 +1,69 @@
+{
+  "repository": "https://github.com/cdcseacave/openMVS_sample",
+  "revision": "8b67734532c4391604c646071938e7ac8ae9486d",
+  "sources": {
+    "LICENSE": {
+      "sha256": "10ede613cce81dc5381ec9c1a08dcfdcd425d2a186a3efb25231ee3ba308585a",
+      "bytes": 34521
+    },
+    "README.md": {
+      "sha256": "08d1babc2b8fe856b68ccf872d5941ce28be1bdbda95d3644371a2c1468bffd1",
+      "bytes": 2335
+    },
+    "run_pipeline.sh": {
+      "sha256": "943bd7fa96de2ea7a76c74f77c0556820645e2f757e2a23e72a5302d400f325a",
+      "bytes": 1298
+    },
+    "Sparse.ply": {
+      "sha256": "4c08092ce2c4cb6ec23090452f42475f3e6c25de790cc6eac2da565f1f724372",
+      "bytes": 626785
+    },
+    "scene_dense.ply": {
+      "sha256": "c120000aa71899bce7aeda0e29cf5d28a33680106bd1ca10de1138fab969e943",
+      "bytes": 36970517
+    },
+    "scene_dense_mesh_refine.ply": {
+      "sha256": "45bbf40b9c637a69c070bc5bb288970f386035451df18107ec897c79acc7bbd6",
+      "bytes": 4651519
+    },
+    "scene_dense.jpg": {
+      "sha256": "a62d6454a904cd48a1f2bd397f3d72d6715340dfd155f51157e1eea2c7934132",
+      "bytes": 203933
+    },
+    "scene_dense_mesh_refine.jpg": {
+      "sha256": "96f40f224c7fcb92e2a89f8b0cd2257a32d30c2711f45b94c2f1aa2feccbb933",
+      "bytes": 108541
+    },
+    "images/00004.jpg": {
+      "sha256": "69e7420d358a762db13d42d2174efc6b16dffe58f06415cff0824504d2fd174d",
+      "bytes": 2974191
+    },
+    "images/00005.jpg": {
+      "sha256": "b56992b73af59fbee80292e89911f52c6ef057fd3c97d1d430f862e2c446b396",
+      "bytes": 3039836
+    },
+    "CreateStructure-260522001534003931.log": {
+      "sha256": "c393f79593bb9e86ad69ff68fc4969b2eb114d9f6be2bde12d9da92b7da841ff",
+      "bytes": 12035
+    },
+    "DensifyPointCloud-260522001550005CB5.log": {
+      "sha256": "8ce6fa5fcc0947256594d0dbf959e5cc156cefff3bd704d6f4540aa765244ad3",
+      "bytes": 7716
+    }
+  },
+  "sparsePoints": 20951,
+  "densePoints": 425342,
+  "displayDensePoints": 65000,
+  "meshVertices": 123010,
+  "meshFaces": 244247,
+  "displayTransform": {
+    "center": [
+      -0.20628120422363416,
+      -0.028804839849472463,
+      15.420026397705078
+    ],
+    "scale": 0.1621119612169099,
+    "flipYZ": true
+  },
+  "notes": "Upstream full reconstruction, not rerun here. Dense cloud uniformly subsampled in file order to 65000 points; all sparse points and all mesh triangles retained. Mesh uses computed vertex lighting, no texture. Images resized to width 960. Features recomputed locally on resized photos; not upstream SfM tracks. Bundle experiment is synthetic, not Castle BA history. plane-sweep.json is an independent real-photo two-view calibrated fronto-parallel plane sweep with recovered unit translation, not the full Castle MVS result. Browser displays precomputed geometry and experiments; it does not execute full reconstruction."
+}

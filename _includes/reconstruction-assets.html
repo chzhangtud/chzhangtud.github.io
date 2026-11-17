@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{ '/assets/css/reconstruction.css' | relative_url }}">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+<script type="module" src="{{ '/assets/js/reconstruction.mjs' | relative_url }}"></script>
