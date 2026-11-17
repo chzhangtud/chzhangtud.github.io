@@ -1,0 +1,35 @@
+{% assign density_ui = site.data.density-ui[page.lang] %}
+{% assign shared_ui = site.data.statistics-ui[page.lang] %}
+<figure class="statistics-figure" data-density="{{ include.kind }}" data-lang="{{ page.lang }}">
+  <figcaption>{{ density_ui[include.kind] }}</figcaption>
+  <div class="statistics-figure__controls">
+    {% case include.kind %}
+      {% when 'posterior' %}
+        <label>{{ density_ui.n }} <input type="range" data-param="n" min="0" max="80" step="1" value="0"><output data-value="n">0</output></label>
+        <label>{{ density_ui.prior_mean }} <input type="range" data-param="priorMean" min="-2" max="2" step="0.1" value="0"><output data-value="priorMean">0</output></label>
+        <label>{{ density_ui.prior_sd }} <input type="range" data-param="priorSd" min="0.2" max="3" step="0.1" value="0.7"><output data-value="priorSd">0.7</output></label>
+      {% when 'smoothing' %}
+        <label>{{ density_ui.method }} <select data-param="method"><option value="histogram">{{ density_ui.histogram }}</option><option value="gaussian" selected>{{ density_ui.gaussian }}</option><option value="box">{{ density_ui.box }}</option><option value="epanechnikov">{{ density_ui.epanechnikov }}</option></select></label>
+        <label>{{ density_ui.bandwidth }} <input type="range" data-param="h" min="0.12" max="1.5" step="0.01" value="0.4"><output data-value="h">0.4</output></label>
+        <label data-bin-origin hidden>{{ density_ui.origin }} <input type="range" data-param="origin" min="0" max="1" step="0.05" value="0"><output data-value="origin">0</output></label>
+      {% when 'neighbors' %}
+        <label>{{ density_ui.k }} <input type="range" data-param="k" min="2" max="30" step="1" value="10"><output data-value="k">10</output></label>
+        <label>{{ density_ui.query }} <input type="range" data-param="query" min="-3" max="3" step="0.05" value="0"><output data-value="query">0</output></label>
+      {% when 'em' %}
+        <label>{{ density_ui.initialization }} <select data-param="initialization"><option value="separated">{{ density_ui.separated }}</option><option value="nearby" selected>{{ density_ui.nearby }}</option><option value="symmetric">{{ density_ui.symmetric }}</option></select></label>
+        <label>{{ density_ui.iteration }} <input type="range" data-param="iteration" min="0" max="30" step="1" value="0"><output data-value="iteration">0</output></label>
+        <button type="button" data-em-step>{{ density_ui.step }}</button>
+    {% endcase %}
+    <button type="button" data-reset>{{ shared_ui.reset }}</button>
+    {% if include.kind != 'neighbors' %}
+      <button type="button" data-animation aria-pressed="true">{{ shared_ui.pause }}</button>
+      <span class="statistics-figure__motion">{{ shared_ui.motion }}</span>
+    {% endif %}
+  </div>
+  <div class="statistics-figure__plots"></div>
+  <div class="statistics-figure__legend"></div>
+  <p class="statistics-figure__readout" aria-live="polite" aria-atomic="true"></p>
+  {% assign density_hint = include.kind | append: '_hint' %}
+  <p class="statistics-figure__hint">{{ density_ui[density_hint] }}</p>
+  <noscript><p>{{ shared_ui.fallback }}</p></noscript>
+</figure>

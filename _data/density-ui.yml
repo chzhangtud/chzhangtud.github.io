@@ -1,0 +1,54 @@
+zh:
+  posterior: 图 1 · 数据增加后，先验如何让位于观测？
+  smoothing: 图 2 · 同一批样本，不同的平滑尺度
+  neighbors: 图 3 · 固定近邻数，让窗口适应数据疏密
+  em: 图 4 · 观察 EM 怎样交替估计归属与分布
+  n: 样本数 n
+  prior_mean: 先验均值 μ₀
+  prior_sd: 先验标准差 τ₀
+  method: 方法 / 核函数
+  histogram: 直方图
+  gaussian: 高斯核
+  box: 矩形核
+  epanechnikov: Epanechnikov 核
+  bandwidth: 箱宽 / 带宽 h
+  origin: 箱边界偏移（占 h 的比例）
+  k: 近邻数 k
+  query: 查询位置 x
+  iteration: EM 迭代轮数
+  initialization: 初始化
+  separated: 两端初始化
+  nearby: 靠近的初始均值
+  symmetric: 完全相同的初始分量
+  step: 单步 EM
+  posterior_hint: n = 0 时没有观测，后验与先验重合，样本均值尚未定义。数据来自 N(1, 1)，各次调节沿用同一批固定样本的前 n 个。观测方差已知为 1；图中曲线表示参数 μ 的分布，不是新观测的密度。
+  smoothing_hint: 80 个固定样本来自图中虚线所示的双峰分布。直方图改变箱边界时，形状也可能改变。不同核的 h 定义相同，但核的支撑和方差不同；绘图区外的尾部不重新归一化。
+  neighbors_hint: 橙色短线标出最近的 k 个样本，蓝色窗口宽度为 2rₖ(x)，高度为 k/(2nrₖ(x))。这展示的是查询点处的局部估计，不应把移动窗口的所有高度当作一个已归一化的全局密度。
+  em_hint: 每轮先计算软责任度，再更新两个分量的均值、方差和权重。方差约束为至少 0.04。可比较不同初始化；完全对称的分量不会自行分开。循环末尾返回第 0 轮，这是重播，不是一次 EM 更新。
+en:
+  posterior: Figure 1 · How observations gradually outweigh a prior
+  smoothing: Figure 2 · The same sample at different smoothing scales
+  neighbors: Figure 3 · Fixed neighbor count, adaptive window width
+  em: Figure 4 · EM assignments and distributions
+  n: Sample size n
+  prior_mean: Prior mean μ₀
+  prior_sd: Prior standard deviation τ₀
+  method: Method / kernel
+  histogram: Histogram
+  gaussian: Gaussian kernel
+  box: Box kernel
+  epanechnikov: Epanechnikov kernel
+  bandwidth: Bin width / bandwidth h
+  origin: Bin offset as a fraction of h
+  k: Neighbors k
+  query: Query location x
+  iteration: EM iterations
+  initialization: Initialization
+  separated: Separated means
+  nearby: Nearby initial means
+  symmetric: Identical initial components
+  step: EM step
+  posterior_hint: At n = 0 there are no observations, the posterior equals the prior, and the sample mean is undefined. Observations come from N(1, 1); each setting uses the first n of the same fixed sample. Observation variance is known and equal to 1. Curves describe uncertainty in μ, not the density of a new observation.
+  smoothing_hint: The 80 fixed observations follow the dashed bimodal density. Histogram shape also depends on bin alignment. Kernels use the same bandwidth parameter but have different supports and variances. Tails outside the plot are not renormalized.
+  neighbors_hint: Ochre marks identify the nearest k observations. The blue window has width 2rₖ(x) and height k/(2nrₖ(x)). This is a local estimate at the query, not a claim that the moving-window formula is a normalized global density.
+  em_hint: Each iteration computes soft responsibilities, then updates both means, variances, and weights. Variances are constrained to at least 0.04. Compare initializations; identical components cannot separate spontaneously. The loop returns to iteration 0 for replay, not as an EM update.

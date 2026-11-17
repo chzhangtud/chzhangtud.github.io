@@ -7,6 +7,15 @@
     title: Numerical Analysis Lectures
     description: Read in lecture order, from interpolation and integration to differential equations, linear systems, and eigenvalues.
     url: /en/series/numerical-analysis/
+- id: machine-learning
+  zh:
+    title: 机器学习基础
+    description: 从概率统计出发，理解机器学习中的建模、推断与优化。
+    url: /zh/series/machine-learning/
+  en:
+    title: Machine Learning Foundations
+    description: Probability, statistical reasoning, and the foundations of learning from data.
+    url: /en/series/machine-learning/
 - id: graphics
   zh:
     title: 图形
