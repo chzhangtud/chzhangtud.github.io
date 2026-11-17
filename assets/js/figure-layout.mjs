@@ -1,8 +1,9 @@
 // Shared figure layout: readable coordinates, compact controls, and no inner scroll area.
 export function plotGeometry(width, viewportHeight = 800) {
   const actualWidth = Math.max(120, Math.round(width || 320));
+  // Leave room for wrapped captions and legends on short mobile screens.
   const height = Math.round(Math.min(250, Math.max(180, actualWidth * 0.56 + 45),
-    Math.max(150, viewportHeight * 0.30)));
+    Math.max(150, viewportHeight * 0.30 - 8)));
   return { width: actualWidth, height, left: actualWidth < 360 ? 48 : 54,
     right: actualWidth - 16, top: 26, bottom: height - 44 };
 }
