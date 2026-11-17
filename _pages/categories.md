@@ -5,13 +5,7 @@ layout: single
 comments: false
 ---
 
-<p class="page__taxonomy">
-  <strong><i class="fas fa-fw fa-language" aria-hidden="true"></i> Language </strong>
-  <span itemprop="keywords">
-    <a href="#zh" class="page__taxonomy-item p-category" rel="tag">中文</a><span class="sep">, </span>
-    <a href="#en" class="page__taxonomy-item p-category" rel="tag">English</a>
-  </span>
-</p>
+{% include language-switcher.html zh_url="#zh" en_url="#en" %}
 
 {% assign sections = "zh,en" | split: "," %}
 {% for lang in sections %}

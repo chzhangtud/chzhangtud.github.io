@@ -1,0 +1,7 @@
+<nav class="language-switcher" aria-label="{% if page.lang == 'zh' %}语言切换{% else %}Language{% endif %}">
+  <i class="fas fa-language" aria-hidden="true"></i>
+  <span class="language-switcher__options">
+    <a href="{% if include.zh_url %}{{ include.zh_url }}{% else %}{{ '/zh/' | relative_url }}{% endif %}" lang="zh" aria-label="中文"{% if page.lang == 'zh' %} aria-current="page"{% endif %}>中文</a>
+    <a href="{% if include.en_url %}{{ include.en_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}" lang="en" aria-label="English"{% if page.lang == 'en' %} aria-current="page"{% endif %}>EN</a>
+  </span>
+</nav>
