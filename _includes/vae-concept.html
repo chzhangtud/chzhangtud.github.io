@@ -1,0 +1,80 @@
+{% assign diagram_zh = false %}{% if page.lang == 'zh' %}{% assign diagram_zh = true %}{% endif %}
+<figure class="vae-concept" data-vae-concept="{{ include.kind }}">
+  {% if include.kind == 'mapping' %}
+  <figcaption>{% if diagram_zh %}从数轴上的 z，到平面上的观测 x{% else %}From a latent value z to an observed point x{% endif %}</figcaption>
+  <div class="vae-concept__panels">
+    <div class="vae-concept__panel">
+      <p class="vae-concept__step">{% if diagram_zh %}① 抽一个数 z{% else %}① Draw a number z{% endif %}</p>
+      <svg viewBox="0 0 340 290" role="img" aria-label="{% if diagram_zh %}一维潜变量数轴，标出 z 等于负一、零和一{% else %}One-dimensional latent axis with z equal to minus one, zero, and one{% endif %}">
+        <text x="170" y="72" text-anchor="middle" class="vae-concept__large">{% if diagram_zh %}潜空间：只有一个坐标{% else %}Latent space: one coordinate{% endif %}</text>
+        <path d="M48 180 H317 M309 175 L317 180 L309 185" class="vae-concept__axis"/>
+        <path d="M60 175 V185 M120 175 V185 M180 175 V185 M240 175 V185 M300 175 V185" class="vae-concept__axis"/>
+        <g text-anchor="middle"><text x="60" y="208">−2</text><text x="120" y="208">−1</text><text x="180" y="208">0</text><text x="240" y="208">1</text><text x="300" y="208">2</text></g>
+        <text x="321" y="171">z</text>
+        <circle cx="120" cy="180" r="7" class="vae-concept__blue"/><circle cx="180" cy="180" r="7" class="vae-concept__green"/><circle cx="240" cy="180" r="7" class="vae-concept__orange"/>
+        <g text-anchor="middle"><text x="120" y="151" class="vae-concept__blue-text">z = −1</text><text x="180" y="124" class="vae-concept__green-text">z = 0</text><text x="240" y="151" class="vae-concept__orange-text">z = 1</text></g>
+        <text x="170" y="263" text-anchor="middle">z ∼ N(0, 1)</text>
+      </svg>
+      <p>{% if diagram_zh %}这里的 z 是一个数，用来选择曲线上的位置。{% else %}A scalar z selects a position along the curve.{% endif %}</p>
+    </div>
+    <div class="vae-concept__panel">
+      <p class="vae-concept__step">{% if diagram_zh %}② 用 m(z) 得到两个坐标{% else %}② Map z to two coordinates{% endif %}</p>
+      <svg viewBox="0 0 340 290" role="img" aria-label="{% if diagram_zh %}解码曲线与三个潜变量对应的平面位置{% else %}Decoder curve with three corresponding latent positions{% endif %}">
+        {% include vae-concept-axes.html %}
+        <path d="M60 75 Q180 355 300 75" class="vae-concept__curve"/>
+        <circle cx="120" cy="180" r="7" class="vae-concept__blue"/><circle cx="180" cy="215" r="7" class="vae-concept__green"/><circle cx="240" cy="180" r="7" class="vae-concept__orange"/>
+        <g text-anchor="middle"><text x="108" y="145" class="vae-concept__blue-text">m(−1)</text><text x="180" y="241" class="vae-concept__green-text">m(0)</text><text x="256" y="145" class="vae-concept__orange-text">m(1)</text></g>
+        <text x="170" y="27" text-anchor="middle">m(z) = (z, (z² − 1)/2)</text>
+      </svg>
+      <p>{% if diagram_zh %}同色点一一对应。例如 z=1 映射到 m(1)=(1,0)。{% else %}Matching colors identify the same z. For example, z=1 maps to m(1)=(1,0).{% endif %}</p>
+    </div>
+    <div class="vae-concept__panel">
+      <p class="vae-concept__step">{% if diagram_zh %}③ 加噪声，得到观测点 x{% else %}③ Add noise to obtain x{% endif %}</p>
+      <svg viewBox="0 0 340 290" role="img" aria-label="{% if diagram_zh %}带噪声点云，标出曲线中心 m(1) 和偏离中心的观测 x{% else %}Noisy point cloud showing center m(1) and a displaced observation x{% endif %}">
+        {% include vae-concept-axes.html %}
+        <path d="M60 75 Q180 355 300 75" class="vae-concept__curve vae-concept__curve--faint"/>
+        {% include vae-concept-cloud.html %}
+        <circle cx="240" cy="180" r="7" class="vae-concept__center"/>
+        <path d="M244 175 L259.2 155.5 M251 159 L259.2 155.5 L258 164" class="vae-concept__noise"/>
+        <circle cx="259.2" cy="155.5" r="6" class="vae-concept__orange"/>
+        <text x="272" y="149" class="vae-concept__orange-text">x</text><text x="265" y="191" class="vae-concept__orange-text">τη</text><text x="210" y="210" class="vae-concept__orange-text">m(1)</text>
+        <text x="170" y="27" text-anchor="middle">x = m(z) + τη</text>
+      </svg>
+      <p>{% if diagram_zh %}空心圈是中心，实心点是一次观测。反复抽样就得到灰色点云。{% else %}The ring is the center; the solid point is one observation. Repeated draws form the gray cloud.{% endif %}</p>
+    </div>
+  </div>
+  <p class="vae-concept__caption">{% if diagram_zh %}平面的两根轴是观测坐标 x₁、x₂；z 在左边单独的数轴上。这个例子用给定的抛物线说明生成过程，后面的训练实验会从点云学习解码函数。{% else %}The plane's axes are observed coordinates x₁ and x₂; z lies on the separate latent axis. This specified parabola illustrates generation; the later experiment learns a decoder from observations.{% endif %}</p>
+  {% else %}
+  <figcaption>{% if diagram_zh %}看到一个 x 后，编码器为它寻找可能的 z{% else %}Given an observation x, the encoder proposes possible latent values{% endif %}</figcaption>
+  <div class="vae-concept__panels vae-concept__panels--pair">
+    <div class="vae-concept__panel">
+      <p class="vae-concept__step">{% if diagram_zh %}输入：平面上的一个观测{% else %}Input: one observed point{% endif %}</p>
+      <svg viewBox="0 0 340 290" role="img" aria-label="{% if diagram_zh %}点云中被选中的观测 x{% else %}An observation x selected from the point cloud{% endif %}">
+        {% include vae-concept-axes.html %}
+        <path d="M60 75 Q180 355 300 75" class="vae-concept__curve vae-concept__curve--faint"/>
+        {% include vae-concept-cloud.html %}
+        <circle cx="231" cy="190.5" r="9" class="vae-concept__orange"/>
+        <path d="M239 186 L269 152" class="vae-concept__noise"/><text x="273" y="148" class="vae-concept__orange-text">x</text>
+        <text x="170" y="27" text-anchor="middle">{% if diagram_zh %}已知 x，寻找它的潜变量解释{% else %}Given x, infer z{% endif %}</text>
+      </svg>
+      <p>{% if diagram_zh %}编码器读取 x 的两个坐标，输出 μ(x) 与 σ(x)。{% else %}The encoder reads both coordinates and predicts μ(x) and σ(x).{% endif %}</p>
+    </div>
+    <div class="vae-concept__panel">
+      <p class="vae-concept__step">{% if diagram_zh %}输出：z 的近似后验分布{% else %}Output: an approximate posterior over z{% endif %}</p>
+      <svg viewBox="0 0 340 290" role="img" aria-label="{% if diagram_zh %}潜变量 z 的示意高斯分布，均值零点八、标准差零点二{% else %}Illustrative Gaussian over z with mean 0.8 and standard deviation 0.2{% endif %}">
+        <path d="M50 230 H318 M50 230 V48 M313 225 L318 230 L313 235 M45 54 L50 48 L55 54" class="vae-concept__axis"/>
+        <text x="50" y="28" text-anchor="middle">{% if diagram_zh %}密度{% else %}Density{% endif %}</text><text x="321" y="253">z</text>
+        <path d="M45 160 H50 M45 90 H50 M84 230 V236 M132 230 V236 M180 230 V236 M228 230 V236 M276 230 V236" class="vae-concept__axis"/>
+        <g text-anchor="middle"><text x="84" y="253">0</text><text x="132" y="253">0.4</text><text x="180" y="253">0.8</text><text x="228" y="253">1.2</text><text x="276" y="253">1.6</text></g>
+        <g text-anchor="end"><text x="40" y="166">1</text><text x="40" y="96">2</text></g>
+        <path class="vae-concept__density" d="M60 230 L60.00 230.00 L62.00 230.00 L64.00 230.00 L66.00 230.00 L68.00 230.00 L70.00 230.00 L72.00 229.99 L74.00 229.99 L76.00 229.99 L78.00 229.98 L80.00 229.98 L82.00 229.97 L84.00 229.95 L86.00 229.93 L88.00 229.91 L90.00 229.88 L92.00 229.83 L94.00 229.77 L96.00 229.69 L98.00 229.59 L100.00 229.46 L102.00 229.29 L104.00 229.07 L106.00 228.80 L108.00 228.45 L110.00 228.02 L112.00 227.48 L114.00 226.82 L116.00 226.01 L118.00 225.04 L120.00 223.87 L122.00 222.47 L124.00 220.82 L126.00 218.89 L128.00 216.65 L130.00 214.06 L132.00 211.10 L134.00 207.75 L136.00 203.99 L138.00 199.80 L140.00 195.18 L142.00 190.13 L144.00 184.67 L146.00 178.81 L148.00 172.60 L150.00 166.07 L152.00 159.30 L154.00 152.35 L156.00 145.31 L158.00 138.27 L160.00 131.33 L162.00 124.60 L164.00 118.19 L166.00 112.22 L168.00 106.78 L170.00 101.98 L172.00 97.92 L174.00 94.67 L176.00 92.30 L178.00 90.85 L180.00 90.37 L182.00 90.85 L184.00 92.30 L186.00 94.67 L188.00 97.92 L190.00 101.98 L192.00 106.78 L194.00 112.22 L196.00 118.19 L198.00 124.60 L200.00 131.33 L202.00 138.27 L204.00 145.31 L206.00 152.35 L208.00 159.30 L210.00 166.07 L212.00 172.60 L214.00 178.81 L216.00 184.67 L218.00 190.13 L220.00 195.18 L222.00 199.80 L224.00 203.99 L226.00 207.75 L228.00 211.10 L230.00 214.06 L232.00 216.65 L234.00 218.89 L236.00 220.82 L238.00 222.47 L240.00 223.87 L242.00 225.04 L244.00 226.01 L246.00 226.82 L248.00 227.48 L250.00 228.02 L252.00 228.45 L254.00 228.80 L256.00 229.07 L258.00 229.29 L260.00 229.46 L262.00 229.59 L264.00 229.69 L266.00 229.77 L268.00 229.83 L270.00 229.88 L272.00 229.91 L274.00 229.93 L276.00 229.95 L278.00 229.97 L280.00 229.98 L282.00 229.98 L284.00 229.99 L286.00 229.99 L288.00 229.99 L290.00 230.00 L292.00 230.00 L294.00 230.00 L296.00 230.00 L298.00 230.00 L300.00 230.00 L300 230 Z"/>
+        <path d="M180 230 V90" class="vae-concept__mean"/>
+        <path d="M180 67 V58 H204 V67" class="vae-concept__noise"/><text x="192" y="45" text-anchor="middle">σ = 0.2</text>
+        <text x="180" y="280" text-anchor="middle" class="vae-concept__orange-text">μ = 0.8</text>
+      </svg>
+      <p>{% if diagram_zh %}μ 给出中心位置，σ 表示范围。再从这条分布抽取 z，交给解码器。{% else %}μ locates the center and σ sets the spread. Draw z from this distribution and decode it.{% endif %}</p>
+    </div>
+  </div>
+  <p class="vae-concept__caption">{% if diagram_zh %}右图采用正文中的示意输出 q(z|x)=N(0.8,0.2²)。横轴是可能的 z，纵轴是密度；曲线越高的位置，编码器赋予的密度越大。{% else %}The illustrative encoder output is q(z|x)=N(0.8,0.2²), as in the text. The horizontal axis shows possible z values and the vertical axis their density.{% endif %}</p>
+  {% endif %}
+</figure>

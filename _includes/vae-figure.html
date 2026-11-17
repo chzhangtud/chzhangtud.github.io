@@ -1,0 +1,33 @@
+{% assign v = site.data.vae-ui[page.lang] %}
+<figure class="statistics-figure" data-vae="{{ include.kind }}" data-lang="{{ page.lang }}"{% if include.kind == 'vae' %} data-model="{{ '/assets/data/vae-toy-model.json' | relative_url }}"{% endif %}>
+  <figcaption>{{ v[include.kind] }}</figcaption>
+  <div class="statistics-figure__controls">
+    {% case include.kind %}
+      {% when 'vi' %}
+        <label>{{ v.mu }} <input type="range" data-param="mu" min="-3" max="3" step="0.05" value="0"><output data-value="mu">0</output></label>
+        <label>{{ v.sigma }} <input type="range" data-param="sigma" min="0.2" max="2" step="0.05" value="1"><output data-value="sigma">1</output></label>
+        <label>{{ v.separation }} <input type="range" data-param="a" min="0" max="2.5" step="0.05" value="2"><output data-value="a">2</output></label>
+      {% when 'network' %}
+        <label>{{ v.x }} <input type="range" data-param="x" min="-3" max="3" step="0.05" value="0"><output data-value="x">0</output></label>
+        <label>{{ v.bias }} <input type="range" data-param="bias" min="-1" max="1" step="0.05" value="0"><output data-value="bias">0</output></label>
+      {% when 'reparam' %}
+        <label>{{ v.mu }} <input type="range" data-param="mu" min="-2" max="2" step="0.05" value="0"><output data-value="mu">0</output></label>
+        <label>{{ v.sigma }} <input type="range" data-param="sigma" min="0.2" max="2" step="0.05" value="1"><output data-value="sigma">1</output></label>
+        <label>{{ v.count }} <input type="range" data-param="n" min="1" max="128" step="1" value="16"><output data-value="n">16</output></label>
+      {% when 'amortized' %}
+        <label>{{ v.x }} <input type="range" data-param="x" min="-3" max="3" step="0.05" value="1"><output data-value="x">1</output></label>
+        <label>{{ v.slope }} <input type="range" data-param="slope" min="-0.5" max="1.5" step="0.01" value="0.4"><output data-value="slope">0.4</output></label>
+      {% when 'vae' %}
+        <label>{{ v.z }} <input type="range" data-param="z" min="-3" max="3" step="0.05" value="0"><output data-value="z">0</output></label>
+        <label>{{ v.observation }} <input type="range" data-param="observation" min="0" max="79" step="1" value="0"><output data-value="observation">0</output></label>
+    {% endcase %}
+    {% if include.kind == 'reparam' or include.kind == 'vae' %}<button type="button" data-resample>{{ v.resample }}</button>{% endif %}
+    <button type="button" data-reset>{{ v.reset }}</button>
+  </div>
+  <div class="statistics-figure__plots"></div>
+  <div class="statistics-figure__legend"></div>
+  <p class="statistics-figure__readout" aria-live="polite" aria-atomic="true">{% if include.kind == 'vae' %}{{ v.loading }}{% endif %}</p>
+  {% assign hint = include.kind | append: '_hint' %}
+  <p class="statistics-figure__hint">{{ v[hint] }}</p>
+  <noscript><p>{{ v.fallback }}</p></noscript>
+</figure>

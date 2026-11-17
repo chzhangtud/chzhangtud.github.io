@@ -1,0 +1,35 @@
+{% assign zh = false %}{% if page.lang == 'zh' %}{% assign zh = true %}{% endif %}
+<figure class="statistics-figure" data-mnist="{{ include.kind }}" data-lang="{{ page.lang }}" data-model="{{ '/assets/data/vae-mnist-model.json' | relative_url }}">
+  <figcaption>{% case include.kind %}{% when 'reconstruction' %}{% if zh %}MNIST · 从二值输入到编码、采样和重建{% else %}MNIST · Binary input, encoding, sampling, and reconstruction{% endif %}{% when 'generation' %}{% if zh %}MNIST · 浏览二维潜空间，再从观测分布采样{% else %}MNIST · Explore the latent plane and sample observations{% endif %}{% when 'interpolation' %}{% if zh %}MNIST · 在两个测试样本的编码之间插值{% else %}MNIST · Interpolate between two test encodings{% endif %}{% endcase %}</figcaption>
+  <div class="statistics-figure__controls">
+    {% case include.kind %}
+    {% when 'reconstruction' %}
+      <label>{% if zh %}测试样本编号{% else %}Test example index{% endif %}<input type="range" data-param="index" min="0" max="39" step="1" value="0"><output data-value="index">0</output></label>
+    {% when 'generation' %}
+      <label>z₁<input type="range" data-param="z1" min="-3" max="3" step="0.05" value="0"><output data-value="z1">0</output></label>
+      <label>z₂<input type="range" data-param="z2" min="-3" max="3" step="0.05" value="0"><output data-value="z2">0</output></label>
+      <label>{% if zh %}潜变量来源{% else %}Latent source{% endif %}<select data-param="layout"><option value="grid">{% if zh %}均匀坐标网格{% else %}Uniform coordinate grid{% endif %}</option><option value="prior">{% if zh %}标准高斯先验抽样{% else %}Standard Gaussian prior draws{% endif %}</option></select></label>
+      <label>{% if zh %}显示内容{% else %}Display{% endif %}<select data-param="mode"><option value="mean">{% if zh %}概率均值图{% else %}Probability means{% endif %}</option><option value="sample">{% if zh %}伯努利抽样图{% else %}Bernoulli samples{% endif %}</option></select></label>
+    {% when 'interpolation' %}
+      <label>{% if zh %}起点样本 A{% else %}Source A{% endif %}<input type="range" data-param="a" min="0" max="39" step="1" value="0"><output data-value="a">0</output></label>
+      <label>{% if zh %}终点样本 B{% else %}Source B{% endif %}<input type="range" data-param="b" min="0" max="39" step="1" value="1"><output data-value="b">1</output></label>
+      <label>α<input type="range" data-param="alpha" min="0" max="1" step="0.01" value="0.5"><output data-value="alpha">0.5</output></label>
+    {% endcase %}
+    {% if include.kind != 'interpolation' %}<button type="button" data-resample>{% if zh %}重新采样{% else %}Resample{% endif %}</button>{% endif %}
+    <button type="button" data-reset>{% if zh %}重置{% else %}Reset{% endif %}</button>
+  </div>
+  <div class="mnist-display"></div>
+  <p class="statistics-figure__readout" aria-live="polite">{% if zh %}正在读取真实训练的 MNIST 模型……{% else %}Loading the trained MNIST model…{% endif %}</p>
+  <p class="statistics-figure__hint">
+    {% case include.kind %}
+    {% when 'reconstruction' %}
+      {% if zh %}选择一张测试图，比较输入与两种重建。均值重建直接解码 μ(x)，采样重建先从编码分布抽 z。点击重新采样，可以观察后者怎样变化。两幅重建的灰度都表示像素为 1 的概率。{% else %}Choose a test image and compare both reconstructions. Mean reconstruction decodes μ(x); sampled reconstruction first draws z from the encoding distribution. Resample to observe its variation. Grayscale in both reconstructions represents pixel probabilities.{% endif %}
+    {% when 'generation' %}
+      {% if zh %}均匀网格是一张潜空间地图，红圈标出当前坐标。切换到先验抽样后，每幅图使用独立抽到的高斯潜变量，图块位置仅用于排列。概率均值图用灰度展示像素概率；伯努利抽样图根据这些概率抽出黑白像素。{% else %}The uniform grid maps the latent plane; the red circle marks the chosen coordinate. In prior mode, each tile uses an independent Gaussian draw and tile positions are only for display. Probability means show grayscale pixel probabilities; Bernoulli samples draw binary pixels from them.{% endif %}
+    {% when 'interpolation' %}
+      {% if zh %}选择起点和终点后，α 控制它们的编码均值之间的位置：zα=(1−α)μ(xA)+αμ(xB)。解码器把每个中间位置变成一幅图。下方九幅图依次展示 α 从 0 到 1 的过渡，两端对应各自的均值重建。{% else %}Choose endpoints and move α between their encoding means: zα=(1−α)μ(xA)+αμ(xB). The decoder turns each intermediate position into an image. Nine images below show the transition from α=0 to α=1, with mean reconstructions at both ends.{% endif %}
+    {% endcase %}
+    {% if zh %}交互使用已训练模型的固定权重。{% else %}All views use the fixed weights of the trained model.{% endif %}
+  </p>
+  <noscript><p>{% if zh %}启用 JavaScript 可浏览模型；训练脚本与公式仍可阅读。{% else %}Enable JavaScript to explore the model; the training script and formulas remain readable.{% endif %}</p></noscript>
+</figure>

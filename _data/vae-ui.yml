@@ -1,0 +1,49 @@
+zh:
+  vi: 图 1 · 用一个高斯分布近似双峰后验
+  network: 图 1 · 网络输出的是分布的参数
+  reparam: 图 1 · 固定噪声，观察样本怎样随参数移动
+  amortized: 图 2 · 一个编码器为不同观测给出后验参数
+  vae: 图 1 · 从一维潜变量到二维点云
+  mu: 近似均值 μ
+  sigma: 近似标准差 σ
+  separation: 目标峰的位置 ±a
+  x: 输入 x
+  bias: 均值输出偏置 b
+  count: 采样数 L
+  slope: 共享编码器斜率 k
+  z: 手动选择潜变量 z
+  observation: 留出观测编号
+  reset: 重置
+  resample: 重新采样
+  loading: 正在读取固定模型权重……
+  fallback: 启用 JavaScript 可以操作图表；正文中的公式和解释可独立阅读。
+  vi_hint: 目标为两个等权高斯的混合，各分量标准差为 0.65。KL 使用 [-16,16] 上的中点求积近似；图形只显示 [-6,6]。这是已知后验的教学例子，不是在训练 VAE。
+  network_hint: 此图只做固定小网络的前向计算，没有进行训练。“输入与均值”视图的虚线是均值 ±2σ，“输出分布”视图为当前输入对应的高斯密度；区间不是模型参数的置信区间。
+  reparam_hint: 调整 μ 或 σ 时复用同一批标准正态噪声；重新采样才更换噪声。比较 f(z)=(z−1)² 的蒙特卡洛梯度与解析梯度。有限样本的误差不保证随 L 每次单调下降。
+  amortized_hint: 固定模型 z~N(0,1)，x|z~N(z,0.6²)。真实后验均值为 x/1.36，方差为 0.36/1.36。图中共享编码器的均值是 kx，方差固定为真实后验方差；k 由你调整，没有后台训练。
+  vae_hint: 拖动 z，绿色点会沿解码器均值曲线移动。灰点从先验抽取潜变量，解码后加入标准差 0.18 的观测噪声。选择一个红色观测，橙点显示它经过编码再解码的重建；切换到潜变量分布视图，可以查看编码器给出的近似后验。
+en:
+  vi: Figure 1 · Approximating a bimodal posterior with one Gaussian
+  network: Figure 1 · A network outputs distribution parameters
+  reparam: Figure 1 · Fixed noise and moving samples
+  amortized: Figure 2 · One encoder serves different observations
+  vae: Figure 1 · From a latent coordinate to a two-dimensional point cloud
+  mu: Mean μ
+  sigma: SD σ
+  separation: Target modes ±a
+  x: Input x
+  bias: Mean-output bias b
+  count: Samples L
+  slope: Shared encoder slope k
+  z: Manually selected latent z
+  observation: Held-out observation index
+  reset: Reset
+  resample: Resample
+  loading: Loading fixed model weights…
+  fallback: Enable JavaScript to use the figures. The formulas and explanations remain readable independently.
+  vi_hint: The target is an equal mixture of two Gaussians with component SD 0.65. KL is approximated by midpoint quadrature on [-16,16]; only [-6,6] is plotted. This known-posterior example does not train a VAE.
+  network_hint: This is a forward pass through a fixed small network, not training. Input and mean shows mean ±2σ with dashed curves; Output distribution shows the conditional Gaussian density. These are not confidence intervals for model parameters.
+  reparam_hint: Moving μ or σ reuses the same standard-normal noise; Resample changes it. Compare Monte Carlo and analytic gradients of E[(z−1)²]. A finite estimate need not improve monotonically every time L increases.
+  amortized_hint: The fixed model is z~N(0,1), x|z~N(z,0.6²). Its posterior mean is x/1.36 and variance is 0.36/1.36. The shared encoder uses mean kx and the exact posterior variance. You adjust k manually; no training runs in the background.
+  vae_hint: >-
+    Move z to follow the green point along the decoder mean curve. Gray points draw latent values from the prior, decode them, and add observation noise with SD 0.18. Select a red observation to inspect its orange reconstruction. The Latent distribution view shows the encoder's approximate posterior.

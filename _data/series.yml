@@ -16,6 +16,15 @@
     title: Machine Learning Foundations
     description: Probability, statistical reasoning, and the foundations of learning from data.
     url: /en/series/machine-learning/
+- id: generative-models
+  zh:
+    title: 生成模型
+    description: 从隐变量、变分推断与 VAE 出发，理解扩散模型、连续流与 Flow Matching，并联系图像、点云和几何生成。
+    url: /zh/series/generative-models/
+  en:
+    title: Generative Models
+    description: From latent variables, variational inference, and VAEs to diffusion, continuous flows, and flow matching, with image and geometry examples.
+    url: /en/series/generative-models/
 - id: graphics
   zh:
     title: 图形

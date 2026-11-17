@@ -1,0 +1,40 @@
+{% assign zh = false %}{% if page.lang == 'zh' %}{% assign zh = true %}{% endif %}
+<figure class="statistics-figure" data-vae-explain="{{ include.kind }}" data-lang="{{ page.lang }}">
+  <figcaption>{% case include.kind %}{% when 'bayes' %}{% if zh %}温度测量模型的先验、似然与后验{% else %}Prior, likelihood, and posterior for the temperature measurement{% endif %}{% when 'elbo' %}{% if zh %}温度近似后验与 ELBO{% else %}Approximate temperature posterior and ELBO{% endif %}{% when 'sensor' %}{% if zh %}温度与零点偏差的联合后验{% else %}Joint posterior of temperature and sensor bias{% endif %}{% when 'backprop' %}{% if zh %}一次反向传播：沿计算链改变同一个权重{% else %}One backpropagation step through a single weight{% endif %}{% when 'gradient' %}{% if zh %}重复 128 次估计：采样数怎样改变梯度波动？{% else %}128 repeated estimates: how does sample count affect gradient noise?{% endif %}{% endcase %}</figcaption>
+  <div class="statistics-figure__controls">
+    {% case include.kind %}
+    {% when 'bayes' %}
+      <label>{% if zh %}观察哪一步{% else %}Stage{% endif %}<select data-param="stage"><option value="0">{% if zh %}1 · 先验{% else %}1 · Prior{% endif %}</option><option value="1">{% if zh %}2 · 似然{% else %}2 · Likelihood{% endif %}</option><option value="2">{% if zh %}3 · 联合密度{% else %}3 · Joint density{% endif %}</option><option value="3" selected>{% if zh %}4 · 归一化后验{% else %}4 · Normalized posterior{% endif %}</option></select></label>
+      <label>{% if zh %}观测 x{% else %}Observed x{% endif %}<input type="range" data-param="x" min="-2" max="2" step="0.05" value="1"><output data-value="x">1</output></label>
+      <label>{% if zh %}观测噪声 τ{% else %}Observation SD τ{% endif %}<input type="range" data-param="tau" min="0.25" max="1.5" step="0.05" value="0.6"><output data-value="tau">0.6</output></label>
+    {% when 'elbo' %}
+      <label>{% if zh %}观测 x{% else %}Observed x{% endif %}<input type="range" data-param="x" min="-2" max="2" step="0.05" value="1"><output data-value="x">1</output></label>
+      <label>μ<input type="range" data-param="mu" min="-2" max="2" step="0.01" value="0"><output data-value="mu">0</output></label>
+      <label>σ<input type="range" data-param="sigma" min="0.15" max="1.5" step="0.01" value="1"><output data-value="sigma">1</output></label>
+      <button type="button" data-exact>{% if zh %}设为真实后验{% else %}Match exact posterior{% endif %}</button>
+    {% when 'sensor' %}
+      <label>{% if zh %}温度读数 x{% else %}Temperature reading x{% endif %}<input type="range" data-param="x" min="-2" max="2" step="0.05" value="1"><output data-value="x">1</output></label>
+      <label>{% if zh %}观测噪声 τ{% else %}Observation SD τ{% endif %}<input type="range" data-param="tau" min="0.25" max="1.5" step="0.05" value="0.6"><output data-value="tau">0.6</output></label>
+      <label>{% if zh %}近似方差{% else %}Approximate variance{% endif %}<select data-param="approximation"><option value="0" selected>{% if zh %}最优平均场{% else %}Optimal mean-field{% endif %}</option><option value="1">{% if zh %}匹配真实边际{% else %}Match true marginals{% endif %}</option></select></label>
+    {% when 'backprop' %}
+      <label>{% if zh %}输入 x{% else %}Input x{% endif %}<input type="range" data-param="x" min="0.2" max="2" step="0.05" value="1"><output data-value="x">1</output></label>
+      <label>{% if zh %}权重 w{% else %}Weight w{% endif %}<input type="range" data-param="w" min="-3" max="3" step="0.001" value="-0.6"><output data-value="w">-0.6</output></label>
+      <label>{% if zh %}学习率 η{% else %}Learning rate η{% endif %}<input type="range" data-param="rate" min="0.01" max="1" step="0.01" value="0.3"><output data-value="rate">0.3</output></label>
+      <button type="button" data-step title="{% if zh %}执行一次梯度更新{% else %}Take one gradient step{% endif %}">{% if zh %}梯度更新{% else %}Step{% endif %}</button>
+    {% when 'gradient' %}
+      <label>μ<input type="range" data-param="mu" min="-1" max="1" step="0.05" value="0"><output data-value="mu">0</output></label>
+      <label>σ<input type="range" data-param="sigma" min="0.2" max="2" step="0.05" value="1"><output data-value="sigma">1</output></label>
+      <label>{% if zh %}每次估计的样本数 L{% else %}Samples per estimate L{% endif %}<input type="range" data-param="n" min="1" max="128" step="1" value="4"><output data-value="n">4</output></label>
+    {% endcase %}
+    <button type="button" data-reset>{% if zh %}重置{% else %}Reset{% endif %}</button>
+  </div>
+  <div class="statistics-figure__plots"></div>
+  <div class="statistics-figure__legend"></div>
+  <p class="statistics-figure__readout" aria-live="polite"></p>
+  {% if include.kind == 'sensor' %}
+  <p class="statistics-figure__hint">{% if zh %}模型为 x=z+b+ε，温差与偏差的先验均为标准高斯，噪声标准差为 τ。内外轮廓分别对应各高斯分布的 1、2 个马氏距离。最优平均场最小化 KL(q‖p)；匹配真实边际对应反方向的 KL。两种独立近似都无法表示温度与偏差的相关性。{% else %}The model is x=z+b+ε with independent standard-normal priors and noise SD τ. Contours have Mahalanobis radii 1 and 2. Optimal mean-field minimizes KL(q‖p); matching posterior marginals corresponds to the reverse direction. Both independent approximations lose temperature–bias correlation.{% endif %}</p>
+  {% else %}
+  <p class="statistics-figure__hint">{% case include.kind %}{% when 'bayes' %}{% if zh %}模型固定为 z~N(0,1)、x|z~N(z,τ²)。按顺序切换步骤，再改变观测：后验不是给生成图添加反向边，而是用同一个联合分布重新条件化。似然曲线按 z 绘制；联合密度除以证据后才得到归一化后验。{% else %}The model is z~N(0,1), x|z~N(z,τ²). Change the stage, then the observation. Conditioning uses the same joint, without adding a reverse edge to the generative graph. Likelihood is plotted as a function of z; dividing the joint by evidence normalizes the posterior.{% endif %}{% when 'elbo' %}{% if zh %}固定观测标准差 τ=0.6。所有数值均解析计算，不使用采样。点击“设为真实后验”，比较到真实后验的 KL 与到先验的 KL：前者消失时，后者通常仍不为零。{% else %}Observation SD is fixed at τ=0.6. All values are analytic, without sampling. Match the exact posterior and compare the two KLs: posterior KL vanishes, while prior KL generally remains positive.{% endif %}{% when 'backprop' %}{% if zh %}单神经元 μ=tanh(wx)，目标 y=0.6，J=(μ−y)²/2。高斯观测标准差为 1，图中省略不影响梯度的常数。箭头显示由当前梯度建议的下一步；点击按钮才实际更新权重。较大的步长不保证改进。{% else %}One neuron uses μ=tanh(wx), target y=0.6, and J=(μ−y)²/2. Observation SD is 1; a gradient-independent constant is omitted. The arrow previews a step; the button updates the weight. Large steps need not improve the loss.{% endif %}{% when 'gradient' %}{% if zh %}对同一个 J=E[(Z−1)²] 重复估计 ∂J/∂μ。直方图来自 128 组独立噪声，曲线是梯度估计量的解析高斯分布，标准差为 2σ/√L。横轴保持固定；窗口外的样本不重新归一化。{% else %}Repeatedly estimate ∂J/∂μ for J=E[(Z−1)²]. The histogram uses 128 independent noise groups; the curve is the exact Gaussian estimator distribution with SD 2σ/√L. The horizontal axis is fixed, and out-of-window samples are not renormalized.{% endif %}{% endcase %}</p>
+  {% endif %}
+  <noscript><p>{% if zh %}启用 JavaScript 可操作图表。{% else %}Enable JavaScript to use the figure.{% endif %}</p></noscript>
+</figure>
