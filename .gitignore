@@ -40,4 +40,9 @@ docs/
 
 workers/**/.wrangler/
 
+# Local source downloads, article backups, and Python caches
+/tmp/
+__pycache__/
+*.py[cod]
+
 *.log
