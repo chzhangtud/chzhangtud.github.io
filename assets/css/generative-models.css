@@ -1,0 +1,20 @@
+.generative-reading {
+  padding: 0.65em 1em;
+  border-left: 3px solid #6f9ca7;
+  background: rgba(127, 209, 185, 0.05);
+  margin: 1em 0;
+}
+.generative-reading p:last-child { margin-bottom: 0; }
+.generative-details { margin: 1em 0; padding: 0.6em 0.9em; border: 1px solid #91a4ad; }
+.generative-details summary { cursor: pointer; font-weight: 600; }
+.generative-details[open] summary { margin-bottom: 1em; }
+[data-generative] canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+[data-generative] .generative-image { padding: 12px; }
+[data-generative] .generative-image p { font-size: 12px; text-align: center; margin: 0 0 6px; }
+[data-generative] .statistics-figure__legend { flex-wrap: wrap; }
+.generative-article .page__content table { display: block; max-width: 100%; overflow-x: auto; }
+/* MathJax gives tagged equations an inline min-width; keep scrolling inside the article. */
+.generative-article .page__content mjx-container[display='true'] {
+  min-width: 0 !important;
+  width: 100%;
+}

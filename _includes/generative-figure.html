@@ -1,0 +1,16 @@
+{% assign g = site.data.generative-ui[page.lang] %}
+{% assign item = g[include.kind] %}
+<figure class="statistics-figure" data-generative="{{ include.kind }}" data-lang="{{ page.lang }}"{% if include.kind == 'mnist' %} data-source="{{ '/assets/data/generative-mnist.json' | relative_url }}"{% elsif include.kind == 'bunny' %} data-source="{{ '/assets/data/generative-bunny.json' | relative_url }}"{% endif %}>
+  <figcaption>{{ item.title }}</figcaption>
+  <div class="statistics-figure__controls">
+    {% for control in item.controls %}
+    <label>{{ control.label }} <input type="range" data-param="{{ control.key }}" min="{{ control.min }}" max="{{ control.max }}" step="{{ control.step }}" value="{{ control.value }}"><output data-value="{{ control.key }}">{{ control.value }}</output></label>
+    {% endfor %}
+    <button type="button" data-reset>{{ g.reset }}</button>
+  </div>
+  <div class="statistics-figure__plots"></div>
+  <div class="statistics-figure__legend"></div>
+  <p class="statistics-figure__readout" aria-live="polite" aria-atomic="true">{{ g.loading }}</p>
+  <p class="statistics-figure__hint">{{ item.hint }}</p>
+  <noscript><p>{{ item.fallback }}</p></noscript>
+</figure>
