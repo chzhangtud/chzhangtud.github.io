@@ -1,0 +1,63 @@
+zh:
+  discrete: 图 1 · 从一次试验到事件计数
+  gaussian: 图 2 · 密度的高度与区间的概率
+  clt: 图 3 · 均匀分布相加后，什么在接近高斯分布？
+  conditional: 图 4 · 相关性如何改变条件分布
+  entropy: 图 5 · 不确定性与预测错误的代价
+  distribution: 分布
+  bernoulli: 伯努利
+  binomial: 二项
+  poisson: 泊松
+  trials: 试验次数 n
+  chance: 成功概率 θ
+  rate: 平均事件数 λ
+  mean: 均值 μ
+  std: 标准差 σ
+  left: 区间左端 a
+  right: 区间右端 b
+  count: 相加的变量数 n
+  correlation: 相关系数 ρ
+  observation: 观测值 Y = y
+  truth: 真实概率 p
+  prediction: 预测概率 q
+  reset: 重置
+  pause: 暂停动画
+  motion: 演示会循环调整参数；操作滑块可暂停，播放按钮可继续。
+  fallback: 启用 JavaScript 可以调节参数并查看图表；公式和解释仍可直接阅读。
+  discrete_hint: 先把二项分布的 n 设为 1，再切换到伯努利分布；比较两幅图。泊松分布只绘制有限范围，未对尾部重新归一化。
+  gaussian_hint: 阴影始终表示区间 [a, b] 的概率。交换两端时自动取较小值为左端。试着缩小 σ：曲线可以高于 1，但总面积仍为 1。
+  clt_hint: 蓝线是均匀分布之和经标准化后的精确密度（Irwin–Hall 公式），虚线为标准正态密度。图中没有用随机直方图代替理论分布。
+  conditional_hint: “联合分布”视图显示马氏距离 1 和 2 的等密度线，并非“一维的 68% / 95% 区间”。“条件密度”视图比较 X 的边缘分布和给定 Y 后的条件分布；两个变量的边缘方差均为 1。窄屏可用图上方的视图按钮切换。
+  entropy_hint: 横轴遍历真实概率 p，预测概率 q 由滑块固定。圆点对应当前 p；两条曲线在同一横坐标的高度差就是 KL 散度。单位统一为 nat。
+en:
+  discrete: Figure 1 · From single trials to event counts
+  gaussian: Figure 2 · Density height and interval probability
+  clt: Figure 3 · What approaches a Gaussian when uniforms are added?
+  conditional: Figure 4 · How correlation changes a conditional distribution
+  entropy: Figure 5 · Uncertainty and the cost of wrong predictions
+  distribution: Distribution
+  bernoulli: Bernoulli
+  binomial: Binomial
+  poisson: Poisson
+  trials: Trials n
+  chance: Success probability θ
+  rate: Mean event count λ
+  mean: Mean μ
+  std: Standard deviation σ
+  left: Interval endpoint a
+  right: Interval endpoint b
+  count: Number of summands n
+  correlation: Correlation ρ
+  observation: Observed Y = y
+  truth: True probability p
+  prediction: Predicted probability q
+  reset: Reset
+  pause: Pause animation
+  motion: The demo cycles through parameter values. Using a slider pauses it; the play button resumes it.
+  fallback: Enable JavaScript to adjust parameters and view the charts. The formulas and explanations remain readable.
+  discrete_hint: Set n to 1 in the binomial distribution, then switch to Bernoulli and compare. The Poisson plot shows a finite range without renormalizing the tail.
+  gaussian_hint: >-
+    Shading represents P(a ≤ X ≤ b). Reversed endpoints are automatically reordered. Reduce σ: the density can exceed 1 while its total area remains 1.
+  clt_hint: The blue curve is the exact density of a standardized sum of uniforms, computed with the Irwin–Hall formula. The dashed curve is the standard normal density, not a random histogram.
+  conditional_hint: The Joint distribution view shows Mahalanobis distances 1 and 2, not one-dimensional 68% / 95% intervals. Conditional density compares the marginal of X with its conditional given Y. Both marginal variances are 1. On narrow screens, switch views with the buttons above the plot.
+  entropy_hint: The horizontal axis varies the true probability p while q is fixed by its slider. Dots mark the selected p; the vertical gap is the KL divergence. All values use nats.

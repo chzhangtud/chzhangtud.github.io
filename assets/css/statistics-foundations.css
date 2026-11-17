@@ -1,0 +1,264 @@
+.statistics-article {
+  font-size: 14px;
+}
+
+.statistics-article .page__content mjx-container[display='true'] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.3em 0;
+}
+
+.statistics-article .page__content mjx-container[display='true'] > mjx-math {
+  max-width: none;
+}
+
+.statistics-article .page__content h2,
+.statistics-article .page__content h3 {
+  scroll-margin-top: 1.5rem;
+}
+
+.statistics-figure {
+  --plot-ink: #343c43;
+  --plot-muted: #626a70;
+  --plot-rule: #d8d7d2;
+  --plot-blue: #3e6683;
+  --plot-ochre: #a16c37;
+  display: block;
+  min-width: 0;
+  margin: 1.2rem 0;
+  border-top: 2px solid #b1afa8;
+  border-bottom: 1px solid #b1afa8;
+  background: #f5f4f0;
+  color: var(--plot-ink);
+  font-size: 1em;
+  line-height: 1.45;
+}
+
+.statistics-figure figcaption {
+  margin: 0;
+  padding: 9px 12px;
+  color: var(--plot-ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.statistics-figure__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px 12px;
+  padding: 0 12px 9px;
+  border-bottom: 1px solid var(--plot-rule);
+}
+
+.statistics-figure__controls label {
+  display: grid;
+  /* Reserve space for signed decimals (for example -0.800). Wrapping the
+     output changes the grid row height and moves the slider during a drag. */
+  grid-template-columns: minmax(0, 1fr) 7ch;
+  align-items: center;
+  gap: 3px 6px;
+  flex: 1 1 125px;
+  min-width: 0;
+  max-width: 200px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.statistics-figure__controls label:not(:has(output)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.figure-control__label {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.statistics-figure__controls label[hidden] {
+  display: none;
+}
+
+.statistics-figure__controls input,
+.statistics-figure__controls select {
+  grid-column: 1;
+  grid-row: 2;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  color: var(--plot-ink);
+  accent-color: var(--plot-blue);
+  background: #fffefa;
+}
+
+.statistics-figure__controls select {
+  width: 100%;
+  min-height: 32px;
+  border: 1px solid #aaa9a3;
+}
+
+.statistics-figure__controls output {
+  grid-column: 2;
+  grid-row: 2;
+  color: var(--plot-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.statistics-figure__controls button {
+  min-height: 34px;
+  max-width: 100%;
+  padding: 5px 7px;
+  color: var(--plot-ink);
+  border: 1px solid #aaa9a3;
+  border-radius: 2px;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.statistics-figure__controls [data-animation] {
+  border-color: var(--plot-blue);
+  color: var(--plot-blue);
+}
+
+.statistics-figure__motion {
+  display: block;
+  padding: 0 12px 9px;
+  color: var(--plot-muted);
+  font-size: 0.85em;
+}
+
+.statistics-figure .statistics-figure__plots {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  min-width: 0;
+}
+
+.statistics-figure[data-figure-mode="columns"] .statistics-figure__plots {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.figure-panel {
+  min-width: 0;
+}
+
+.figure-panel[hidden],
+.statistics-figure__tabs[hidden] {
+  display: none;
+}
+
+.statistics-figure__tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  padding: 7px 12px 2px;
+}
+
+.statistics-figure__tabs button {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 34px;
+  padding: 5px 10px;
+  border: 1px solid var(--plot-rule);
+  border-radius: 4px;
+  color: var(--plot-ink);
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.statistics-figure__tabs [aria-selected="true"] {
+  border-color: var(--plot-blue);
+  color: #fff;
+  background: var(--plot-blue);
+}
+
+.statistics-figure :is(input, select, button):focus-visible {
+  outline: 2px solid var(--plot-blue);
+  outline-offset: 3px;
+}
+
+.statistics-figure__plots svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.statistics-figure__plots text {
+  fill: var(--plot-muted);
+  font: 12px system-ui, sans-serif;
+}
+
+.statistics-figure__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 5px 12px;
+  font-size: 12px;
+}
+
+.statistics-figure__legend:empty {
+  display: none;
+}
+
+.statistics-figure__legend span::before {
+  display: inline-block;
+  width: 14px;
+  margin-right: 4px;
+  border-top: 2px solid var(--swatch);
+  content: '';
+  vertical-align: middle;
+}
+
+.statistics-figure__legend .is-dashed::before {
+  border-top-style: dashed;
+}
+
+.statistics-figure .statistics-figure__readout {
+  margin: 0;
+  padding: 5px 12px 8px;
+  color: var(--plot-ink);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.statistics-figure .statistics-figure__hint {
+  margin: 0;
+  padding: 4px 12px 10px;
+  color: var(--plot-muted);
+  font-size: 12px;
+}
+
+.statistics-figure__notes {
+  border-top: 1px solid var(--plot-rule);
+}
+
+.statistics-figure__notes summary {
+  padding: 7px 12px;
+  color: var(--plot-muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .statistics-figure__controls {
+    column-gap: 8px;
+  }
+
+  .statistics-figure__controls label {
+    flex: 1 1 calc(50% - 4px);
+    max-width: none;
+  }
+
+  .statistics-figure__controls input {
+    width: 100%;
+  }
+}

@@ -1,0 +1,37 @@
+{% assign figure_ui = site.data.statistics-ui[page.lang] %}
+<figure class="statistics-figure" data-statistics="{{ include.kind }}" data-lang="{{ page.lang }}">
+  <figcaption>{{ figure_ui[include.kind] }}</figcaption>
+  <div class="statistics-figure__controls">
+    {% case include.kind %}
+      {% when 'discrete' %}
+        <label>{{ figure_ui.distribution }} <select data-param="distribution"><option value="bernoulli">{{ figure_ui.bernoulli }}</option><option value="binomial" selected>{{ figure_ui.binomial }}</option><option value="poisson">{{ figure_ui.poisson }}</option></select></label>
+        <label data-control="n">{{ figure_ui.trials }} <input type="range" data-param="n" min="1" max="40" step="1" value="10"><output data-value="n">10</output></label>
+        <label data-control="theta">{{ figure_ui.chance }} <input type="range" data-param="theta" min="0.02" max="0.98" step="0.01" value="0.25"><output data-value="theta">0.25</output></label>
+        <label data-control="lambda" hidden>{{ figure_ui.rate }} <input type="range" data-param="lambda" min="0.2" max="15" step="0.1" value="3"><output data-value="lambda">3</output></label>
+      {% when 'gaussian' %}
+        <label>{{ figure_ui.mean }} <input type="range" data-param="mu" min="-2" max="2" step="0.1" value="0"><output data-value="mu">0</output></label>
+        <label>{{ figure_ui.std }} <input type="range" data-param="sigma" min="0.2" max="2" step="0.1" value="1"><output data-value="sigma">1</output></label>
+        <label>{{ figure_ui.left }} <input type="range" data-param="a" min="-4" max="4" step="0.1" value="-1"><output data-value="a">-1</output></label>
+        <label>{{ figure_ui.right }} <input type="range" data-param="b" min="-4" max="4" step="0.1" value="1"><output data-value="b">1</output></label>
+      {% when 'clt' %}
+        <label>{{ figure_ui.count }} <input type="range" data-param="n" min="1" max="12" step="1" value="1"><output data-value="n">1</output></label>
+      {% when 'conditional' %}
+        <label>{{ figure_ui.correlation }} <input type="range" data-param="rho" min="-0.9" max="0.9" step="0.01" value="0.65"><output data-value="rho">0.65</output></label>
+        <label>{{ figure_ui.observation }} <input type="range" data-param="observed" min="-2" max="2" step="0.1" value="1"><output data-value="observed">1</output></label>
+      {% when 'entropy' %}
+        <label>{{ figure_ui.truth }} <input type="range" data-param="p" min="0.01" max="0.99" step="0.01" value="0.65"><output data-value="p">0.65</output></label>
+        <label>{{ figure_ui.prediction }} <input type="range" data-param="q" min="0.01" max="0.99" step="0.01" value="0.25"><output data-value="q">0.25</output></label>
+    {% endcase %}
+    <button type="button" data-reset>{{ figure_ui.reset }}</button>
+    {% if include.kind == 'clt' or include.kind == 'conditional' %}
+      <button type="button" data-animation aria-pressed="true">{{ figure_ui.pause }}</button>
+      <span class="statistics-figure__motion">{{ figure_ui.motion }}</span>
+    {% endif %}
+  </div>
+  <div class="statistics-figure__plots"></div>
+  <div class="statistics-figure__legend"></div>
+  <p class="statistics-figure__readout" aria-live="polite" aria-atomic="true"></p>
+  {% assign hint_key = include.kind | append: '_hint' %}
+  <p class="statistics-figure__hint">{{ figure_ui[hint_key] }}</p>
+  <noscript><p>{{ figure_ui.fallback }}</p></noscript>
+</figure>
