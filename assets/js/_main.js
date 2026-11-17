@@ -124,8 +124,7 @@ $(document).ready(function () {
 
   // Add anchors for headings
   document
-    .querySelector(".page__content")
-    .querySelectorAll("h1, h2, h3, h4, h5, h6")
+    .querySelectorAll(".page__content h1, .page__content h2, .page__content h3, .page__content h4, .page__content h5, .page__content h6")
     .forEach(function (element) {
       var id = element.getAttribute("id");
       if (id) {

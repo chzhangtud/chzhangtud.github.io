@@ -3,7 +3,10 @@ layout: archive
 ---
 {% assign series_lang = page.lang | default: site.default_lang %}
 {% assign series_ui = site.data.series-ui[series_lang] %}
-{% assign collection = site.data.series | where: 'id', page.series | first %}
+{% assign collection = nil %}
+{% if page.series %}
+  {% assign collection = site.data.series | where: 'id', page.series | first %}
+{% endif %}
 <nav class="series-toolbar" aria-label="{{ series_ui.heading }}">
   {% if collection %}
     <a href="{{ series_ui.index_url | relative_url }}">&larr; {{ series_ui.all }}</a>

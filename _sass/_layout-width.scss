@@ -1,0 +1,155 @@
+// Use the viewport width throughout the site, reserving space only for visible sidebars.
+@media screen {
+  // Horizontal gestures belong to the page's controls, not browser history.
+  html,
+  body {
+    overscroll-behavior-x: none;
+  }
+
+  .page__content input[type="range"] {
+    touch-action: pan-y;
+  }
+
+  .sidebar,
+  .toc__menu {
+    color-scheme: dark;
+    scrollbar-width: thin;
+    scrollbar-color: rgba($birds-muted, 0.45) transparent;
+
+    &:hover,
+    &:focus-within {
+      scrollbar-color: rgba($birds-muted, 0.7) transparent;
+    }
+
+    // Fallback for browsers without the standard scrollbar properties.
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      background: rgba($birds-muted, 0.45);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba($birds-muted, 0.7);
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  #main,
+  .masthead__inner-wrap,
+  .page__footer footer,
+  .breadcrumbs,
+  .search-content__inner-wrap,
+  .page__hero--overlay .wrapper {
+    width: 100%;
+    max-width: none;
+    padding-left: clamp(1rem, 2vw, 2rem);
+    padding-right: clamp(1rem, 2vw, 2rem);
+  }
+
+  #main > .page,
+  #main > .archive,
+  #main > .page__related {
+    min-width: 0;
+    width: 100%;
+    float: none;
+  }
+
+  #main > .page {
+    padding-right: 0;
+  }
+
+  .page__body {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  // Keep the table of contents in the normal flow until there is room for a column.
+  .page .sidebar__right,
+  .page .sidebar__right.sticky {
+    position: static;
+    float: none;
+    width: auto;
+    margin: 0 0 1em;
+    padding-left: 0;
+  }
+
+  @include breakpoint($large) {
+    #main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0 1.25rem;
+      align-items: start;
+
+      &::before,
+      &::after {
+        content: none;
+      }
+
+      &:has(> .sidebar) {
+        grid-template-columns: clamp(220px, 18vw, 280px) minmax(0, 1fr);
+      }
+    }
+
+    #main > .sidebar {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      float: none;
+      width: 100%;
+      min-width: 0;
+      margin-top: 1rem;
+    }
+
+    #main > .page,
+    #main > .archive,
+    #main > .page__related {
+      grid-column: -2 / -1;
+    }
+
+    .breadcrumbs ol {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  @include breakpoint(1440px) {
+    .page__content:has(> .sidebar__right) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(220px, 16vw, 280px);
+      column-gap: 1.5rem;
+
+      > .page__views,
+      > .page__body {
+        grid-column: 1;
+        min-width: 0;
+      }
+
+      > .page__body {
+        grid-row: 2;
+      }
+
+      > .sidebar__right {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: start;
+
+        &.sticky {
+          position: sticky;
+          top: 2rem;
+        }
+      }
+    }
+  }
+}

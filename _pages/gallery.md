@@ -10,7 +10,7 @@ body {
   font-size: 14px;
 }
 .container {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto; /* 使页面居中 */
 }
 </style>
